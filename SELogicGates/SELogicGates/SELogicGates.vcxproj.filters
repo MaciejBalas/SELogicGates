@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AND.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BUTTON.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CONSTBUS.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ELEMENT.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GATE.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INBUS.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JUNCTION.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LOGIC.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MENUBUT.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MODEBUT.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NAND.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NOR.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NOT.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OR.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OUTPUT.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SMALLWIN.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WINDOW.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WIRE.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XOR.H">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AND.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BUTTON.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CONSTBUS.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ELEMENT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GATE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="INBUS.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JUNCTION.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGIC.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MENUBUT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MODEBUT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NAND.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NOR.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NOT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OR.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OUTPUT.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SMALLWIN.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TMP.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WINDOW.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WIRE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="XOR.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
