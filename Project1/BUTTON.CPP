@@ -21,21 +21,21 @@ void CButton::ChangeInsertMode(int TurnOff)
 	//jest to zabezpieczenie przy szybkim "klikaniu" myszk¥
 	if (Insert == false && TurnOff == 0)
 	{
-		Insert = _true;
+		Insert = true;
 		DrawingColour = { 255, 0, 0 };  //12 red
 	}
 	else
 	{
-		Insert = _false;
+		Insert = false;
 		DrawingColour = { 0, 255, 0 };  //16 green
 	}
 	DrawButton();
 }
 
-void CButton::SetActivity(TActive Active)
+void CButton::SetActivity(bool Active)
 {
 	this->Active = Active;
-	if (Active == on) DrawingColour = { 0, 255, 0 };
+	if (Active == true) DrawingColour = { 0, 255, 0 };
 	else DrawingColour = { 0, 0, 255 }; //8 blue
 	this->DrawButton();
 }

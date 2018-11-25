@@ -3,6 +3,7 @@
 #include "SDL.h"
 #include "SDL_TTF.h"
 #include "button.h"
+#include "MENUBUT.H"
 class CWindow
 {
 	SDL_Window *window;

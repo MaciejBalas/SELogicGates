@@ -1,0 +1,21 @@
+#ifndef DefMenuBut
+#define DefMenuBut
+
+
+
+#include "button.h"
+#include <stdio.h>
+
+class CMenuButton:public CButton
+{
+	char*ButtonText;
+	
+ public:
+	void DrawButton();
+	void ChangeText(char*Text);
+	int ClickButton();
+	CMenuButton(const char text[],int X1,int Y1,int X2,int Y2, SDL_Renderer *renderer);
+	~CMenuButton();
+};
+
+#endif

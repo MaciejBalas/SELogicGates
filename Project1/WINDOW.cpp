@@ -2,9 +2,11 @@
 #include <cstring>
 CWindow::CWindow() {
 	DrawWin(1);
+
 }
 CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew)
 {
+	
 	//setactivepage(1);
 	Active = 1;
 	Result = 1;
@@ -24,7 +26,8 @@ CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNe
 	//TabElem[7] = new CInBus(116, 45, 'f');
 	//for (i = 0; i<ButNum; i++)
 	//	TabBut[i] = NULL;
-	//TabBut[0] = new CMenuButton("Load", 30, 22, 90, 39);
+	//TabBut[0] = new CMenuButton("Load", 100, 100, 150, 150, renderer);
+	//TabBut[0]->DrawButton();
 	//TabBut[1] = new CMenuButton("New", 100, 22, 160, 39);
 	//if (!NewPossib) TabBut[1]->SetActivity(0);
 	//TabBut[2] = new CMenuButton("Prev", 170, 22, 230, 39);
@@ -86,9 +89,9 @@ CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNe
 	//	for (int i = 0; i<NumOfElem; i++)
 	//		TabElem[i]->GetOutput(0, NumOfElem);
 	//}//gdy okno nie jest nowe, to zostanie odtworzony jego poprzedni stan
-	if (!IsPrev && !IsNext&&IsNew) DrawWin(1);
+	//if (!IsPrev && !IsNext&&IsNew) DrawWin(1);
 	//jest to pierwsze otwierane okno
-	else DrawWin(0);//narysowanie tylko element¢w zmieniaj¥cych si©
+	//else DrawWin(0);//narysowanie tylko element¢w zmieniaj¥cych si©
 }
 
 CWindow::~CWindow()
