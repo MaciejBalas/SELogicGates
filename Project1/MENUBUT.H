@@ -8,7 +8,7 @@
 
 class CMenuButton:public CButton
 {
-	char*ButtonText;
+	const char*ButtonText;
 	
  public:
 	void DrawButton();

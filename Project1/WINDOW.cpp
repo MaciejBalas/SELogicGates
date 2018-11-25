@@ -1,7 +1,10 @@
 #include "window.h"
 #include <cstring>
 CWindow::CWindow() {
+
 	DrawWin(1);
+	
+	
 
 }
 CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew)
@@ -693,11 +696,24 @@ void CWindow::DrawWin(char Mode)
 	Message_rect.h = texH;
 	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
 	SDL_RenderPresent(renderer);
-	/*
-	for (i = 0; i<16; i++)
-		TabBut[i]->DrawButton();
-	for (i = 0; i<NumOfElem; i++)
-		TabElem[i]->DrawElem();*/
+	
+	//for (i = 0; i<16; i++)
+		//tabbut[i]->drawbutton();
+//	for (i = 0; i<NumOfElem; i++)
+	//	TabElem[i]->DrawElem();
+	TabBut[0] = new CMenuButton("Load", 30, 22, 90, 39, renderer);
+	TabBut[0]->DrawButton();
+	TabBut[1] = new CMenuButton("New", 100, 22, 160, 39, renderer);
+	//if (!NewPossib) TabBut[1]->SetActivity(0);
+	TabBut[2] = new CMenuButton("Prev", 170, 22, 230, 39, renderer);
+	//if (!IsPrev) TabBut[2]->SetActivity(0);
+	TabBut[3] = new CMenuButton("Next", 240, 22, 300, 39, renderer);
+	//if (!IsNext) TabBut[3]->SetActivity(0);
+	TabBut[4] = new CMenuButton("Save", 310, 22, 370, 39, renderer);
+	TabBut[5] = new CMenuButton("Save As", 380, 22, 440, 39, renderer);
+	TabBut[6] = new CMenuButton("Close", 450, 22, 510, 39, renderer);
+	TabBut[7] = new CMenuButton("Info", 520, 22, 580, 39, renderer);
+	TabBut[8] = new CMenuButton("Move", 170, 42, 370, 59, renderer);
 	SDL_Event windowEvent;
 	while (true) {
 		if (SDL_PollEvent(&windowEvent)) {
