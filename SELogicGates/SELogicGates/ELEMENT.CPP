@@ -44,6 +44,7 @@ int CElement::GetYCorner(char Down)
 
 int CElement::IsAreaFree(CElement**TabElem,int NumOfElem)
 {
+	int i = 0;
 	int ElemNum;
 	for(int i=0;i<=NumOfElem;i++) if(this==TabElem[i])
 	{
@@ -54,17 +55,17 @@ int CElement::IsAreaFree(CElement**TabElem,int NumOfElem)
 	if(Y2<0) Y2=Y1;
 	int X=X1;
 	int Y=Y1;
-	if(TabElem[ElemNum]->ElementType()==wire) return 0;//wyst¥piˆ bˆ¥d
+	if(TabElem[ElemNum]->ElementType()==wire) return 0;//wystÄ„piÂˆ bÂˆÄ„d
 	for(i=0;i<NumOfElem;i++)
 	{
-		if(i==ElemNum) i++;//nie bada si© tego samego elementu
+		if(i==ElemNum) i++;//nie bada siÂ© tego samego elementu
 		if(i>=NumOfElem) break;//zabezpieczenie przed przekroczeniem tabeli
 		do
 		{
 			if(TabElem[i]->IsYourArea(X,Y))
 				if(!TabElem[ElemNum]->IsElemPrev(TabElem[i])&&
 					 !TabElem[ElemNum]->IsElemNext(TabElem[i])) return 0;
-					 //znaleziony element nie jest nast©pny ani poprzedni
+					 //znaleziony element nie jest nastÂ©pny ani poprzedni
 			X+=5;
 		}while(X<X2);
 		X=X2;
@@ -73,7 +74,7 @@ int CElement::IsAreaFree(CElement**TabElem,int NumOfElem)
 			if(TabElem[i]->IsYourArea(X,Y))
 			if(!TabElem[ElemNum]->IsElemPrev(TabElem[i])&&
 				 !TabElem[ElemNum]->IsElemNext(TabElem[i])) return 0;
-				 //znaleziony element nie jest nast©pny ani poprzedni
+				 //znaleziony element nie jest nastÂ©pny ani poprzedni
 			Y+=5;
 		}while(Y<Y2);
 		Y=Y2;
@@ -82,7 +83,7 @@ int CElement::IsAreaFree(CElement**TabElem,int NumOfElem)
 			if(TabElem[i]->IsYourArea(X,Y))
 			if(!TabElem[ElemNum]->IsElemPrev(TabElem[i])&&
 				 !TabElem[ElemNum]->IsElemNext(TabElem[i])) return 0;
-				 //znaleziony element nie jest nast©pny ani poprzedni
+				 //znaleziony element nie jest nastÂ©pny ani poprzedni
 			X-=5;
 		}while(X>X1);
 		X=X1;
@@ -91,7 +92,7 @@ int CElement::IsAreaFree(CElement**TabElem,int NumOfElem)
 			if(TabElem[i]->IsYourArea(X,Y))
 			if(!TabElem[ElemNum]->IsElemPrev(TabElem[i])&&
 				 !TabElem[ElemNum]->IsElemNext(TabElem[i])) return 0;
-				 //znaleziony element nie jest nast©pny ani poprzedni
+				 //znaleziony element nie jest nastÂ©pny ani poprzedni
 			Y-=5;
 		}while(Y>Y1);
 	}
@@ -100,6 +101,7 @@ int CElement::IsAreaFree(CElement**TabElem,int NumOfElem)
 
 char CElement::Move(int X,int Y,CElement**TabElem,int NumOfElem)
 {
+	int i = 0;
 	if(Movable==no) return 0;
 	int X1Prev=X1;
 	int Y1Prev=Y1;
@@ -116,16 +118,16 @@ char CElement::Move(int X,int Y,CElement**TabElem,int NumOfElem)
 		X1=X1Prev;
 		Y1=Y1Prev;
 		return 0;
-	}//sprawdzenie poprawno˜ci nowego poˆo¾enia elementu
+	}//sprawdzenie poprawnoÂ˜ci nowego poÂˆoÄ¾enia elementu
 	for(int i=0;i<InNum;i++)
 		if(TabPrevElem[i]!=NULL)
 		{
 			int TmpX=TabPrevElem[i]->GetXCorner(1);
 			int TmpY=TabPrevElem[i]->GetYCorner(1);
-				//potrzebne s¥ wsp¢ˆrz©dne koäca linii
+				//potrzebne sÄ„ wspË˜ÂˆrzÂ©dne koÃ¤ca linii
 			if(TabPrevElem[i]->IsOnBoard())
 				TabPrevElem[i]->DrawElem(BackgroundColour);
-					//poˆ¥czenie zniknie, je¾eli byˆo narysowane
+					//poÂˆÄ„czenie zniknie, jeÄ¾eli byÂˆo narysowane
 			TabPrevElem[i]->MoveEnd(TmpX+X-X1Prev,TmpY+Y-Y1Prev);
 			if(!TabPrevElem[i]->Autoformat(TabElem,NumOfElem))
 			{
@@ -139,11 +141,11 @@ char CElement::Move(int X,int Y,CElement**TabElem,int NumOfElem)
 					{
 						int TmpX=TabPrevElem[j]->GetXCorner(1);
 						int TmpY=TabPrevElem[j]->GetYCorner(1);
-							//potrzebne s¥ wsp¢ˆrz©dne koäca linii
+							//potrzebne sÄ„ wspË˜ÂˆrzÂ©dne koÃ¤ca linii
 						TabPrevElem[j]->MoveEnd(TmpX-X+X1Prev,TmpY-Y+Y1Prev);
 						TabPrevElem[j]->Autoformat(TabElem,NumOfElem);
-					}//poniewa¾ kt¢rej˜ z linii nie daˆo si© sformatowa†,
-					//trzeba przywr¢ci† poˆo¾enie wcze˜niej sformatowanych linii
+					}//poniewaÄ¾ ktË˜rejÂ˜ z linii nie daÂˆo siÂ© sformatowaâ€ ,
+					//trzeba przywrË˜ciâ€  poÂˆoÄ¾enie wczeÂ˜niej sformatowanych linii
 				return 0;
 			}
 		}
@@ -154,7 +156,7 @@ char CElement::Move(int X,int Y,CElement**TabElem,int NumOfElem)
 			int TmpY=TabNextElem[i]->GetYCorner();
 			if(TabNextElem[i]->IsOnBoard())
 				TabNextElem[i]->DrawElem(BackgroundColour);
-					//poˆ¥czenie zniknie, je¾eli byˆo narysowane
+					//poÂˆÄ„czenie zniknie, jeÄ¾eli byÂˆo narysowane
 			TabNextElem[i]->MoveBeg(TmpX+X-X1Prev,TmpY+Y-Y1Prev);
 			if(!TabNextElem[i]->Autoformat(TabElem,NumOfElem))
 			{
@@ -168,21 +170,21 @@ char CElement::Move(int X,int Y,CElement**TabElem,int NumOfElem)
 					{
 						int TmpX=TabPrevElem[j]->GetXCorner(1);
 						int TmpY=TabPrevElem[j]->GetYCorner(1);
-							//potrzebne s¥ wsp¢ˆrz©dne koäca linii
+							//potrzebne sÄ„ wspË˜ÂˆrzÂ©dne koÃ¤ca linii
 						TabPrevElem[j]->MoveBeg(TmpX-X+X1Prev,TmpY-Y+Y1Prev);
 						TabPrevElem[j]->Autoformat(TabElem,NumOfElem);
-					}//poniewa¾ kt¢rej˜ z linii nie daˆo si© sformatowa†,
-					//trzeba przywr¢ci† poˆo¾enie wcze˜niej sformatowanych linii
-				for(j=InNum-1;j>=0;j--)
+					}//poniewaÄ¾ ktË˜rejÂ˜ z linii nie daÂˆo siÂ© sformatowaâ€ ,
+					//trzeba przywrË˜ciâ€  poÂˆoÄ¾enie wczeÂ˜niej sformatowanych linii
+				for(int j=InNum-1;j>=0;j--)
 					if(TabPrevElem[j]!=NULL)
 					{
 						int TmpX=TabPrevElem[j]->GetXCorner(1);
 						int TmpY=TabPrevElem[j]->GetYCorner(1);
-							//potrzebne s¥ wsp¢ˆrz©dne koäca linii
+							//potrzebne sÄ„ wspË˜ÂˆrzÂ©dne koÃ¤ca linii
 						TabPrevElem[j]->MoveEnd(TmpX-X+X1Prev,TmpY-Y+Y1Prev);
 						TabPrevElem[j]->Autoformat(TabElem,NumOfElem);
-					}//poniewa¾ kt¢rej˜ z linii nie daˆo si© sformatowa†,
-					//trzeba przywr¢ci† poˆo¾enie wcze˜niej sformatowanych linii
+					}//poniewaÄ¾ ktË˜rejÂ˜ z linii nie daÂˆo siÂ© sformatowaâ€ ,
+					//trzeba przywrË˜ciâ€  poÂˆoÄ¾enie wczeÂ˜niej sformatowanych linii
 				return 0;
 			}
 		}
@@ -198,8 +200,8 @@ void CElement::MoveEnd(int X,int Y)
 char CElement::LinkNextElem(CElement*NextElem,int X,int Y)
 {
 	if(NextElem->ElementType()!=wire) return 0;
-		//bramka mo¾e by† poˆ¥czona tylko z drutem
-	if(TabNextElem[0]!=NULL) return 0;//istnieje ju¾ element nast©pny
+		//bramka moÄ¾e byâ€  poÂˆÄ„czona tylko z drutem
+	if(TabNextElem[0]!=NULL) return 0;//istnieje juÄ¾ element nastÂ©pny
 	TabNextElem[0]=NextElem;
 	NextElem->MoveBeg(X1+25,Y1+14);
 	return 1;
@@ -207,15 +209,16 @@ char CElement::LinkNextElem(CElement*NextElem,int X,int Y)
 
 char CElement::LinkPrevElem(CElement*PrevElem,int X,int Y)
 {
+	int i = 0;
 	if(PrevElem->ElementType()!=wire) return 0;
-		//bramka mo¾e by† poˆ¥czona tylko z drutem
+		//bramka moÄ¾e byâ€  poÂˆÄ„czona tylko z drutem
 	X-=X1;
-	Y-=Y1;//zmienne X i Y okre˜laj¥ wzgl©dne poˆo¾enie
+	Y-=Y1;//zmienne X i Y okreÂ˜lajÄ„ wzglÂ©dne poÂˆoÄ¾enie
 	int MinY;
 	int MaxY;
 	char Key=0;
 	int Hight=(Y2-Y1)/InNum;
-	if((Y2-Y1)/InNum) Key=1;//wysoko˜† jest liczb¥ nieparzyst¥
+	if((Y2-Y1)/InNum) Key=1;//wysokoÂ˜â€  jest liczbÄ„ nieparzystÄ„
 	for(int i=0;i<InNum;i++)
 	{
 		if(Key!=0)
@@ -274,14 +277,15 @@ char CElement::DelPrevElem(CElement*DelElem)
 
 int CElement::DeleteConnections(CElement**TabElem,int NumOfElem,char Main)
 {
-	int DelElemNum=1;//trzeba wliczy† tak¾e ten element
-	//funkcja wirtualna jest zdefiniowana w tym miejscu dla bramek i wyj˜†,
-	//druty i w©zˆy maj¥ inne ciaˆo funkcji
+	int i = 0;
+	int DelElemNum=1;//trzeba wliczyâ€  takÄ¾e ten element
+	//funkcja wirtualna jest zdefiniowana w tym miejscu dla bramek i wyjÂ˜â€ ,
+	//druty i wÂ©zÂˆy majÄ„ inne ciaÂˆo funkcji
 	for(int i=0;i<NumOfElem;i++)
-		if(this==TabElem[i]) break;//znalezienie indeksu bie¾¥cego elementu
+		if(this==TabElem[i]) break;//znalezienie indeksu bieÄ¾Ä„cego elementu
 	for(int j=i;j<NumOfElem;j++)
 		TabElem[j]=TabElem[j+1];//wyrzucenie elementu z tabeli
-	NumOfElem--;//lokalne zmniejszenie warto˜ci - nie ma skutku na zewn¥trz
+	NumOfElem--;//lokalne zmniejszenie wartoÂ˜ci - nie ma skutku na zewnÄ„trz
 	for(i=0;i<InNum;i++)
 		if(TabPrevElem[i]!=NULL)
 		{
@@ -307,6 +311,8 @@ char CElement::Autoformat(CElement**TabElem,int NumOfElem)
 char CElement::SaveElement(CElement**TabElem,int NumOfElem,
 													 FILE*File,char Phase)
 {
+	int i = 0;
+	int j = 0;
 	if(Phase==1)//pierwsza faza zachowywania
 	{
 		char Type;
@@ -338,8 +344,8 @@ char CElement::SaveElement(CElement**TabElem,int NumOfElem,
 			{
 				for(int j=0;j<NumOfElem;j++)
 					if(TabElem[j]==TabPrevElem[i]) break;
-						//ustalenie indeksu poprzednich element¢w
-				if(j>=NumOfElem) return 0;//bˆ¥d - element nie zostaˆ znaleziony
+						//ustalenie indeksu poprzednich elementË˜w
+				if(j>=NumOfElem) return 0;//bÂˆÄ„d - element nie zostaÂˆ znaleziony
 				PrevElemPos=j;
 			}
 			else PrevElemPos=-1;//nie ma elementu poprzedniego na i-tej pozycji
@@ -352,8 +358,8 @@ char CElement::SaveElement(CElement**TabElem,int NumOfElem,
 			{
 				for(int j=0;j<NumOfElem;j++)
 					if(TabElem[j]==TabNextElem[i]) break;
-						//ustalenie indeksu poprzednich element¢w
-				if(j>=NumOfElem) return 0;//bˆ¥d - element nie zostaˆ znaleziony
+						//ustalenie indeksu poprzednich elementË˜w
+				if(j>=NumOfElem) return 0;//bÂˆÄ„d - element nie zostaÂˆ znaleziony
 				NextElemPos=j;
 			}
 			else NextElemPos=-1;//nie ma elementu poprzedniego na i-tej pozycji
@@ -366,6 +372,7 @@ char CElement::SaveElement(CElement**TabElem,int NumOfElem,
 char CElement::LoadElement(CElement**TabElem,int NumOfElem,
 													 FILE*File,char Phase)
 {
+	int i = 0;
 	if(Phase==1)//pierwsza faza odczytu
 	{
 		if(feof(File)) return 0;
@@ -393,10 +400,10 @@ char CElement::LoadElement(CElement**TabElem,int NumOfElem,
 			if(feof(File)) return 0;
 			fread(&PrevElemPos,sizeof(int),1,File);
 			if(PrevElemPos>NumOfElem) return 0;
-			if(PrevElemPos<0)//element nie byˆ poˆ¥czony
+			if(PrevElemPos<0)//element nie byÂˆ poÂˆÄ„czony
 				TabPrevElem[i]=NULL;
 			else TabPrevElem[i]=TabElem[PrevElemPos];
-				//element byˆ poˆ¥czony z elementem o odczytanym indeksie
+				//element byÂˆ poÂˆÄ„czony z elementem o odczytanym indeksie
 		}
 		for(i=0;i<OutNum;i++)
 		{
@@ -404,10 +411,10 @@ char CElement::LoadElement(CElement**TabElem,int NumOfElem,
 			if(feof(File)) return 0;
 			fread(&NextElemPos,sizeof(int),1,File);
 			if(NextElemPos>NumOfElem) return 0;
-			if(NextElemPos<0)//element nie byˆ poˆ¥czony
+			if(NextElemPos<0)//element nie byÂˆ poÂˆÄ„czony
 				TabNextElem[i]=NULL;
 			else TabNextElem[i]=TabElem[NextElemPos];
-				//element byˆ poˆ¥czony z elementem o odczytanym indeksie
+				//element byÂˆ poÂˆÄ„czony z elementem o odczytanym indeksie
 		}
 	}
 	return 1;
