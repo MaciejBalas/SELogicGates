@@ -704,16 +704,24 @@ void CWindow::DrawWin(char Mode)
 	TabBut[0] = new CMenuButton("Load", 30, 22, 90, 39, renderer);
 	TabBut[0]->DrawButton();
 	TabBut[1] = new CMenuButton("New", 100, 22, 160, 39, renderer);
+	TabBut[1]->DrawButton();
 	//if (!NewPossib) TabBut[1]->SetActivity(0);
 	TabBut[2] = new CMenuButton("Prev", 170, 22, 230, 39, renderer);
+	TabBut[2]->DrawButton();
 	//if (!IsPrev) TabBut[2]->SetActivity(0);
 	TabBut[3] = new CMenuButton("Next", 240, 22, 300, 39, renderer);
+	TabBut[3]->DrawButton();
 	//if (!IsNext) TabBut[3]->SetActivity(0);
 	TabBut[4] = new CMenuButton("Save", 310, 22, 370, 39, renderer);
+	TabBut[4]->DrawButton();
 	TabBut[5] = new CMenuButton("Save As", 380, 22, 440, 39, renderer);
+	TabBut[5]->DrawButton();
 	TabBut[6] = new CMenuButton("Close", 450, 22, 510, 39, renderer);
+	TabBut[6]->DrawButton();
 	TabBut[7] = new CMenuButton("Info", 520, 22, 580, 39, renderer);
+	TabBut[7]->DrawButton();
 	TabBut[8] = new CMenuButton("Move", 170, 42, 370, 59, renderer);
+	TabBut[8]->DrawButton();
 	SDL_Event windowEvent;
 	while (true) {
 		if (SDL_PollEvent(&windowEvent)) {
