@@ -121,6 +121,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BUTTON.cpp" />
+    <ClCompile Include="ELEMENT.cpp" />
     <ClCompile Include="MENUBUT.CPP" />
     <ClCompile Include="SMALLWIN.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -128,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BUTTON.h" />
+    <ClInclude Include="ELEMENT.h" />
     <ClInclude Include="MENUBUT.H" />
     <ClInclude Include="SMALLWIN.h" />
     <ClInclude Include="WINDOW.h" />
