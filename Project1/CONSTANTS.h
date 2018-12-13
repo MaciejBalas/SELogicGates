@@ -14,6 +14,6 @@
 #define MenuButNum 9
 #define ButNum 16
 
-SDL_Color BackgroundColor{ 255,255,255 }; //white
+SDL_Color BackgroundColour{ 255,255,255 }; //white
 
 enum TElementType { _and, _or , _not, _nor, _nand, _xor, _output, _wire, _junction, _inbus, _cbus };

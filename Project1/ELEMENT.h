@@ -1,6 +1,7 @@
 #ifndef DefElement
 #define DefElement
 #include <stdio.h>
+#include "CONSTANTS.h"
 class CElement
 {
 protected:
@@ -18,7 +19,7 @@ protected:
 	CElement*TabPrevElem[2];
 	int IsAreaFree(CElement**TabElem, int NumOfElem);
 public:
-	virtual void DrawElem(int Colour = 0) = 0;
+	virtual void DrawElem(SDL_Color Colour) = 0;
 	virtual TOutput GetOutput(int AskElemNum, int MaxNum) = 0;
 	virtual char Move(int X, int Y, CElement**TabElem, int NumOfElem);
 	virtual void MoveBeg(int X, int Y);

@@ -164,7 +164,8 @@ char CElement::Move(int X, int Y, CElement**TabElem, int NumOfElem)
 				X1 = X1Prev;
 				Y1 = Y1Prev;
 				TabNextElem[i]->MoveBeg(TmpX, TmpY);
-				for (int j = i - 1; j >= 0; j--)
+				int j;
+				for (j = i - 1; j >= 0; j--)
 					if (TabPrevElem[j] != NULL)
 					{
 						int TmpX = TabPrevElem[j]->GetXCorner(1);
