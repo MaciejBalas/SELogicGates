@@ -129,7 +129,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BUTTON.h" />
+<<<<<<< HEAD
     <ClInclude Include="ELEMENT.h" />
+=======
+    <ClInclude Include="CONSTANTS.h" />
+>>>>>>> origin/SomethingWorksAtLeast
     <ClInclude Include="MENUBUT.H" />
     <ClInclude Include="SMALLWIN.h" />
     <ClInclude Include="WINDOW.h" />
