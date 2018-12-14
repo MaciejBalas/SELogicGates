@@ -8,6 +8,7 @@
 #include "ELEMENT.h"
 #include "CONSTANTS.h"
 #include "CONSTBUS.h"
+#include "INBUS.H"
 class CWindow
 {
 	SDL_Window *window;

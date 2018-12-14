@@ -1,2 +1,12 @@
-﻿  MENUBUT.CPP
+﻿  BUTTON.cpp
+  CONSTBUS.cpp
+  ELEMENT.cpp
+  INBUS.CPP
+  JUNCTION.CPP
+  MENUBUT.CPP
+  SMALLWIN.cpp
+  Source.cpp
+  WINDOW.cpp
+d:\logic gates\project1\window.cpp(650): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
   Project1.vcxproj -> D:\logic gates\x64\Debug\Project1.exe
