@@ -1,9 +1,11 @@
+#pragma once
 #ifndef DefWindow
 #define DefWindow
 #include "SDL.h"
 #include "SDL_TTF.h"
 #include "button.h"
 #include "MENUBUT.H"
+#include "ELEMENT.h"
 class CWindow
 {
 	SDL_Window *window;
@@ -14,7 +16,7 @@ class CWindow
 	int NumOfElem;//ilo˜† element¢w
 	enum TMode { move, link, block };
 	TMode Mode;
-	//CElement*TabElem[MaxNumOfElem];
+	CElement*TabElem[MaxNumOfElem];
 	CButton*TabBut[16];
 	char*StandardPath;
 	//void*ImageTab[NumberOfImages];

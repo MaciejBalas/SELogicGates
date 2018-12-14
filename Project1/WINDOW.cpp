@@ -13,12 +13,12 @@ CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNe
 	//setactivepage(1);
 	Active = 1;
 	Result = 1;
-	//NumOfElem = NumberOfInBuses + 2;//szyny wej˜ciowe
+	NumOfElem = NumberOfInBuses + 2;//szyny wej˜ciowe
 	WinNum = Number;
 	Mode = move;
 	StandardPath = NULL;
-	//for (int i = 0; i<NumberOfInBuses + 2; i++)
-	//	TabElem[i] = NULL;
+	for (int i = 0; i<NumberOfInBuses + 2; i++)
+		TabElem[i] = NULL;
 	//TabElem[0] = new CConstBus(145, 447, 0);
 	//TabElem[1] = new CConstBus(145, 462, 1);
 	//TabElem[2] = new CInBus(41, 45, 'a');
@@ -672,7 +672,7 @@ void CWindow::DrawWin(char Mode)
 	SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRect(renderer, &Bar(1, 478, 638, 441));
 	SDL_RenderFillRect(renderer, &Bar(611, 451, 638, 61));
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRect(renderer, &Bar(1, 1, 638, 20));
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	char Text[12] = "WINDOW ";
@@ -743,8 +743,9 @@ void CWindow::DrawBasket(int x, int y) {
 	SDL_RenderDrawLine(renderer, x, y + 30, x + 26, y + 30);
 	SDL_RenderDrawLine(renderer, x + 26, y + 30, x + 26, y);
 	SDL_RenderDrawLine(renderer, x + 26, y, x, y);
-	SDL_RenderFillRect(renderer, &Bar(x+6,y+26,x+20,y+28));
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
+	SDL_RenderFillRect(renderer, &Bar(x + 6, y + 26, x + 20, y + 28));
 	SDL_RenderDrawLine(renderer, x + 6, y + 26, x + 2, y + 4);
 	SDL_RenderDrawLine(renderer, x + 20, y + 26, x + 24, y + 4);
 	SDL_RenderDrawLine(renderer, x + 8, y + 10, x + 9, y + 26);

@@ -1,4 +1,7 @@
 #pragma once
+#ifndef Constants
+#define Constants
+
 #include "SDL.h"
 
 #define NumberOfInBuses 6
@@ -13,7 +16,7 @@
 #define MaxSmallWinLinesNum 4
 #define MenuButNum 9
 #define ButNum 16
-
-SDL_Color BackgroundColour{ 255,255,255 }; //white
+static SDL_Color BackgroundColour{ 255,255,255 }; //white
 
 enum TElementType { _and, _or , _not, _nor, _nand, _xor, _output, _wire, _junction, _inbus, _cbus };
+#endif
