@@ -14,7 +14,7 @@ class CInBus:public CElement
 	int JunctionNum;
 	CJunction*TabJunction[MaxBusJunctionNum];
  public:
-	void DrawElem(int Colour=0);
+	void DrawElem(SDL_Color Colour = { 0,0,0 });
 	TOutput GetOutput(int AskElemNum,int MaxNum) ;
 	void Change();
 	SDL_Renderer *renderer = NULL;
@@ -24,6 +24,7 @@ class CInBus:public CElement
 	char DelNextElem(CElement*DelElem);
 	char SaveElement(CElement**TabElem,int NumOfElem,FILE*File,char Phase);
 	char LoadElement(CElement**TabElem,int NumOfElem,FILE*File,char Phase);
+	void ClickElement();
 	CInBus(int X,int Y,char Name, SDL_Renderer *renderer);
 	~CInBus();
 };

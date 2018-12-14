@@ -88,7 +88,7 @@ char CConstBus::LinkNextElem(CElement*NextElem, int X, int Y)
 		//powi¥zanie za blisko istniej¥cego w©zˆa
 	}
 	Y = Y1 + 6;
-	TabJunction[JunctionNum] = new CJunction(X, Y);
+	TabJunction[JunctionNum] = new CJunction(X, Y,renderer);
 	TabJunction[JunctionNum]->LinkPrevElem(this, 0, 0);
 	TabJunction[JunctionNum]->LinkNextElem(NextElem, X, Y);
 	JunctionNum++;
@@ -173,7 +173,7 @@ char CConstBus::LoadElement(CElement**TabElem, int NumOfElem,
 			if (feof(File)) return 0;
 			fread(&Type, sizeof(char), 1, File);
 			if (Type != 7) return 0;//odczytywany element nie jest w©zˆem
-			TabJunction[i] = new CJunction(0, 0);
+			TabJunction[i] = new CJunction(0, 0,renderer);
 			if (!TabJunction[i]->LoadElement(TabElem, NumOfElem, File, 1)) return 0;
 			//odczyt w©zˆ¢w w pierwszej fazie
 		}

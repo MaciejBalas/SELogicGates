@@ -7,6 +7,7 @@
 #include "MENUBUT.H"
 #include "ELEMENT.h"
 #include "CONSTANTS.h"
+#include "INBUS.H"
 class CWindow
 {
 	SDL_Window *window;

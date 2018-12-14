@@ -35,7 +35,6 @@ void CMenuButton::DrawButton()
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
 	SDL_RenderFillRect(renderer, &drawRect);
 	SDL_RenderPresent(renderer);
-
 	TTF_Font* font = TTF_OpenFont("arial.ttf", 10); //this opens a font style and sets a size
 	SDL_Color White = { 0, 0, 0 };  // this is the color in rgb format, maxing out all would give you the color white, and it will be your text's color
 	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, ButtonText, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
@@ -54,9 +53,10 @@ void CMenuButton::DrawButton()
 
 void CMenuButton::ChangeText(char*Text)
 {
-	delete ButtonText;
-	ButtonText=NULL;
+	//delete ButtonText;
+	//ButtonText=NULL;
 //	ButtonText=strdup(Text);
+	ButtonText = Text;
 	this->DrawButton();
 }
 

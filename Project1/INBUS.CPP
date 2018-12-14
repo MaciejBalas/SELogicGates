@@ -33,48 +33,56 @@ CInBus::~CInBus()
 	delete Button[1];
 }
 
-void CInBus::DrawElem(int Colour)
+void CInBus::DrawElem(SDL_Color Colour)
 {
-	//if(Colour==0)
-	//{
-	//	switch(Output)
-	//	{
-	//		case low:Colour=LowColour;break;
-	//		case high:Colour=HighColour;break;
-	//		case error:Output=high;Colour=HighColour;break;
-	//	}
-	//}
-	//if(Visible==false) Colour=BackgroundColour;
-	//setcolor(Colour);
-	//line(X1+5,61,X1+5,Y2-10);//linia gˆ¢wna
-	//if(Visible==true)
-	//{
-	//	char Text[2];
-	//	switch(Output)
-	//	{
-	//		case low:Text[0]='0';break;
-	//		case high:Text[0]='1';break;
-	//	}
-	//	Text[1]='\0';
-	//	Button[1]->ChangeText(Text);
-	//	Button[1]->DrawButton();
-	//}
-	//else
-	//{
-	//	setfillstyle(1,FrameColour);
-	//	bar(X1,Y2-10,X2,Y2);
-	//}
-	//Button[0]->DrawButton();
-	//for(int i=0;i<JunctionNum;i++) TabJunction[i]->DrawElem();
+	if (Colour.r == 0 && Colour.g == 0 && Colour.b == 0) {
+		{
+			switch (Output)
+			{
+			case low:Colour = LowColour; break;
+			case high:Colour = HighColour; break;
+			case error:Output = high; Colour = HighColour; break;
+			}
+		}
+		if (Visible == false) Colour = BackgroundColour;
+		//setcolor(Colour);
+		//line(X1+5,61,X1+5,Y2-10);//linia gˆ¢wna
+		SDL_SetRenderDrawColor(renderer, Colour.r, Colour.g, Colour.b, SDL_ALPHA_OPAQUE);
+		SDL_RenderDrawLine(renderer, X1 + 5, 61, X1 + 5, Y2 - 10);
+		if (Visible == true)
+		{
+			char Text[2];
+			switch (Output)
+			{
+			case low:Text[0] = '0'; break;
+			case high:Text[0] = '1'; break;
+			}
+			Text[1] = '\0';
+			Button[1]->ChangeText(Text);
+			Button[1]->DrawButton();
+		}
+		else
+		{
+			//setfillstyle(1,FrameColour);
+			//bar(X1,Y2-10,X2,Y2);
+			SDL_SetRenderDrawColor(renderer, Colour.r, Colour.g, Colour.b, SDL_ALPHA_OPAQUE);
+			SDL_RenderDrawLine(renderer, X1 + 5, 61, X1 + 5, Y2 - 10);
+		}
+		Button[0]->DrawButton();
+		for (int i = 0; i < JunctionNum; i++) TabJunction[i]->DrawElem();
+	}
 }
 
-TOutput CInBus::GetOutput(int AskElemNum,int MaxNum)
-{
+
+
+
+	TOutput CInBus::GetOutput(int AskElemNum,int MaxNum)
+	{
 	if(AskElemNum==0) return Output;
 	for(int i=0;i<JunctionNum;i++)
 		TabJunction[i]->GetOutput(AskElemNum,MaxNum);
 	return Output;
-}
+	}
 
 void CInBus::Change()
 {}
@@ -84,27 +92,27 @@ TElementType CInBus::ElementType()
 	return _inbus;
 }
 
-//void CInBus::ClickElement()
-//{
-//	struct REGPACK reg;
-//	reg.r_ax=0x3;
-//	intr(0x33,&reg);
-//	if(Button[0]->IsYourArea(reg.r_cx,reg.r_dx))
-//	{
-//		Button[0]->ClickButton();
-//		if(Visible==true&&JunctionNum==0) Visible=false;
-//		else Visible=true;
-//		return;
-//	}
-//	if(Visible==true&&Button[1]->IsYourArea(reg.r_cx,reg.r_dx))
-//		//aby zmieni† stan szyny, szyna musi by† aktywna(widzialna)
-//	{
-//		if(Button[1]->ClickButton())
-//			if(Output==low) Output=high;
-//			else Output=low;
-//		return;
-//	}
-//}
+void CInBus::ClickElement()
+{
+	//struct REGPACK reg;
+	//reg.r_ax=0x3;
+	//intr(0x33,&reg);
+	//if(Button[0]->IsYourArea(reg.r_cx,reg.r_dx))
+	//{
+	//	Button[0]->ClickButton();
+	//	if(Visible==true&&JunctionNum==0) Visible=false;
+	//	else Visible=true;
+	//	return;
+	//}
+	//if(Visible==true&&Button[1]->IsYourArea(reg.r_cx,reg.r_dx))
+	//	//aby zmieni† stan szyny, szyna musi by† aktywna(widzialna)
+	//{
+	//	if(Button[1]->ClickButton())
+	//		if(Output==low) Output=high;
+	//		else Output=low;
+	//	return;
+	//}
+}
 
 char CInBus::LinkNextElem(CElement*NextElem,int X,int Y)
 {
