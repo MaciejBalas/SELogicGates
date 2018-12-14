@@ -6,10 +6,11 @@
 #include "button.h"
 #include "MENUBUT.H"
 #include "ELEMENT.h"
+#include "CONSTANTS.h"
 class CWindow
 {
 	SDL_Window *window;
-	SDL_Renderer *renderer=NULL;
+	SDL_Renderer *renderer = NULL;
 	int WinNum;
 	char Active;
 	char Result;
