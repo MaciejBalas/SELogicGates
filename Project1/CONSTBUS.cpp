@@ -1,6 +1,6 @@
 #include "constbus.h"
 
-CConstBus::CConstBus(int X, int Y, int Type)
+CConstBus::CConstBus(int X, int Y, int Type, SDL_Renderer *renderer)
 {
 	JunctionNum = 0;
 	for (int i = 0; i<MaxJunctionNum; i++) TabJunction[i] = NULL;
@@ -13,6 +13,7 @@ CConstBus::CConstBus(int X, int Y, int Type)
 	if (Type) Output = high;
 	else Output = low;
 	Movable = yes;
+	this->renderer = renderer;
 }
 
 CConstBus::~CConstBus()
@@ -43,8 +44,7 @@ void CConstBus::DrawElem(SDL_Color Colour)
 	}
 	Text[1] = '\0';
 	TTF_Font* font = TTF_OpenFont("arial.ttf", 10); //this opens a font style and sets a size
-	SDL_Color White = { 255, 255, 255 };  // this is the color in rgb format, maxing out all would give you the color white, and it will be your text's color
-	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, Text, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
+	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, Text, Colour); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
 	SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); //now you can convert it into a texture
 	int texW, texH;
 	SDL_QueryTexture(Message, NULL, NULL, &texW, &texH);
@@ -88,7 +88,7 @@ char CConstBus::LinkNextElem(CElement*NextElem, int X, int Y)
 		//powi¥zanie za blisko istniej¥cego w©zˆa
 	}
 	Y = Y1 + 6;
-	TabJunction[JunctionNum] = new CJunction(X, Y);
+	TabJunction[JunctionNum] = new CJunction(X, Y, renderer);
 	TabJunction[JunctionNum]->LinkPrevElem(this, 0, 0);
 	TabJunction[JunctionNum]->LinkNextElem(NextElem, X, Y);
 	JunctionNum++;
@@ -173,7 +173,7 @@ char CConstBus::LoadElement(CElement**TabElem, int NumOfElem,
 			if (feof(File)) return 0;
 			fread(&Type, sizeof(char), 1, File);
 			if (Type != 7) return 0;//odczytywany element nie jest w©zˆem
-			TabJunction[i] = new CJunction(0, 0);
+			TabJunction[i] = new CJunction(0, 0, renderer);
 			if (!TabJunction[i]->LoadElement(TabElem, NumOfElem, File, 1)) return 0;
 			//odczyt w©zˆ¢w w pierwszej fazie
 		}
