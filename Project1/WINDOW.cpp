@@ -17,6 +17,7 @@ CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNe
 	WinNum = Number;
 	Mode = move;
 	StandardPath = NULL;
+	
 	//for (int i = 0; i<NumberOfInBuses + 2; i++)
 	//	TabElem[i] = NULL;
 	//TabElem[0] = new CConstBus(145, 447, 0);

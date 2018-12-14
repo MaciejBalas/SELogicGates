@@ -4,10 +4,11 @@
 #include "SDL_TTF.h"
 #include "button.h"
 #include "MENUBUT.H"
+#include "CONSTANTS.h"
 class CWindow
 {
 	SDL_Window *window;
-	SDL_Renderer *renderer=NULL;
+	
 	int WinNum;
 	char Active;
 	char Result;
