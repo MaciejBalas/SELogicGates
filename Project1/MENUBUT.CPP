@@ -22,7 +22,6 @@ CMenuButton::CMenuButton(const char text[], int X1,int Y1,int X2,int Y2, SDL_Ren
 	drawRect.y = Y1;
 	drawRect.w = X2 - X1;
 	drawRect.h = Y2 - Y1;
-	this->renderer = renderer;
 
 };
 

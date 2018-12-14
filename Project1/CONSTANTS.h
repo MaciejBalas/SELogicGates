@@ -21,8 +21,9 @@ static SDL_Color BackgroundColour{ 255,255,255 }; //white
 static SDL_Color LowColour{ 0,0,255 }; //blue
 static SDL_Color HighColour{ 255,0,0 }; //red
 static SDL_Color ErrorColour{ 255,192,203 }; //pink
+static SDL_Color FrameColour{ 0,0,0 };
 
-static SDL_Renderer *renderer = NULL;
+
 
 
 enum TOutput { low = 0, high = 1, error = -1 };

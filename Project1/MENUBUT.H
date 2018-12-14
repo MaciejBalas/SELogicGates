@@ -14,6 +14,7 @@ class CMenuButton:public CButton
 	void DrawButton();
 	void ChangeText(char*Text);
 	int ClickButton();
+	SDL_Renderer *renderer = NULL;
 	CMenuButton(const char text[],int X1,int Y1,int X2,int Y2, SDL_Renderer *renderer);
 	~CMenuButton();
 };

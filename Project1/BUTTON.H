@@ -12,7 +12,6 @@ protected:
 	SDL_Color DrawingColour;
 	bool Insert;
 	bool Active;
-	SDL_Renderer *renderer;
 	SDL_Rect drawRect;
 
 public:

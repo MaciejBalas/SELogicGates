@@ -123,6 +123,7 @@
     <ClCompile Include="BUTTON.cpp" />
     <ClCompile Include="CONSTBUS.cpp" />
     <ClCompile Include="ELEMENT.cpp" />
+    <ClCompile Include="INBUS.CPP" />
     <ClCompile Include="JUNCTION.CPP" />
     <ClCompile Include="MENUBUT.CPP" />
     <ClCompile Include="SMALLWIN.cpp" />
@@ -134,6 +135,7 @@
     <ClInclude Include="CONSTBUS.h" />
     <ClInclude Include="ELEMENT.h" />
     <ClInclude Include="CONSTANTS.h" />
+    <ClInclude Include="INBUS.H" />
     <ClInclude Include="JUNCTION.H" />
     <ClInclude Include="MENUBUT.H" />
     <ClInclude Include="SMALLWIN.h" />

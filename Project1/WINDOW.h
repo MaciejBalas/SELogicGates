@@ -6,10 +6,10 @@
 #include "button.h"
 #include "MENUBUT.H"
 #include "ELEMENT.h"
+#include "CONSTANTS.h"
 class CWindow
 {
 	SDL_Window *window;
-	SDL_Renderer *renderer=NULL;
 	int WinNum;
 	char Active;
 	char Result;
@@ -18,6 +18,7 @@ class CWindow
 	TMode Mode;
 	CElement*TabElem[MaxNumOfElem];
 	CButton*TabBut[16];
+	SDL_Renderer *renderer = NULL;
 	char*StandardPath;
 	//void*ImageTab[NumberOfImages];
 	void DoText(int Number, char*Text = NULL);

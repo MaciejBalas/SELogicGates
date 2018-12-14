@@ -1,7 +1,7 @@
 #include "junction.h"
 #include "CONSTANTS.h" 
 
-CJunction::CJunction(int X,int Y,int Colour)
+CJunction::CJunction(int X,int Y, SDL_Renderer *renderer, SDL_Color Colour)
 {
 	X1=X2=X;
 	Y1=Y2=Y;
@@ -14,6 +14,7 @@ CJunction::CJunction(int X,int Y,int Colour)
 		TabNextElem[i]=NULL;
 	Output=error;
 	Movable=yes;
+	this->renderer = renderer;
 }
 
 void CJunction::DrawElem(SDL_Color Colour)
