@@ -3,7 +3,7 @@
 
 
 #include "SDL.h"
-
+#include "SDL_TTF.h"
 #define NumberOfInBuses 6
 #define NumberOfImages 8
 #define MaxBreakpointsNum 4

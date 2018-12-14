@@ -2,12 +2,13 @@
 #define DefConstBus
 
 #include "element.h"
-//#include "junction.h"
+#include "junction.h"
 
 class CConstBus :public CElement
 {
 	int JunctionNum;
-	//CJunction*TabJunction[MaxBusJunctionNum];
+	SDL_Renderer *renderer = NULL;
+	CJunction*TabJunction[MaxBusJunctionNum];
 public:
 	void DrawElem(SDL_Color Colour = {0,0,0});
 	TOutput GetOutput(int AskElemNum, int MaxNum);
