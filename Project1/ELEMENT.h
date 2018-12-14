@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DefElement
 #define DefElement
 #include <stdio.h>

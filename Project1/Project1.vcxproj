@@ -121,6 +121,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BUTTON.cpp" />
+    <ClCompile Include="CONSTBUS.cpp" />
     <ClCompile Include="ELEMENT.cpp" />
     <ClCompile Include="JUNCTION.CPP" />
     <ClCompile Include="MENUBUT.CPP" />
@@ -130,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BUTTON.h" />
+    <ClInclude Include="CONSTBUS.h" />
     <ClInclude Include="ELEMENT.h" />
     <ClInclude Include="CONSTANTS.h" />
     <ClInclude Include="JUNCTION.H" />
