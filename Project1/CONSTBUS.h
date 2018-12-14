@@ -19,7 +19,7 @@ public:
 	char DelNextElem(CElement*DelElem);
 	char SaveElement(CElement**TabElem, int NumOfElem, FILE*File, char Phase);
 	char LoadElement(CElement**TabElem, int NumOfElem, FILE*File, char Phase);
-	CConstBus(int X, int Y, int Type);
+	CConstBus(int X, int Y, int Type, SDL_Renderer *renderer);
 	~CConstBus();
 };
 

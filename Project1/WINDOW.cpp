@@ -722,21 +722,10 @@ void CWindow::DrawWin(char Mode)
 	TabBut[7]->DrawButton();
 	TabBut[8] = new CMenuButton("Move", 170, 42, 370, 59, renderer);
 	TabBut[8]->DrawButton();
-
-	TabElem[2] = new CInBus(41, 45, 'a',renderer);
-	TabElem[2]->DrawElem();
-	TabElem[3] = new CInBus(56, 45, 'b', renderer);
-	TabElem[3]->DrawElem();
-	TabElem[4] = new CInBus(71, 45, 'c', renderer);
-	TabElem[4]->DrawElem();
-	TabElem[5] = new CInBus(86, 45, 'd', renderer);
-	TabElem[5]->DrawElem();
-	TabElem[6] = new CInBus(101, 45, 'e', renderer);
-	TabElem[6]->DrawElem();
-	TabElem[7] = new CInBus(116, 45, 'f', renderer);
-	TabElem[7]->DrawElem();
-
-	
+	TabElem[0] = new CConstBus(145, 447, 0, renderer);
+	TabElem[0]->DrawElem();
+	TabElem[1] = new CConstBus(145, 462, 1, renderer);
+	TabElem[1]->DrawElem();
 	SDL_Event windowEvent;
 	while (true) {
 		if (SDL_PollEvent(&windowEvent)) {
