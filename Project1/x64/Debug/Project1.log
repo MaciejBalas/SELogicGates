@@ -1,41 +1,4 @@
-﻿Build started 2018-12-15 13:22:23.
-     1>Project "C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\Project1\Project1.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /I"D:\logic gates\SDL\include" /ID:\SDL\include /I"C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\SDL\include" /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt BUTTON.cpp CONSTBUS.cpp ELEMENT.cpp INBUS.CPP JUNCTION.CPP MENUBUT.CPP SMALLBUT.cpp SMALLWIN.cpp Source.cpp WINDOW.cpp
-         WINDOW.cpp
-     1>WINDOW.cpp(650): warning C4267: 'initializing' : conversion from 'size_t' to 'int', possible loss of data
-         Source.cpp
-         SMALLWIN.cpp
-         SMALLBUT.cpp
-     1>SMALLBUT.cpp(66): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
-     1>SMALLBUT.cpp(66): warning C4154: deletion of an array expression; conversion to pointer supplied
-         MENUBUT.CPP
-         JUNCTION.CPP
-         INBUS.CPP
-         ELEMENT.cpp
-     1>ELEMENT.cpp(361): warning C4258: 'j' : definition from the for loop is ignored; the definition from the enclosing scope is used
-                 ELEMENT.cpp(358) : definition of 'j' ignored
-                 ELEMENT.cpp(338) : definition of 'j' used
-     1>ELEMENT.cpp(362): warning C4258: 'j' : definition from the for loop is ignored; the definition from the enclosing scope is used
-                 ELEMENT.cpp(358) : definition of 'j' ignored
-                 ELEMENT.cpp(338) : definition of 'j' used
-         CONSTBUS.cpp
-         BUTTON.cpp
-         Generating Code...
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\x64\Debug\Project1.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\logic gates\SDL\lib\win64" /LIBPATH:D:\SDL\lib\win64 /LIBPATH:"C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\SDL\lib\win64" SDL2.lib SDL2main.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\x64\Debug\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\x64\Debug\Project1.lib" /MACHINE:X64 x64\Debug\BUTTON.obj
-         x64\Debug\CONSTBUS.obj
-         x64\Debug\ELEMENT.obj
-         x64\Debug\INBUS.obj
-         x64\Debug\JUNCTION.obj
-         x64\Debug\MENUBUT.obj
-         x64\Debug\SMALLBUT.obj
-         x64\Debug\SMALLWIN.obj
-         x64\Debug\Source.obj
-         x64\Debug\WINDOW.obj
-         Project1.vcxproj -> C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\x64\Debug\Project1.exe
-     1>Done Building Project "C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\Project1\Project1.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:23.67
+﻿  SMALLWIN.cpp
+c:\users\maciej\documents\github\selogicgates\project1\smallwin.cpp(24): warning C4101: 'i': unreferenced local variable
+c:\users\maciej\documents\github\selogicgates\project1\smallwin.cpp(174): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  Project1.vcxproj -> C:\Users\Maciej\Documents\GitHub\SELogicGates\x64\Debug\Project1.exe

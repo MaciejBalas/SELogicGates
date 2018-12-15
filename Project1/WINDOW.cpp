@@ -1,4 +1,5 @@
 #include "window.h"
+#include "SMALLWIN.h"
 #include <cstring>
 CWindow::CWindow() {
 
@@ -738,6 +739,10 @@ void CWindow::DrawWin(char Mode)
 	TabElem[6]->DrawElem();
 	TabElem[7] = new CInBus(116, 45, 'f', renderer);
 	TabElem[7]->DrawElem();
+
+	CSmallWindow * smallwindow = new CSmallWindow(0, 0, 320, 320, nullptr, nullptr,'t',1,renderer,nullptr,nullptr);
+	smallwindow->DrawSmallWin(renderer);
+
 	SDL_Event windowEvent;
 	while (true) {
 		if (SDL_PollEvent(&windowEvent)) {

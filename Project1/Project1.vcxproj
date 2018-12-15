@@ -41,7 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -84,10 +84,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\logic gates\SDL\include;D:\SDL\include;C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Maciej\Documents\GitHub\SELogicGates\SDL\include;D:\logic gates\SDL\include;D:\SDL\include;C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>D:\logic gates\SDL\lib\win64;D:\SDL\lib\win64;C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\SDL\lib\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Maciej\Documents\GitHub\SELogicGates\SDL\lib\win64;D:\logic gates\SDL\lib\win64;D:\SDL\lib\win64;C:\Users\Michal\Documents\Visual Studio 2013\Projects\ProjGit\SDL\lib\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
