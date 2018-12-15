@@ -71,5 +71,5 @@ TElementType COr::ElementType()
 	return _or;
 }
 
-void COr::ClickElement()
+void COr::ClickElement(int X, int Y)
 {}

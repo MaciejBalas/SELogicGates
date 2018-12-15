@@ -20,7 +20,7 @@ public:
 	int IsYourArea(int X, int Y);
 	char IsElemNext(CElement*Element);
 	int IsOnBoard();
-	void ClickElement();
+	void ClickElement(int X, int Y);
 	char LinkNextElem(CElement*NextElem, int X, int Y);
 	char LinkPrevElem(CElement*PrevElem, int X, int Y);
 	TElementType ElementType();

@@ -29,8 +29,8 @@ CModeButton::CModeButton(TElementType ButtonType, int X1, int Y1, int X2, int Y2
 	case _nor:ButtonElement = new CNor(X1, Y1, DrawingColour, renderer); break;
 	case _nand:ButtonElement = new CNand(X1, Y1, DrawingColour, renderer); break;
 	case _xor:ButtonElement = new CXor(X1, Y1, DrawingColour, renderer); break;
-	case _output:ButtonElement = new COutput(X1, Y1, DrawingColour); break;
-	case _wire:ButtonElement = new CWire(X1, Y1, DrawingColour); break;
+	case _output:ButtonElement = new COutput(X1, Y1,renderer, DrawingColour); break;
+	case _wire:ButtonElement = new CWire(X1, Y1,renderer, DrawingColour); break;
 	};
 }
 

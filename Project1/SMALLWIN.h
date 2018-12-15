@@ -26,6 +26,7 @@ public:
 	CSmallWindow();
 	void DrawSmallWin(SDL_Renderer * renderer);
 	char Work();//obsluga myszki
+
 	CSmallWindow(int X1, int Y1, int X2, int Y2, char*HeadingText, char**ConstText,
 		char Reading, int ButtonNum, SDL_Renderer * renderer, char*FirstButtonText=nullptr,
 		char*SecondButtonText = nullptr);

@@ -723,19 +723,19 @@ Text[i + TextLen] = '\0';
 }
 void CWindow::DrawWin(char Mode)
 {
-<<<<<<< HEAD
 
-=======
+
+
 	for (int i = 0; i<ButNum; i++)
 		TabBut[i] = NULL;
 	
->>>>>>> AddedControlMethod
+
 	/*if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		return 1;*/
 	if (Mode == 1)//rysowanie caˆego okna
 	{
 		SDL_CreateWindowAndRenderer(640, 480, 0, &window, &renderer);
-<<<<<<< HEAD
+
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(renderer);
 		SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
@@ -773,14 +773,14 @@ void CWindow::DrawWin(char Mode)
 	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
 	SDL_RenderPresent(renderer);
 
-=======
+
 		//SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 		//SDL_RenderClear(renderer);
 		//SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
 		//SDL_RenderFillRect(renderer, &Bar(1,20,638,61));
 		//SDL_RenderFillRect(renderer, &Bar(1,478,30,61));
 		//DrawBasket(3, 400);//kosz
-	}
+	
 	//SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	//SDL_RenderFillRect(renderer, &Bar(31, 61, 610, 440));
 	//SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
@@ -811,7 +811,7 @@ void CWindow::DrawWin(char Mode)
 	//SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
 	//SDL_RenderPresent(renderer);
 	
->>>>>>> AddedControlMethod
+
 	//for (i = 0; i<16; i++)
 		//tabbut[i]->drawbutton();
 //	for (i = 0; i<NumOfElem; i++)
@@ -840,19 +840,19 @@ void CWindow::DrawWin(char Mode)
 	TabElem[0] = new CConstBus(145, 447, 0, renderer);
 //	TabElem[0]->DrawElem();
 	TabElem[1] = new CConstBus(145, 462, 1, renderer);
-<<<<<<< HEAD
+
 	TabElem[1]->DrawElem();
 	TabElem[2] = new CInBus(41, 45, 'a', renderer);
 	TabElem[2]->DrawElem();
 	TabElem[3] = new CInBus(56, 45, 'b', renderer);
 	TabElem[3]->DrawElem();
-=======
+
 //	TabElem[1]->DrawElem();
 	TabElem[2] = new CInBus(41, 45, 'a',renderer);
 //	TabElem[2]->DrawElem();
 	TabElem[3] = new CInBus(56, 45, 'b',renderer);
 //	TabElem[3]->DrawElem();
->>>>>>> AddedControlMethod
+
 	TabElem[4] = new CInBus(71, 45, 'c', renderer);
 //	TabElem[4]->DrawElem();
 	TabElem[5] = new CInBus(86, 45, 'd', renderer);
@@ -860,27 +860,22 @@ void CWindow::DrawWin(char Mode)
 	TabElem[6] = new CInBus(101, 45, 'e', renderer);
 //	TabElem[6]->DrawElem();
 	TabElem[7] = new CInBus(116, 45, 'f', renderer);
-<<<<<<< HEAD
+
 	TabElem[7]->DrawElem();
 
 	CSmallWindow * smallwindow = new CSmallWindow(0, 0, 320, 320, nullptr, nullptr,'t',1,renderer,nullptr,nullptr);
 	smallwindow->DrawSmallWin(renderer);
 
-	SDL_Event windowEvent;
-	while (true) {
-		if (SDL_PollEvent(&windowEvent)) {
-			if (SDL_QUIT == windowEvent.type) {
-				break;
-			}
-		}
-	}
-	SDL_DestroyWindow(window);
-	SDL_DestroyTexture(Message);
-	SDL_FreeSurface(surfaceMessage);
-	TTF_CloseFont(font);
-	TTF_Quit();
-	SDL_Quit();
-=======
+	//SDL_Event windowEvent;
+	//while (true) {
+	//	if (SDL_PollEvent(&windowEvent)) {
+	//		if (SDL_QUIT == windowEvent.type) {
+	//			break;
+	//		}
+	//	}
+	//}
+
+
 //	TabElem[7]->DrawElem();
 	NumOfElem = 7;
 //	SDL_Event windowEvent;
@@ -897,7 +892,7 @@ void CWindow::DrawWin(char Mode)
 	//	}
 	//}
 
->>>>>>> AddedControlMethod
+
 }
 void CWindow::DrawBasket(int x, int y) {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);

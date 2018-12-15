@@ -9,7 +9,7 @@ class COutput :public CElement
 public:
 	void DrawElem(SDL_Color Colour = { 0,0,0 });
 	TOutput GetOutput(int AskElemNum, int MaxNum);
-	void ClickElement();
+	void ClickElement(int X, int Y);
 	char LinkNextElem(CElement*NextElem, int X, int Y);
 	TElementType ElementType();
 	int IsOnBoard();

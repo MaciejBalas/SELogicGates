@@ -75,5 +75,5 @@ TElementType CNor::ElementType()
 	return _nor;
 }
 
-void CNor::ClickElement()
+void CNor::ClickElement(int X, int Y)
 {}

@@ -71,5 +71,5 @@ TElementType CNand::ElementType()
 	return _nand;
 }
 
-void CNand::ClickElement()
+void CNand::ClickElement(int X, int Y)
 {}

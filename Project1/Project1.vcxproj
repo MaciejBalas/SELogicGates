@@ -132,10 +132,12 @@
     <ClCompile Include="NOR.CPP" />
     <ClCompile Include="NOT.CPP" />
     <ClCompile Include="OR.CPP" />
+    <ClCompile Include="OUTPUT.cpp" />
     <ClCompile Include="SMALLBUT.cpp" />
     <ClCompile Include="SMALLWIN.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="WINDOW.cpp" />
+    <ClCompile Include="WIRE.cpp" />
     <ClCompile Include="XOR.CPP" />
   </ItemGroup>
   <ItemGroup>
@@ -152,9 +154,11 @@
     <ClInclude Include="NOR.H" />
     <ClInclude Include="NOT.H" />
     <ClInclude Include="OR.H" />
+    <ClInclude Include="OUTPUT.h" />
     <ClInclude Include="SMALLBUT.h" />
     <ClInclude Include="SMALLWIN.h" />
     <ClInclude Include="WINDOW.h" />
+    <ClInclude Include="WIRE.h" />
     <ClInclude Include="XOR.H" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

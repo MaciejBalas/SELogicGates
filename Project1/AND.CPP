@@ -68,7 +68,7 @@ TElementType CAnd::ElementType()
 	return _and;
 }
 
-void CAnd::ClickElement()
+void CAnd::ClickElement(int X, int Y)
 {}
 
 //int main()

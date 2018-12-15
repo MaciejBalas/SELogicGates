@@ -59,7 +59,7 @@ TElementType CNot::ElementType()
 	return _not;
 }
 
-void CNot::ClickElement()
+void CNot::ClickElement(int X, int Y)
 {}
 
 char CNot::LinkPrevElem(CElement*PrevElem, int X, int Y)

@@ -720,7 +720,7 @@ TElementType CWire::ElementType()
 	return _wire;
 }
 
-void CWire::ClickElement()
+void CWire::ClickElement(int X, int Y)
 {}
 
 char CWire::LinkNextElem(CElement*NextElem, int X, int Y)

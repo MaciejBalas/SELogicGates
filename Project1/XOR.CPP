@@ -73,5 +73,5 @@ TElementType CXor::ElementType()
 	return _xor;
 }
 
-void CXor::ClickElement()
+void CXor::ClickElement(int X, int Y)
 {}

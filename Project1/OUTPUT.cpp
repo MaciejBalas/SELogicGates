@@ -88,7 +88,7 @@ TElementType COutput::ElementType()
 	return _output;
 }
 
-void COutput::ClickElement()
+void COutput::ClickElement(int X, int Y)
 {}
 
 int COutput::IsOnBoard()
