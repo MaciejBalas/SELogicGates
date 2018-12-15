@@ -16,33 +16,33 @@ COutput::COutput(int X, int Y, SDL_Renderer *renderer, SDL_Color Colour)
 
 void COutput::DrawElem(SDL_Color Colour)
 {
-	char Text1[2] = "?";
+	//char Text1[2] = "?";
 	TTF_Font* font = TTF_OpenFont("arial.ttf", 10); //this opens a font style and sets a size
 	SDL_Color White = { 0, 0, 0 };  // this is the color in rgb format, maxing out all would give you the color white, and it will be your text's color
-	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, Text1, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
-	SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); //now you can convert it into a texture
-	int texW, texH;
+	//SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, Text1, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
+	//SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); //now you can convert it into a texture
+	/*int texW, texH;
 	SDL_QueryTexture(Message, NULL, NULL, &texW, &texH);
 	SDL_Rect Message_rect;
 	Message_rect.x = X1 + 17;
 	Message_rect.y = Y1 + 5;
 	Message_rect.w = texW;
-	Message_rect.h = texH;
-	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
-	
-	char Text2[2] = "0";
-	SDL_Surface* surfaceMessage1 = TTF_RenderText_Solid(font, Text2, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
-	SDL_Texture* Message1 = SDL_CreateTextureFromSurface(renderer, surfaceMessage1); //now you can convert it into a texture
-	int texW1, texH1;
-	SDL_QueryTexture(Message1, NULL, NULL, &texW1, &texH1);
-	SDL_RenderCopy(renderer, Message1, NULL, &Message_rect);
+    Message_rect.h = texH;*/
+	//SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+	//
+	//char Text2[2] = "0";
+	//SDL_Surface* surfaceMessage1 = TTF_RenderText_Solid(font, Text2, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
+	//SDL_Texture* Message1 = SDL_CreateTextureFromSurface(renderer, surfaceMessage1); //now you can convert it into a texture
+	//int texW1, texH1;
+	//SDL_QueryTexture(Message1, NULL, NULL, &texW1, &texH1);
+	//SDL_RenderCopy(renderer, Message1, NULL, &Message_rect);
 
-	char Text3[2] = "1";
-	SDL_Surface* surfaceMessage3 = TTF_RenderText_Solid(font, Text3, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
-	SDL_Texture* Message3 = SDL_CreateTextureFromSurface(renderer, surfaceMessage3); //now you can convert it into a texture
-	int texW3, texH3;
-	SDL_QueryTexture(Message3, NULL, NULL, &texW3, &texH3);
-	SDL_RenderCopy(renderer, Message3, NULL, &Message_rect);
+	//char Text3[2] = "1";
+	//SDL_Surface* surfaceMessage3 = TTF_RenderText_Solid(font, Text3, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
+	//SDL_Texture* Message3 = SDL_CreateTextureFromSurface(renderer, surfaceMessage3); //now you can convert it into a texture
+	//int texW3, texH3;
+	//SDL_QueryTexture(Message3, NULL, NULL, &texW3, &texH3);
+	//SDL_RenderCopy(renderer, Message3, NULL, &Message_rect);
 
 	
 	//zmazanie napisu
@@ -69,9 +69,15 @@ void COutput::DrawElem(SDL_Color Colour)
 
 	SDL_Surface* surfaceMessage4 = TTF_RenderText_Solid(font, Text, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
 	SDL_Texture* Message4 = SDL_CreateTextureFromSurface(renderer, surfaceMessage4); //now you can convert it into a texture
+	int texW, texH;
+	SDL_QueryTexture(Message4, NULL, NULL, &texW, &texH);
+	SDL_Rect Message_rect;
+	Message_rect.x = X1 + 17;
+	Message_rect.y = Y1 + 5;
+	Message_rect.w = texW;
+	Message_rect.h = texH;
 	int texW4, texH4;
-	SDL_QueryTexture(Message4, NULL, NULL, &texW4, &texH4);
-	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+	SDL_RenderCopy(renderer, Message4, NULL, &Message_rect);
 
 	SDL_RenderPresent(renderer);
 }

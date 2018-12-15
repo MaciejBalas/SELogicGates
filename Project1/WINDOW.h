@@ -5,6 +5,7 @@
 #include "SDL_TTF.h"
 #include "button.h"
 #include "MENUBUT.H"
+#include "MODEBUT.H"
 #include "ELEMENT.h"
 #include "CONSTANTS.h"
 #include "CONSTBUS.h"
