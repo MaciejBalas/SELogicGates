@@ -30,11 +30,11 @@ void CAnd::DrawElem(SDL_Color Colour)
 		}
 	}
 	SDL_SetRenderDrawColor(renderer, Colour.r, Colour.g, Colour.b, SDL_ALPHA_OPAQUE);
-	SDL_RenderDrawLine(renderer,X1 + 8, Y1 + 7, X1 + 8, Y1 + 22);//pionowa linia
-	SDL_RenderDrawLine(renderer,X1 + 3, Y1 + 12, X1 + 8, Y1 + 12);//wej˜cie g¢rne
-	SDL_RenderDrawLine(renderer,X1 + 3, Y1 + 17, X1 + 8, Y1 + 17);//wej˜cie dolne
-	draw_arc(renderer,X1 + 8, Y1 + 14, 270, 90, Colour);//ˆuk
-	SDL_RenderDrawLine(renderer,X1 + 17, Y1 + 14, X1 + 24, Y1 + 14);//wyj˜cie
+	SDL_RenderDrawLine(renderer, X1 + 8, Y1 + 7, X1 + 8, Y1 + 22);//pionowa linia
+	SDL_RenderDrawLine(renderer, X1 + 3, Y1 + 12, X1 + 8, Y1 + 12);//wej˜cie g¢rne
+	SDL_RenderDrawLine(renderer, X1 + 3, Y1 + 17, X1 + 8, Y1 + 17);//wej˜cie dolne
+	draw_arc(renderer, X1 + 8, Y1 + 14, 10, 9, Colour);//ˆuk
+	SDL_RenderDrawLine(renderer, X1 + 17, Y1 + 14, X1 + 24, Y1 + 14);//wyj˜cie
 }
 
 TOutput CAnd::GetOutput(int AskElemNum, int MaxNum)

@@ -419,11 +419,9 @@ char CElement::LoadElement(CElement**TabElem, int NumOfElem,
 	return 1;
 }
 
-void CElement::draw_arc(SDL_Renderer* r, int xx0, int y0, int xradiusX, int yradiusY, SDL_Color color)
+void CElement::draw_arc(SDL_Renderer* r, int x0, int y0, int radiusX, int radiusY, SDL_Color color)
 {
-	int x0 = xx0 + 2;
-	int radiusX = xradiusX / 26;
-	int radiusY = yradiusY / 10;
+	
 	float pi = 3.1416;
 	float pih = pi / 2.0; //half of pi
 

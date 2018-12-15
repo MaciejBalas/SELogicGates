@@ -5,87 +5,83 @@
 CWindow::CWindow() {
 
 	DrawWin(1);
-
-
+	
+	
 
 }
 
 void CWindow::Control() {
-
-
-
-	SDL_Event windowEvent;
 	while (true) {
-		if (SDL_PollEvent(&windowEvent)) {
-			if (SDL_QUIT == windowEvent.type) {
-				SDL_DestroyWindow(window);
-				SDL_DestroyTexture(Message);
-				SDL_FreeSurface(surfaceMessage);
-				TTF_CloseFont(font);
-				TTF_Quit();
-				SDL_Quit();
-				break;
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+		SDL_RenderClear(renderer);
+		SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
+		SDL_RenderFillRect(renderer, &Bar(1, 20, 638, 61));
+		SDL_RenderFillRect(renderer, &Bar(1, 478, 30, 61));
+		DrawBasket(3, 400);//kosz
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+		SDL_RenderFillRect(renderer, &Bar(31, 61, 610, 440));
+		SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
+		SDL_RenderFillRect(renderer, &Bar(1, 478, 638, 441));
+		SDL_RenderFillRect(renderer, &Bar(611, 451, 638, 61));
+		SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
+		SDL_RenderFillRect(renderer, &Bar(1, 1, 638, 20));
+		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+		char Text[12] = "WINDOW ";
+		int i;
+		for (i = 7; i < 10; i++)
+			Text[i] = '\0';
+		DoText(WinNum, Text);
+		if (TTF_Init() == -1) {
+			exit(2);
+		}
+		TTF_Font* font = TTF_OpenFont("arial.ttf", 10); //this opens a font style and sets a size
+		SDL_Color White = { 255, 255, 255 };  // this is the color in rgb format, maxing out all would give you the color white, and it will be your text's color
+		SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, Text, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
+		SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); //now you can convert it into a texture
+		int texW, texH;
+		SDL_QueryTexture(Message, NULL, NULL, &texW, &texH);
+		SDL_Rect Message_rect;
+		Message_rect.x = 300;
+		Message_rect.y = 5;
+		Message_rect.w = texW;
+		Message_rect.h = texH;
+		SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+		SDL_RenderPresent(renderer);
+		for (int i = 0; i < ButNum; i++) {
+			if (TabBut[i] != NULL) {
+				TabBut[i]->DrawButton();
 			}
-			if (SDL_MOUSEBUTTONDOWN == windowEvent.type) {
-				CheckElements(windowEvent.motion.x, windowEvent.motion.y);
-				SDL_RenderClear(renderer);
-				Redraw();
-				
+		}
+		for (int i = 0; i < NumOfElem; i++) {
+			if (TabElem[i] != NULL) {
+				TabElem[i]->DrawElem();
 			}
+		}
+		while (true) {
+			SDL_Event windowEvent;
+			if (SDL_PollEvent(&windowEvent)) {
+				if (SDL_QUIT == windowEvent.type) {
+					SDL_DestroyWindow(window);
+					SDL_DestroyTexture(Message);
+					SDL_FreeSurface(surfaceMessage);
+					TTF_CloseFont(font);
+					TTF_Quit();
+					SDL_Quit();
+					break;
+				}
+				if (SDL_MOUSEBUTTONDOWN == windowEvent.type) {
+					CheckElements(windowEvent.motion.x, windowEvent.motion.y);
+					SDL_RenderClear(renderer);
+					
+					break;
+				}
 
+			}
 		}
 	}
 
 
 
-
-}
-void CWindow::Redraw() {
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-	SDL_RenderClear(renderer);
-	SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
-	SDL_RenderFillRect(renderer, &Bar(1, 20, 638, 61));
-	SDL_RenderFillRect(renderer, &Bar(1, 478, 30, 61));
-	DrawBasket(3, 400);//kosz
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-	SDL_RenderFillRect(renderer, &Bar(31, 61, 610, 440));
-	SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
-	SDL_RenderFillRect(renderer, &Bar(1, 478, 638, 441));
-	SDL_RenderFillRect(renderer, &Bar(611, 451, 638, 61));
-	SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
-	SDL_RenderFillRect(renderer, &Bar(1, 1, 638, 20));
-	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-	char Text[12] = "WINDOW ";
-	int i;
-	for (i = 7; i < 10; i++)
-		Text[i] = '\0';
-	DoText(WinNum, Text);
-	if (TTF_Init() == -1) {
-		exit(2);
-	}
-	TTF_Font* font = TTF_OpenFont("arial.ttf", 10); //this opens a font style and sets a size
-	SDL_Color White = { 255, 255, 255 };  // this is the color in rgb format, maxing out all would give you the color white, and it will be your text's color
-	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, Text, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
-	SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); //now you can convert it into a texture
-	int texW, texH;
-	SDL_QueryTexture(Message, NULL, NULL, &texW, &texH);
-	SDL_Rect Message_rect;
-	Message_rect.x = 300;
-	Message_rect.y = 5;
-	Message_rect.w = texW;
-	Message_rect.h = texH;
-	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
-	SDL_RenderPresent(renderer);
-	for (int i = 0; i < ButNum; i++) {
-		if (TabBut[i] != NULL) {
-			TabBut[i]->DrawButton();
-		}
-	}
-	for (int i = 0; i < NumOfElem; i++) {
-		if (TabElem[i] != NULL) {
-			TabElem[i]->DrawElem();
-		}
-	}
 }
 CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew)
 {
@@ -96,7 +92,7 @@ CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNe
 	WinNum = Number;
 	Mode = move;
 	StandardPath = NULL;
-	for (int i = 0; i < NumberOfInBuses + 2; i++)
+	for (int i = 0; i<NumberOfInBuses + 2; i++)
 		TabElem[i] = NULL;
 	//TabElem[0] = new CConstBus(145, 447, 0);
 	//TabElem[1] = new CConstBus(145, 462, 1);
@@ -272,11 +268,11 @@ CWindow::~CWindow()
 
 void CWindow::CheckElements(int X, int Y)
 {
-
-	for (int i = 0; i < NumOfElem; i++)
-		if (TabElem[i]->IsYourArea(X, Y))
+	
+	for (int i = 0; i<NumOfElem; i++)
+		if (TabElem[i]->IsYourArea(X, Y)) 
 			if ((Mode == move || Mode == block) ||
-				(i < NumberOfInBuses + 2 && i>1 && (X <= 150 && (Y < 60 || Y>440))))
+				(i<NumberOfInBuses + 2 && i>1 && (X <= 150 && (Y<60 || Y>440))))
 				//zawsze mo¾na zmieni† stan szyny wej˜ciowej
 			{
 				TElementType ButtonType = TabElem[i]->ElementType();
@@ -284,87 +280,87 @@ void CWindow::CheckElements(int X, int Y)
 				switch (ButtonType)
 				{
 				case _and:ImageNum = 0; break;
-				case _or:ImageNum = 1; break;
+				case _or :ImageNum = 1; break;
 				case _not:ImageNum = 2; break;
 				case _nand:ImageNum = 3; break;
 				case _nor:ImageNum = 4; break;
 				case _xor:ImageNum = 5; break;
 				case _output:ImageNum = 6; break;
 				case _wire:return;//nic si© nie dzieje
-				case _inbus:TabElem[i]->ClickElement(X, Y);
+				case _inbus:TabElem[i]->ClickElement(X, Y); 
 					//akcja wykonana zostanie na poziomie wywoˆanej funkcji
 				case _cbus:return;//nic si© nie dzieje
 				}
 				int X1 = TabElem[i]->GetXCorner();
 				int Y1 = TabElem[i]->GetYCorner();//zachowanie poprzedniej pozycji
 				SDL_Color Colour = BackgroundColour;
-				if (TabElem[i]->ElementType() == _output) Colour = FrameColour;
+				if (TabElem[i]->ElementType() ==_output) Colour = FrameColour;
 				//wyj˜cie le¾y na szarym pasku
 				TabElem[i]->DrawElem(Colour);//element "znika"
 				//DragElement(ImageNum, i);
 				return;
 			}
-	//else
-	//{
-	//	int ImageNum = NumberOfImages - 1;
-	//	int XMove;
-	//	int YMove;
+			//else
+			//{
+			//	int ImageNum = NumberOfImages - 1;
+			//	int XMove;
+			//	int YMove;
 
-	//	//if (reg.r_cx>561) XMove = -68;
-	//	//else XMove = 10;
-	//	//if (reg.r_dx>454) YMove = -15;
-	//	//else YMove = 10;
-	//	//int X1 = X + XMove;
-	//	//int Y1 = Y + YMove;
-	//	//reg.r_ax = 0x2;
-	//	//
-	//	//putimage(X1, Y1, ImageTab[ImageNum], 1);
-	//	//reg.r_ax = 0x1;
-	//	//intr(0x33, &reg);//pokazanie kursora
-	//	do
-	//	{
-	//		reg.r_ax = 0x3;
-	//		
-	//		if (X1 != reg.r_cx + XMove || Y1 != reg.r_dx + YMove)
-	//		{
-	//			if (reg.r_cx>561) XMove = -68;
-	//			else XMove = 10;
-	//			if (reg.r_dx>454) YMove = -15;
-	//			else YMove = 10;
-	//			reg.r_ax = 0x2;
-	//			intr(0x33, &reg);//schowanie kursora
-	//			putimage(X1, Y1, ImageTab[ImageNum], 1);
-	//			//skasowanie ikony
-	//			X1 = reg.r_cx + XMove;
-	//			Y1 = reg.r_dx + YMove;
-	//			putimage(X1, Y1, ImageTab[ImageNum], 1);
-	//			//narysowanie ikony w nowym poˆo¾eniu
-	//			reg.r_ax = 0x1;
-	//			intr(0x33, &reg);//pokazanie kursora
-	//		}
-	//	} while (reg.r_bx & 1);
-	//	reg.r_ax = 0x2;
-	//	//intr(0x33, &reg);//schowanie kursora
-	//	putimage(X1, Y1, ImageTab[ImageNum], 1);
-	//	//skasowanie ikony
-	//	reg.r_ax = 0x1;
-	//	//intr(0x33, &reg);//pokazanie kursora
-	//	X1 -= XMove;
-	//	Y1 -= YMove;//przywr¢cenie warto˜ci odpowiadaj¥cych poˆo¾eniu kursora
-	//	for (int j = NumberOfInBuses + 1; j<NumOfElem; j++)
-	//		if (TabElem[j]->IsYourArea(X1, Y1))
-	//		{
-	//			LinkElem(TabElem[i], X, Y, TabElem[j], X1, Y1);
-	//			return;
-	//		}
-	//}
+			//	//if (reg.r_cx>561) XMove = -68;
+			//	//else XMove = 10;
+			//	//if (reg.r_dx>454) YMove = -15;
+			//	//else YMove = 10;
+			//	//int X1 = X + XMove;
+			//	//int Y1 = Y + YMove;
+			//	//reg.r_ax = 0x2;
+			//	//
+			//	//putimage(X1, Y1, ImageTab[ImageNum], 1);
+			//	//reg.r_ax = 0x1;
+			//	//intr(0x33, &reg);//pokazanie kursora
+			//	do
+			//	{
+			//		reg.r_ax = 0x3;
+			//		
+			//		if (X1 != reg.r_cx + XMove || Y1 != reg.r_dx + YMove)
+			//		{
+			//			if (reg.r_cx>561) XMove = -68;
+			//			else XMove = 10;
+			//			if (reg.r_dx>454) YMove = -15;
+			//			else YMove = 10;
+			//			reg.r_ax = 0x2;
+			//			intr(0x33, &reg);//schowanie kursora
+			//			putimage(X1, Y1, ImageTab[ImageNum], 1);
+			//			//skasowanie ikony
+			//			X1 = reg.r_cx + XMove;
+			//			Y1 = reg.r_dx + YMove;
+			//			putimage(X1, Y1, ImageTab[ImageNum], 1);
+			//			//narysowanie ikony w nowym poˆo¾eniu
+			//			reg.r_ax = 0x1;
+			//			intr(0x33, &reg);//pokazanie kursora
+			//		}
+			//	} while (reg.r_bx & 1);
+			//	reg.r_ax = 0x2;
+			//	//intr(0x33, &reg);//schowanie kursora
+			//	putimage(X1, Y1, ImageTab[ImageNum], 1);
+			//	//skasowanie ikony
+			//	reg.r_ax = 0x1;
+			//	//intr(0x33, &reg);//pokazanie kursora
+			//	X1 -= XMove;
+			//	Y1 -= YMove;//przywr¢cenie warto˜ci odpowiadaj¥cych poˆo¾eniu kursora
+			//	for (int j = NumberOfInBuses + 1; j<NumOfElem; j++)
+			//		if (TabElem[j]->IsYourArea(X1, Y1))
+			//		{
+			//			LinkElem(TabElem[i], X, Y, TabElem[j], X1, Y1);
+			//			return;
+			//		}
+			//}
 }
 
 void CWindow::Action(int ActNum)
 {
 	switch (ActNum)
 	{
-		//	case 0:Error(Load()); break;//odczyt z pliku
+//	case 0:Error(Load()); break;//odczyt z pliku
 	case 1:New(); break;//nowy element
 	case 2:Previous(); break;//poprzedni element
 	case 3:Next(); break;//nast©pny element
@@ -718,21 +714,21 @@ void CWindow::DoText(int Number, char*Text)
 		TmpText[i] = (char)(Number % 10 + 48);
 		Number /= 10;
 		i++;
-	} while (Number > 0);
+	} while (Number>0);
 	TmpText[i] = '\0';
 	int TextLen = strlen(Text);
-	for (int j = i; j > 0; j--)
-		Text[i - j + TextLen] = TmpText[j - 1];
-	Text[i + TextLen] = '\0';
+	for (int j = i; j>0; j--)
+Text[i - j + TextLen] = TmpText[j - 1];
+Text[i + TextLen] = '\0';
 }
 void CWindow::DrawWin(char Mode)
 {
 
 
 
-	for (int i = 0; i < ButNum; i++)
+	for (int i = 0; i<ButNum; i++)
 		TabBut[i] = NULL;
-
+	
 
 	/*if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		return 1;*/
@@ -778,71 +774,81 @@ void CWindow::DrawWin(char Mode)
 	SDL_RenderPresent(renderer);
 
 
+		//SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+		//SDL_RenderClear(renderer);
+		//SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
+		//SDL_RenderFillRect(renderer, &Bar(1,20,638,61));
+		//SDL_RenderFillRect(renderer, &Bar(1,478,30,61));
+		//DrawBasket(3, 400);//kosz
+	
 	//SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-	//SDL_RenderClear(renderer);
+	//SDL_RenderFillRect(renderer, &Bar(31, 61, 610, 440));
 	//SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
-	//SDL_RenderFillRect(renderer, &Bar(1,20,638,61));
-	//SDL_RenderFillRect(renderer, &Bar(1,478,30,61));
-	//DrawBasket(3, 400);//kosz
+	//SDL_RenderFillRect(renderer, &Bar(1, 478, 638, 441));
+	//SDL_RenderFillRect(renderer, &Bar(611, 451, 638, 61));
+	//SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
+	//SDL_RenderFillRect(renderer, &Bar(1, 1, 638, 20));
+	//SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+	//char Text[12] = "WINDOW ";
+	//int i;
+	//for (i = 7; i<10; i++)
+	//	Text[i] = '\0';
+	//DoText(WinNum, Text);
+	//if (TTF_Init() == -1) {
+	//	exit(2);
+	//}
+	//TTF_Font* font = TTF_OpenFont("arial.ttf", 10); //this opens a font style and sets a size
+	//SDL_Color White = { 255, 255, 255 };  // this is the color in rgb format, maxing out all would give you the color white, and it will be your text's color
+	//SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, Text, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
+	//SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); //now you can convert it into a texture
+	//int texW, texH;
+	//SDL_QueryTexture(Message, NULL, NULL, &texW, &texH);
+	//SDL_Rect Message_rect;
+	//Message_rect.x = 300;
+	//Message_rect.y = 5;
+	//Message_rect.w = texW;
+	//Message_rect.h = texH;
+	//SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+	//SDL_RenderPresent(renderer);
+	
 
-//SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-//SDL_RenderFillRect(renderer, &Bar(31, 61, 610, 440));
-//SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
-//SDL_RenderFillRect(renderer, &Bar(1, 478, 638, 441));
-//SDL_RenderFillRect(renderer, &Bar(611, 451, 638, 61));
-//SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
-//SDL_RenderFillRect(renderer, &Bar(1, 1, 638, 20));
-//SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-//char Text[12] = "WINDOW ";
-//int i;
-//for (i = 7; i<10; i++)
-//	Text[i] = '\0';
-//DoText(WinNum, Text);
-//if (TTF_Init() == -1) {
-//	exit(2);
-//}
-//TTF_Font* font = TTF_OpenFont("arial.ttf", 10); //this opens a font style and sets a size
-//SDL_Color White = { 255, 255, 255 };  // this is the color in rgb format, maxing out all would give you the color white, and it will be your text's color
-//SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, Text, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
-//SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); //now you can convert it into a texture
-//int texW, texH;
-//SDL_QueryTexture(Message, NULL, NULL, &texW, &texH);
-//SDL_Rect Message_rect;
-//Message_rect.x = 300;
-//Message_rect.y = 5;
-//Message_rect.w = texW;
-//Message_rect.h = texH;
-//SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
-//SDL_RenderPresent(renderer);
-
-
-//for (i = 0; i<16; i++)
-	//tabbut[i]->drawbutton();
+	//for (i = 0; i<16; i++)
+		//tabbut[i]->drawbutton();
 //	for (i = 0; i<NumOfElem; i++)
 	//	TabElem[i]->DrawElem();
 	TabBut[0] = new CMenuButton("Load", 30, 22, 90, 39, renderer);
-	//	TabBut[0]->DrawButton();
+//	TabBut[0]->DrawButton();
 	TabBut[1] = new CMenuButton("New", 100, 22, 160, 39, renderer);
-	//	TabBut[1]->DrawButton();
-		//if (!NewPossib) TabBut[1]->SetActivity(0);
+//	TabBut[1]->DrawButton();
+	//if (!NewPossib) TabBut[1]->SetActivity(0);
 	TabBut[2] = new CMenuButton("Prev", 170, 22, 230, 39, renderer);
-	//	TabBut[2]->DrawButton();
-		//if (!IsPrev) TabBut[2]->SetActivity(0);
+//	TabBut[2]->DrawButton();
+	//if (!IsPrev) TabBut[2]->SetActivity(0);
 	TabBut[3] = new CMenuButton("Next", 240, 22, 300, 39, renderer);
-	//	TabBut[3]->DrawButton();
-		//if (!IsNext) TabBut[3]->SetActivity(0);
+//	TabBut[3]->DrawButton();
+	//if (!IsNext) TabBut[3]->SetActivity(0);
 	TabBut[4] = new CMenuButton("Save", 310, 22, 370, 39, renderer);
-	//	TabBut[4]->DrawButton();
+//	TabBut[4]->DrawButton();
 	TabBut[5] = new CMenuButton("Save As", 380, 22, 440, 39, renderer);
-	//	TabBut[5]->DrawButton();
+//	TabBut[5]->DrawButton();
 	TabBut[6] = new CMenuButton("Close", 450, 22, 510, 39, renderer);
-	//	TabBut[6]->DrawButton();
+//	TabBut[6]->DrawButton();
 	TabBut[7] = new CMenuButton("Info", 520, 22, 580, 39, renderer);
-	//	TabBut[7]->DrawButton();
+//	TabBut[7]->DrawButton();
 	TabBut[8] = new CMenuButton("Move", 170, 42, 370, 59, renderer);
-	//	TabBut[8]->DrawButton();
+//	TabBut[8]->DrawButton();
+	TabBut[MenuButNum] = new CModeButton(_and, 2, 61, 28, 90, renderer);
+	TabBut[MenuButNum + 1] = new CModeButton(_or , 2, 101, 28, 130, renderer);
+	TabBut[MenuButNum + 2] = new CModeButton(_not, 2, 141, 28, 170, renderer);
+	TabBut[MenuButNum + 3] = new CModeButton(_nand, 2, 181, 28, 210, renderer);
+	TabBut[MenuButNum + 4] = new CModeButton(_nor, 2, 221, 28, 250, renderer);
+	TabBut[MenuButNum + 5] = new CModeButton(_xor, 2, 261, 28, 290, renderer);
+	TabBut[MenuButNum + 6] = new CModeButton(_output, 2, 301, 28, 330, renderer);
+
+
+	//TabBut[MenuButNum + 1]->DrawButton();
 	TabElem[0] = new CConstBus(145, 447, 0, renderer);
-	//	TabElem[0]->DrawElem();
+//	TabElem[0]->DrawElem();
 	TabElem[1] = new CConstBus(145, 462, 1, renderer);
 
 	TabElem[1]->DrawElem();
@@ -851,24 +857,24 @@ void CWindow::DrawWin(char Mode)
 	TabElem[3] = new CInBus(56, 45, 'b', renderer);
 	TabElem[3]->DrawElem();
 
-	//	TabElem[1]->DrawElem();
-	TabElem[2] = new CInBus(41, 45, 'a', renderer);
-	//	TabElem[2]->DrawElem();
-	TabElem[3] = new CInBus(56, 45, 'b', renderer);
-	//	TabElem[3]->DrawElem();
+//	TabElem[1]->DrawElem();
+	TabElem[2] = new CInBus(41, 45, 'a',renderer);
+//	TabElem[2]->DrawElem();
+	TabElem[3] = new CInBus(56, 45, 'b',renderer);
+//	TabElem[3]->DrawElem();
 
 	TabElem[4] = new CInBus(71, 45, 'c', renderer);
-	//	TabElem[4]->DrawElem();
+//	TabElem[4]->DrawElem();
 	TabElem[5] = new CInBus(86, 45, 'd', renderer);
-	//	TabElem[5]->DrawElem();
+//	TabElem[5]->DrawElem();
 	TabElem[6] = new CInBus(101, 45, 'e', renderer);
-	//	TabElem[6]->DrawElem();
+//	TabElem[6]->DrawElem();
 	TabElem[7] = new CInBus(116, 45, 'f', renderer);
 
 	TabElem[7]->DrawElem();
 
-	//CSmallWindow * smallwindow = new CSmallWindow(0, 0, 320, 320, nullptr, nullptr, 't', 1, renderer, nullptr, nullptr);
-	//smallwindow->DrawSmallWin(renderer);
+	CSmallWindow * smallwindow = new CSmallWindow(0, 0, 320, 320, nullptr, nullptr,'t',1,renderer,nullptr,nullptr);
+	smallwindow->DrawSmallWin();
 
 	//SDL_Event windowEvent;
 	//while (true) {
@@ -882,20 +888,20 @@ void CWindow::DrawWin(char Mode)
 
 //	TabElem[7]->DrawElem();
 	NumOfElem = 7;
-	//	SDL_Event windowEvent;
-		//while (true) {
-		//	if (SDL_PollEvent(&windowEvent)) {
-		//		if (SDL_QUIT == windowEvent.type) {
-		//			break;
-		//		}
-		//		if(SDL_MOUSEBUTTONDOWN== windowEvent.type) {
-		//			CheckElements(windowEvent.motion.x, windowEvent.motion.y);
+//	SDL_Event windowEvent;
+	//while (true) {
+	//	if (SDL_PollEvent(&windowEvent)) {
+	//		if (SDL_QUIT == windowEvent.type) {
+	//			break;
+	//		}
+	//		if(SDL_MOUSEBUTTONDOWN== windowEvent.type) {
+	//			CheckElements(windowEvent.motion.x, windowEvent.motion.y);
 
-		//		}
+	//		}
 
-		//	}
-		//}
-	Redraw();
+	//	}
+	//}
+
 
 }
 void CWindow::DrawBasket(int x, int y) {
@@ -904,7 +910,7 @@ void CWindow::DrawBasket(int x, int y) {
 	SDL_RenderDrawLine(renderer, x, y + 30, x + 26, y + 30);
 	SDL_RenderDrawLine(renderer, x + 26, y + 30, x + 26, y);
 	SDL_RenderDrawLine(renderer, x + 26, y, x, y);
-
+	
 	SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRect(renderer, &Bar(x + 6, y + 26, x + 20, y + 28));
 	SDL_RenderDrawLine(renderer, x + 6, y + 26, x + 2, y + 4);
@@ -964,7 +970,7 @@ SDL_Rect CWindow::Bar(int x1, int y1, int x2, int y2) {
 	SDL_Rect bar;
 	bar.x = x1;
 	bar.y = y1;
-	bar.w = x2 - x1;
-	bar.h = y2 - y1;
+	bar.w = x2-x1;
+	bar.h = y2-y1;
 	return bar;
 }

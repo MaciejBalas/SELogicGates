@@ -22,6 +22,7 @@ CSmallWindow::CSmallWindow(int X1, int Y1, int X2, int Y2, char*HeadingText, cha
 	this->Y1 = Y1;
 	this->HeadingText = HeadingText;
 	int i;
+	this->renderer = renderer;
 /*	for (i = 0; i<4; i++)
 		if (ConstText[i] == nullptr) break;
 		else this->ConstText[i] = ConstText[i];
@@ -189,7 +190,7 @@ void CSmallWindow::CheckButtons(int X, int Y)
 				Action(i);
 }
 
-void CSmallWindow::DrawSmallWin(SDL_Renderer * renderer)
+void CSmallWindow::DrawSmallWin()
 {
 	SDL_CreateWindow("smallwin", 0, 0, 320, 320, 0);
 	SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);

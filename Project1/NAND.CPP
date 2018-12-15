@@ -30,11 +30,11 @@ void CNand::DrawElem(SDL_Color Colour)
 		}
 	}
 	SDL_SetRenderDrawColor(renderer, Colour.r, Colour.g, Colour.b, SDL_ALPHA_OPAQUE);
-	SDL_RenderDrawLine(renderer,X1 + 8, Y1 + 7, X1 + 8, Y1 + 22);
+	SDL_RenderDrawLine(renderer, X1 + 8, Y1 + 7, X1 + 8, Y1 + 22);
 	SDL_RenderDrawLine(renderer, X1 + 3, Y1 + 12, X1 + 8, Y1 + 12);
 	SDL_RenderDrawLine(renderer, X1 + 3, Y1 + 17, X1 + 8, Y1 + 17);
-	draw_arc(renderer, X1 + 8, Y1 + 14, 270, 90, Colour);
-	draw_circle(renderer, SDL_Point{ X1 + 18, Y1 + 14 }, 2, Colour);
+	draw_arc(renderer, X1 + 8, Y1 + 14, 10, 9, Colour);
+	draw_circle(renderer, SDL_Point{ X1 + 20, Y1 + 14 }, 2, Colour);
 	SDL_RenderDrawLine(renderer, X1 + 21, Y1 + 14, X1 + 24, Y1 + 14);
 }
 

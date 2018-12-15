@@ -30,11 +30,11 @@ void COr::DrawElem(SDL_Color Colour)
 		}
 	}
 	SDL_SetRenderDrawColor(renderer, Colour.r, Colour.g, Colour.b, SDL_ALPHA_OPAQUE);
-	draw_arc(renderer, X1 + 3, Y1 + 14, 315, 54, Colour);//ˆuk z lewej
+	draw_arc(renderer, X1 + 8, Y1 + 14, 10, 9, Colour);//ˆuk z lewej
 	SDL_RenderDrawLine(renderer, X1 + 3, Y1 + 12, X1 + 10, Y1 + 12);//we g.
 	SDL_RenderDrawLine(renderer, X1 + 3, Y1 + 17, X1 + 10, Y1 + 17);//we d.
-	draw_arc(renderer, X1 + 8, Y1 + 14, 270, 90, Colour);//ˆuk z prawej
-	SDL_RenderDrawLine(renderer, X1 + 17, Y1 + 14, X1 + 24, Y1 + 14);
+	draw_arc(renderer, X1 + 6, Y1 + 14, 5, 10, Colour);//ˆuk z prawej
+	SDL_RenderDrawLine(renderer, X1 + 21, Y1 + 14, X1 + 24, Y1 + 14);//wyj˜cie
 }
 
 TOutput COr::GetOutput(int AskElemNum, int MaxNum)

@@ -21,10 +21,11 @@ class CSmallWindow
 	void Read();//wczytuje znaki z klawiatury
 	void CheckButtons(int X, int Y);//sprawdzenie przycisk¢w przy naci˜ni©ciu myszki
 	void Action(int ActNum);
+	SDL_Renderer * renderer = NULL;
 	SDL_Rect Bar(int x1, int y1, int x2, int y2);
 public:
 	CSmallWindow();
-	void DrawSmallWin(SDL_Renderer * renderer);
+	void DrawSmallWin();
 	char Work();//obsluga myszki
 
 	CSmallWindow(int X1, int Y1, int X2, int Y2, char*HeadingText, char**ConstText,
