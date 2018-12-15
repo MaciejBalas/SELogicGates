@@ -48,7 +48,6 @@ void CMenuButton::DrawButton()
 	Message_rect.h = texH;
 	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
 	SDL_RenderPresent(renderer);
-
 }
 
 void CMenuButton::ChangeText(char*Text)
