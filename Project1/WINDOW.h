@@ -22,11 +22,12 @@ class CWindow
 	CButton*TabBut[16];
 	SDL_Renderer *renderer = NULL;
 	char*StandardPath;
+	
 	//void*ImageTab[NumberOfImages];
 	void DoText(int Number, char*Text = NULL);
 	//void React(int X, int Y);//reakcja na przyci˜ni©cie klawisza myszki
 	//void CheckButtons(int X, int Y);//sprawdzenie przycisk¢w przy naci˜ni©ciu myszki
-	//void CheckElements(int X, int Y);//sprawdzenie element¢w przy naci˜ni©ciu myszki
+	void CheckElements(int X, int Y);//sprawdzenie element¢w przy naci˜ni©ciu myszki
 	//char DragElement(int ImageNum, int ElemNum);
 	void DrawWin(char Mode);
 	void DrawBasket(int X, int Y);
@@ -45,6 +46,7 @@ class CWindow
 	//void DeleteElem(int ElemNum);
 	//void Error(int ErrorNum);
 public:
+	void Control();
 	char Work();//praca u¾ytkownika w oknie
 	CWindow();
 	CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew);

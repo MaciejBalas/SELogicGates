@@ -32,7 +32,7 @@ public:
 	virtual char IsElemNext(CElement*Element);
 	int GetXCorner(char Right = 0);
 	int GetYCorner(char Down = 0);
-	virtual void ClickElement() = 0;
+	virtual void ClickElement(int X, int Y) = 0;
 	virtual TElementType ElementType() = 0;
 	virtual char LinkNextElem(CElement*NextElem, int X, int Y);
 	virtual char LinkPrevElem(CElement*PrevElem, int X, int Y);

@@ -69,7 +69,7 @@ TElementType CJunction::ElementType()
 	return _junction;
 }
 
-void CJunction::ClickElement()
+void CJunction::ClickElement(int X, int Y)
 {}
 
 char CJunction::LinkNextElem(CElement*NextElem,int X,int Y)

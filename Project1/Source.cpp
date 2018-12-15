@@ -25,7 +25,6 @@ void draw_circle(SDL_Renderer *ren, SDL_Point center, int radius, SDL_Color colo
 //	char NewPossib = 1;//flaga m¢wi¥ca, czy mo¾e powsta† nowe okno
 //	char IsNew = 1;//flaga m¢wi¥ca, czy okno jest nowe
 //	char IsPrev;//flaga m¢wi¥ca, czy istnieje okno wcze˜niejsze
-//	char IsNext;//flaga m¢wi¥ca, czy istnieje okno nast©pne
 //	int TabWin[MaxWinNum];//tablica flag m¢wi¥cych, czy okno istnieje
 //	int i;
 //	for (i = 0; i<MaxWinNum; i++) TabWin[i] = 0;
@@ -105,6 +104,7 @@ void draw_circle(SDL_Renderer *ren, SDL_Point center, int radius, SDL_Color colo
 int main(int argc, char *argv[])
 {
 	CWindow window;
+	window.Control();
 	//SDL_Renderer *renderer = NULL;
 
 	//SDL_Surface *surf;

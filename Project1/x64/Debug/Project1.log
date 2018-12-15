@@ -1,3 +1,8 @@
 ﻿  WINDOW.cpp
+<<<<<<< HEAD
 d:\se_project\project1\window.cpp(650): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   Project1.vcxproj -> D:\SE_Project\x64\Debug\Project1.exe
+=======
+d:\logic gates\project1\window.cpp(718): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Project1.vcxproj -> D:\logic gates\x64\Debug\Project1.exe
+>>>>>>> AddedControlMethod
