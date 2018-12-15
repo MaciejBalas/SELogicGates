@@ -17,7 +17,7 @@ class CJunction:public CElement
 	CJunction(int X,int Y,  SDL_Renderer *renderer, SDL_Color Colour = { 0,0,0 });
 	char DelNextElem(CElement*DelElem);
 	int DeleteConnections(CElement**TabElem,int NumOfElem,char Main=1);
-	void draw_circle(SDL_Point center, int radius, SDL_Color color);
+	//void draw_circle(SDL_Point center, int radius, SDL_Color color);
 };
 
 #endif

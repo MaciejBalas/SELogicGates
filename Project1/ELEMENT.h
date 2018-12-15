@@ -3,6 +3,7 @@
 #define DefElement
 #include <stdio.h>
 #include "CONSTANTS.h"
+#include "math.h"
 class CElement
 {
 protected:
@@ -43,6 +44,12 @@ public:
 		FILE*File, char Phase);
 	virtual char LoadElement(CElement**TabElem, int NumOfElem,
 		FILE*File, char Phase);
+
+	SDL_Renderer *renderer = NULL;
+	void draw_arc(SDL_Renderer* r, int xx0, int y0, int xradiusX, int yradiusY, SDL_Color color);
+	void draw_circle(SDL_Renderer *renderer, SDL_Point center, int radius, SDL_Color color);
+
+
 	virtual ~CElement();
 };
 #endif
