@@ -418,3 +418,69 @@ char CElement::LoadElement(CElement**TabElem, int NumOfElem,
 	}
 	return 1;
 }
+
+void CElement::draw_arc(SDL_Renderer* r, int xx0, int y0, int xradiusX, int yradiusY, SDL_Color color)
+{
+	int x0 = xx0 + 2;
+	int radiusX = xradiusX / 26;
+	int radiusY = yradiusY / 10;
+	float pi = 3.1416;
+	float pih = pi / 2.0; //half of pi
+
+	const int prec = 27; // precision value; value of 1 will draw a diamond, 27 makes pretty smooth circles.
+	float theta = 0;     // angle that will be increased each loop
+	SDL_SetRenderDrawColor(r, color.r, color.g, color.b, color.a);
+
+	//starting point
+	int x = (float)radiusX * cos(theta);//start point
+	int y = (float)radiusY * sin(theta);//start point
+	int x1 = x;
+	int y1 = y;
+
+	//repeat until theta >= 90;
+	float step = pih / (float)prec; // amount to add to theta each time (degrees)
+	for (theta = step; theta <= pih; theta += step)//step through only a 90 arc (1 quadrant)
+	{
+		//get new point location
+		x1 = (float)radiusX * cosf(theta) + 0.5; //new point (+.5 is a quick rounding method)
+		y1 = (float)radiusY * sinf(theta) + 0.5; //new point (+.5 is a quick rounding method)
+
+		//draw line from previous point to new point, ONLY if point incremented
+		if ((x != x1) || (y != y1))//only draw if coordinate changed
+		{
+			SDL_RenderDrawLine(r, x0 + x, y0 - y, x0 + x1, y0 - y1);//quadrant TR
+			//SDL_RenderDrawLine(r, x0 - x, y0 - y, x0 - x1, y0 - y1);//quadrant TL
+			//SDL_RenderDrawLine(r, x0 - x, y0 + y, x0 - x1, y0 + y1);//quadrant BL
+			SDL_RenderDrawLine(r, x0 + x, y0 + y, x0 + x1, y0 + y1);//quadrant BR
+		}
+		//save previous points
+		x = x1;//save new previous point
+		y = y1;//save new previous point
+	}
+	//arc did not finish because of rounding, so finish the arc
+	if (x != 0)
+	{
+		x = 0;
+		SDL_RenderDrawLine(r, x0 + x, y0 - y, x0 + x1, y0 - y1);//quadrant TR
+		SDL_RenderDrawLine(r, x0 - x, y0 - y, x0 - x1, y0 - y1);//quadrant TL
+		SDL_RenderDrawLine(r, x0 - x, y0 + y, x0 - x1, y0 + y1);//quadrant BL
+		SDL_RenderDrawLine(r, x0 + x, y0 + y, x0 + x1, y0 + y1);//quadrant BR
+	}
+}
+
+void CElement::draw_circle(SDL_Renderer *renderer,SDL_Point center, int radius, SDL_Color color)
+{
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+	for (int w = 0; w < radius * 2; w++)
+	{
+		for (int h = 0; h < radius * 2; h++)
+		{
+			int dx = radius - w; // horizontal offset
+			int dy = radius - h; // vertical offset
+			if ((dx*dx + dy * dy) <= (radius * radius))
+			{
+				SDL_RenderDrawPoint(renderer, center.x + dx, center.y + dy);
+			}
+		}
+	}
+}
