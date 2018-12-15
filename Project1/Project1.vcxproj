@@ -120,18 +120,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AND.CPP" />
     <ClCompile Include="BUTTON.cpp" />
     <ClCompile Include="CONSTBUS.cpp" />
     <ClCompile Include="ELEMENT.cpp" />
     <ClCompile Include="INBUS.CPP" />
     <ClCompile Include="JUNCTION.CPP" />
     <ClCompile Include="MENUBUT.CPP" />
+    <ClCompile Include="MODEBUT.CPP" />
+    <ClCompile Include="NAND.CPP" />
+    <ClCompile Include="NOR.CPP" />
+    <ClCompile Include="NOT.CPP" />
+    <ClCompile Include="OR.CPP" />
     <ClCompile Include="SMALLBUT.cpp" />
     <ClCompile Include="SMALLWIN.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="WINDOW.cpp" />
+    <ClCompile Include="XOR.CPP" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AND.H" />
     <ClInclude Include="BUTTON.h" />
     <ClInclude Include="CONSTBUS.h" />
     <ClInclude Include="ELEMENT.h" />
@@ -139,9 +147,15 @@
     <ClInclude Include="INBUS.H" />
     <ClInclude Include="JUNCTION.H" />
     <ClInclude Include="MENUBUT.H" />
+    <ClInclude Include="MODEBUT.H" />
+    <ClInclude Include="NAND.H" />
+    <ClInclude Include="NOR.H" />
+    <ClInclude Include="NOT.H" />
+    <ClInclude Include="OR.H" />
     <ClInclude Include="SMALLBUT.h" />
     <ClInclude Include="SMALLWIN.h" />
     <ClInclude Include="WINDOW.h" />
+    <ClInclude Include="XOR.H" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

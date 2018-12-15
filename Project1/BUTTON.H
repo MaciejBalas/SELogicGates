@@ -8,7 +8,7 @@ protected:
 	int Y1;
 	int X2;
 	int Y2;
-	int ButtonColour;
+	SDL_Color ButtonColour;
 	SDL_Color DrawingColour;
 	bool Insert;
 	bool Active;
