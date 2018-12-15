@@ -1,5 +1,6 @@
 #include "window.h"
 #include <cstring>
+#include <string>
 CWindow::CWindow() {
 
 	DrawWin(1);
@@ -9,7 +10,6 @@ CWindow::CWindow() {
 }
 CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew)
 {
-	
 	//setactivepage(1);
 	Active = 1;
 	Result = 1;
@@ -649,12 +649,12 @@ void CWindow::DoText(int Number, char*Text)
 	TmpText[i] = '\0';
 	int TextLen = strlen(Text);
 	for (int j = i; j>0; j--)
-		Text[i - j + TextLen] = TmpText[j - 1];
-	Text[i + TextLen] = '\0';
+Text[i - j + TextLen] = TmpText[j - 1];
+Text[i + TextLen] = '\0';
 }
 void CWindow::DrawWin(char Mode)
 {
-	
+
 	/*if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		return 1;*/
 	if (Mode == 1)//rysowanie caˆego okna
@@ -663,8 +663,8 @@ void CWindow::DrawWin(char Mode)
 		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 		SDL_RenderClear(renderer);
 		SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
-		SDL_RenderFillRect(renderer, &Bar(1,20,638,61));
-		SDL_RenderFillRect(renderer, &Bar(1,478,30,61));
+		SDL_RenderFillRect(renderer, &Bar(1, 20, 638, 61));
+		SDL_RenderFillRect(renderer, &Bar(1, 478, 30, 61));
 		DrawBasket(3, 400);//kosz
 	}
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
@@ -677,7 +677,7 @@ void CWindow::DrawWin(char Mode)
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	char Text[12] = "WINDOW ";
 	int i;
-	for (i = 7; i<10; i++)
+	for (i = 7; i < 10; i++)
 		Text[i] = '\0';
 	DoText(WinNum, Text);
 	if (TTF_Init() == -1) {
@@ -696,7 +696,7 @@ void CWindow::DrawWin(char Mode)
 	Message_rect.h = texH;
 	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
 	SDL_RenderPresent(renderer);
-	
+
 	//for (i = 0; i<16; i++)
 		//tabbut[i]->drawbutton();
 //	for (i = 0; i<NumOfElem; i++)
@@ -726,9 +726,9 @@ void CWindow::DrawWin(char Mode)
 	TabElem[0]->DrawElem();
 	TabElem[1] = new CConstBus(145, 462, 1, renderer);
 	TabElem[1]->DrawElem();
-	TabElem[2] = new CInBus(41, 45, 'a',renderer);
+	TabElem[2] = new CInBus(41, 45, 'a', renderer);
 	TabElem[2]->DrawElem();
-	TabElem[3] = new CInBus(56, 45, 'b',renderer);
+	TabElem[3] = new CInBus(56, 45, 'b', renderer);
 	TabElem[3]->DrawElem();
 	TabElem[4] = new CInBus(71, 45, 'c', renderer);
 	TabElem[4]->DrawElem();
