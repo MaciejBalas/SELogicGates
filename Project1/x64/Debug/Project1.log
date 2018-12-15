@@ -1,29 +1,3 @@
-﻿  AND.CPP
-  CONSTBUS.cpp
-  ELEMENT.cpp
-d:\logic gates\project1\element.cpp(425): warning C4305: 'initializing': truncation from 'double' to 'float'
-d:\logic gates\project1\element.cpp(426): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-d:\logic gates\project1\element.cpp(433): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-d:\logic gates\project1\element.cpp(434): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-d:\logic gates\project1\element.cpp(443): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-d:\logic gates\project1\element.cpp(444): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-  INBUS.CPP
-  JUNCTION.CPP
-  MODEBUT.CPP
-  NAND.CPP
-  NOR.CPP
-  NOT.CPP
-  OR.CPP
-  OUTPUT.cpp
-d:\logic gates\project1\output.cpp(79): warning C4101: 'texH4': unreferenced local variable
-d:\logic gates\project1\output.cpp(79): warning C4101: 'texW4': unreferenced local variable
-  SMALLWIN.cpp
-d:\logic gates\project1\smallwin.cpp(24): warning C4101: 'i': unreferenced local variable
-d:\logic gates\project1\smallwin.cpp(175): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-  Source.cpp
-  WINDOW.cpp
-d:\logic gates\project1\window.cpp(728): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  WIRE.cpp
-  XOR.CPP
-  Generating Code...
-  Project1.vcxproj -> D:\logic gates\x64\Debug\Project1.exe
+﻿  WINDOW.cpp
+d:\se_project\project1\window.cpp(731): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Project1.vcxproj -> D:\SE_Project\x64\Debug\Project1.exe

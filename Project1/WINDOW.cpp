@@ -45,14 +45,14 @@ void CWindow::Redraw() {
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderClear(renderer);
 	SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
-	SDL_RenderFillRect(renderer, &Bar(1, 20, 638, 61));
-	SDL_RenderFillRect(renderer, &Bar(1, 478, 30, 61));
+	SDL_RenderFillRect(renderer, &Bar(1, 20, 638, 61));//////////////
+	SDL_RenderFillRect(renderer, &Bar(1, 478, 30, 61));////////////////
 	DrawBasket(3, 400);//kosz
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRect(renderer, &Bar(31, 61, 610, 440));
 	SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
-	SDL_RenderFillRect(renderer, &Bar(1, 478, 638, 441));
-	SDL_RenderFillRect(renderer, &Bar(611, 451, 638, 61));
+	SDL_RenderFillRect(renderer, &Bar(1, 478, 638, 441));////////////////
+	SDL_RenderFillRect(renderer, &Bar(611, 451, 638, 61));////////////////
 	SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
 	SDL_RenderFillRect(renderer, &Bar(1, 1, 638, 20));
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
@@ -609,26 +609,29 @@ void CWindow::NewElement(int ElemNum)
 		}
 	}
 	int ImageNum;//numer bitmapy w tabeli
+	x -= 12;
+	y -= 12;
+	if ((x>31) && (x+25<610) && (y>61) && (y+25<440)) {
+		switch (ElemNum)
+		{
+		case MenuButNum:TabElem[NumOfElem] = new CAnd(x, y, FrameColour, renderer);
+			ImageNum = 0; break;
+		case MenuButNum + 1:TabElem[NumOfElem] = new COr(x, y, FrameColour, renderer);
+			ImageNum = 1; break;
+		case MenuButNum + 2:TabElem[NumOfElem] = new CNot(x, y, FrameColour, renderer);
+			ImageNum = 2; break;
+		case MenuButNum + 3:TabElem[NumOfElem] = new CNand(x, y, FrameColour, renderer);
+			ImageNum = 3; break;
+		case MenuButNum + 4:TabElem[NumOfElem] = new CNor(x, y, FrameColour, renderer);
+			ImageNum = 4; break;
+		case MenuButNum + 5:TabElem[NumOfElem] = new CXor(x, y, FrameColour, renderer);
+			ImageNum = 5; break;
+		case MenuButNum + 6:TabElem[NumOfElem] = new COutput(x, y, renderer);
+			ImageNum = 6; break;
 
-	switch (ElemNum)
-	{
-	case MenuButNum:TabElem[NumOfElem] = new CAnd(x, y, FrameColour,renderer);
-		ImageNum = 0; break;
-	case MenuButNum + 1:TabElem[NumOfElem] = new COr(x, y, FrameColour, renderer);
-		ImageNum = 1; break;
-	case MenuButNum + 2:TabElem[NumOfElem] = new CNot(x, y, FrameColour, renderer);
-		ImageNum = 2; break;
-	case MenuButNum + 3:TabElem[NumOfElem] = new CNand(x, y, FrameColour, renderer);
-		ImageNum = 3; break;
-	case MenuButNum + 4:TabElem[NumOfElem] = new CNor(x, y, FrameColour, renderer);
-		ImageNum = 4; break;
-	case MenuButNum + 5:TabElem[NumOfElem] = new CXor(x, y, FrameColour, renderer);
-		ImageNum = 5; break;
-	case MenuButNum + 6:TabElem[NumOfElem] = new COutput(x, y, renderer);
-		ImageNum = 6; break;
-
+		}
+		NumOfElem++;
 	}
-	NumOfElem++;
 	//if (DragElement(ImageNum, NumOfElem))
 	//	NumOfElem++;
 	//else delete TabElem[NumOfElem];
