@@ -11,54 +11,10 @@ CWindow::CWindow() {
 }
 
 void CWindow::Control() {
-	while (true) {
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-		SDL_RenderClear(renderer);
-		SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
-		SDL_RenderFillRect(renderer, &Bar(1, 20, 638, 61));
-		SDL_RenderFillRect(renderer, &Bar(1, 478, 30, 61));
-		DrawBasket(3, 400);//kosz
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-		SDL_RenderFillRect(renderer, &Bar(31, 61, 610, 440));
-		SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
-		SDL_RenderFillRect(renderer, &Bar(1, 478, 638, 441));
-		SDL_RenderFillRect(renderer, &Bar(611, 451, 638, 61));
-		SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
-		SDL_RenderFillRect(renderer, &Bar(1, 1, 638, 20));
-		SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-		char Text[12] = "WINDOW ";
-		int i;
-		for (i = 7; i < 10; i++)
-			Text[i] = '\0';
-		DoText(WinNum, Text);
-		if (TTF_Init() == -1) {
-			exit(2);
-		}
-		TTF_Font* font = TTF_OpenFont("arial.ttf", 10); //this opens a font style and sets a size
-		SDL_Color White = { 255, 255, 255 };  // this is the color in rgb format, maxing out all would give you the color white, and it will be your text's color
-		SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, Text, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
-		SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); //now you can convert it into a texture
-		int texW, texH;
-		SDL_QueryTexture(Message, NULL, NULL, &texW, &texH);
-		SDL_Rect Message_rect;
-		Message_rect.x = 300;
-		Message_rect.y = 5;
-		Message_rect.w = texW;
-		Message_rect.h = texH;
-		SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
-		SDL_RenderPresent(renderer);
-		for (int i = 0; i < ButNum; i++) {
-			if (TabBut[i] != NULL) {
-				TabBut[i]->DrawButton();
-			}
-		}
-		for (int i = 0; i < NumOfElem; i++) {
-			if (TabElem[i] != NULL) {
-				TabElem[i]->DrawElem();
-			}
-		}
+	
+	SDL_Event windowEvent;
 		while (true) {
-			SDL_Event windowEvent;
+			
 			if (SDL_PollEvent(&windowEvent)) {
 				if (SDL_QUIT == windowEvent.type) {
 					SDL_DestroyWindow(window);
@@ -72,16 +28,63 @@ void CWindow::Control() {
 				if (SDL_MOUSEBUTTONDOWN == windowEvent.type) {
 					CheckElements(windowEvent.motion.x, windowEvent.motion.y);
 					SDL_RenderClear(renderer);
-					
-					break;
+					Redraw();
+				
 				}
 
 			}
 		}
+	
+
+
+
+}
+void CWindow::Redraw() {
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
+	SDL_RenderFillRect(renderer, &Bar(1, 20, 638, 61));
+	SDL_RenderFillRect(renderer, &Bar(1, 478, 30, 61));
+	DrawBasket(3, 400);//kosz
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+	SDL_RenderFillRect(renderer, &Bar(31, 61, 610, 440));
+	SDL_SetRenderDrawColor(renderer, 128, 128, 128, SDL_ALPHA_OPAQUE);
+	SDL_RenderFillRect(renderer, &Bar(1, 478, 638, 441));
+	SDL_RenderFillRect(renderer, &Bar(611, 451, 638, 61));
+	SDL_SetRenderDrawColor(renderer, 0, 0, 255, SDL_ALPHA_OPAQUE);
+	SDL_RenderFillRect(renderer, &Bar(1, 1, 638, 20));
+	SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+	char Text[12] = "WINDOW ";
+	int i;
+	for (i = 7; i < 10; i++)
+		Text[i] = '\0';
+	DoText(WinNum, Text);
+	if (TTF_Init() == -1) {
+		exit(2);
 	}
-
-
-
+	TTF_Font* font = TTF_OpenFont("arial.ttf", 10); //this opens a font style and sets a size
+	SDL_Color White = { 255, 255, 255 }; // this is the color in rgb format, maxing out all would give you the color white, and it will be your text's color
+	SDL_Surface* surfaceMessage = TTF_RenderText_Solid(font, Text, White); // as TTF_RenderText_Solid could only be used on SDL_Surface then you have to create the surface first
+	SDL_Texture* Message = SDL_CreateTextureFromSurface(renderer, surfaceMessage); //now you can convert it into a texture
+	int texW, texH;
+	SDL_QueryTexture(Message, NULL, NULL, &texW, &texH);
+	SDL_Rect Message_rect;
+	Message_rect.x = 300;
+	Message_rect.y = 5;
+	Message_rect.w = texW;
+	Message_rect.h = texH;
+	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
+	SDL_RenderPresent(renderer);
+	for (int i = 0; i < ButNum; i++) {
+		if (TabBut[i] != NULL) {
+			TabBut[i]->DrawButton();
+		}
+	}
+	for (int i = 0; i < NumOfElem; i++) {
+		if (TabElem[i] != NULL) {
+			TabElem[i]->DrawElem();
+		}
+	}
 }
 CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew)
 {
@@ -873,8 +876,8 @@ void CWindow::DrawWin(char Mode)
 
 	TabElem[7]->DrawElem();
 
-	CSmallWindow * smallwindow = new CSmallWindow(0, 0, 320, 320, nullptr, nullptr,'t',1,renderer,nullptr,nullptr);
-	smallwindow->DrawSmallWin();
+	//CSmallWindow * smallwindow = new CSmallWindow(0, 0, 320, 320, nullptr, nullptr,'t',1,renderer,nullptr,nullptr);
+	//smallwindow->DrawSmallWin();
 
 	//SDL_Event windowEvent;
 	//while (true) {
@@ -887,7 +890,7 @@ void CWindow::DrawWin(char Mode)
 
 
 //	TabElem[7]->DrawElem();
-	NumOfElem = 7;
+	NumOfElem = 8;
 //	SDL_Event windowEvent;
 	//while (true) {
 	//	if (SDL_PollEvent(&windowEvent)) {
@@ -902,6 +905,7 @@ void CWindow::DrawWin(char Mode)
 	//	}
 	//}
 
+	Redraw();
 
 }
 void CWindow::DrawBasket(int x, int y) {
