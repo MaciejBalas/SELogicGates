@@ -27,8 +27,10 @@ void CWindow::Control() {
 				}
 				if (SDL_MOUSEBUTTONDOWN == windowEvent.type) {
 					CheckElements(windowEvent.motion.x, windowEvent.motion.y);
+					CheckButtons(windowEvent.motion.x, windowEvent.motion.y);
 					SDL_RenderClear(renderer);
 					Redraw();
+					SDL_RenderPresent(renderer);
 				
 				}
 
@@ -248,26 +250,22 @@ CWindow::~CWindow()
 //	intr(0x33, &reg);//pokazanie kursora
 //}
 
-//void CWindow::CheckButtons(int X, int Y)
-//{
-//	struct REGPACK reg;
-//	for (int i = 0; i<ButNum; i++)//sprawdzenie przycisk¢w
-//		if (i<MenuButNum&&TabBut[i]->IsYourArea(X, Y))//gdy jest to klawisz menu
-//		{
-//			if (TabBut[i]->ClickButton())
-//			{
-//				reg.r_ax = 0x2;
-//				intr(0x33, &reg);//schowanie myszy
-//				Action(i);//wykonanie funkcji przycisku
-//				reg.r_ax = 0x1;//pokazanie myszy
-//				intr(0x33, &reg);
-//			}
-//			break;//kolejne przyciski ju¾ nie b©d¥ sprawdzane(oszcz©dno˜† czasu)
-//		}//sprawdzenie, czy zostaˆ naci˜ni©ty przycisk
-//		else if (i >= MenuButNum && TabBut[i]->IsYourArea(X, Y) &&
-//			TabBut[i]->ClickButton())	NewElement(i);
-//	//gdy jest to klawisz elementu i reaguje
-//}
+void CWindow::CheckButtons(int X, int Y)
+{
+
+	for (int i = 0; i<ButNum; i++)//sprawdzenie przycisk¢w
+		if (i<MenuButNum&&TabBut[i]->IsYourArea(X, Y))//gdy jest to klawisz menu
+		{
+			if (TabBut[i]->ClickButton())
+			{
+				Action(i);//wykonanie funkcji przycisku
+			}
+			break;//kolejne przyciski ju¾ nie b©d¥ sprawdzane(oszcz©dno˜† czasu)
+		}//sprawdzenie, czy zostaˆ naci˜ni©ty przycisk
+		else if (i >= MenuButNum && TabBut[i]->IsYourArea(X, Y) &&
+			TabBut[i]->ClickButton())	NewElement(i);
+	//gdy jest to klawisz elementu i reaguje
+}
 
 void CWindow::CheckElements(int X, int Y)
 {
@@ -596,38 +594,46 @@ void CWindow::Exit()
 //	TabBut[MenuButNum - 1]->ChangeText("Move");
 //}
 
-//void CWindow::NewElement(int ElemNum)
-//{
-//	struct REGPACK reg;
-//	reg.r_ax = 0x2;
-//	intr(0x33, &reg);//wyˆ¥czenie
-//	reg.r_ax = 0x3;
-//	intr(0x33, &reg);//sprawdzenie stanu
-//	int ImageNum;//numer bitmapy w tabeli
-//	switch (ElemNum)
-//	{
-//	case MenuButNum:TabElem[NumOfElem] = new CAnd(reg.r_cx, reg.r_dx);
-//		ImageNum = 0; break;
-//	case MenuButNum + 1:TabElem[NumOfElem] = new COr(reg.r_cx, reg.r_dx);
-//		ImageNum = 1; break;
-//	case MenuButNum + 2:TabElem[NumOfElem] = new CNot(reg.r_cx, reg.r_dx);
-//		ImageNum = 2; break;
-//	case MenuButNum + 3:TabElem[NumOfElem] = new CNand(reg.r_cx, reg.r_dx);
-//		ImageNum = 3; break;
-//	case MenuButNum + 4:TabElem[NumOfElem] = new CNor(reg.r_cx, reg.r_dx);
-//		ImageNum = 4; break;
-//	case MenuButNum + 5:TabElem[NumOfElem] = new CXor(reg.r_cx, reg.r_dx);
-//		ImageNum = 5; break;
-//	case MenuButNum + 6:TabElem[NumOfElem] = new COutput(reg.r_cx, reg.r_dx);
-//		ImageNum = 6; break;
-//
-//	}
-//	if (DragElement(ImageNum, NumOfElem))
-//		NumOfElem++;
-//	else delete TabElem[NumOfElem];
-//	reg.r_ax = 0x1;
-//	intr(0x33, &reg);//pokazanie kursora
-//}
+void CWindow::NewElement(int ElemNum)
+{
+	int y=0;
+	int x=0;
+	SDL_Event windowEvent;
+	while (true) {
+		if (SDL_PollEvent(&windowEvent)) {
+			if (windowEvent.type == SDL_MOUSEBUTTONUP) {
+				x = windowEvent.motion.x;
+				y = windowEvent.motion.y;
+				break;
+			}
+		}
+	}
+	int ImageNum;//numer bitmapy w tabeli
+
+	switch (ElemNum)
+	{
+	case MenuButNum:TabElem[NumOfElem] = new CAnd(x, y, FrameColour,renderer);
+		ImageNum = 0; break;
+	case MenuButNum + 1:TabElem[NumOfElem] = new COr(x, y, FrameColour, renderer);
+		ImageNum = 1; break;
+	case MenuButNum + 2:TabElem[NumOfElem] = new CNot(x, y, FrameColour, renderer);
+		ImageNum = 2; break;
+	case MenuButNum + 3:TabElem[NumOfElem] = new CNand(x, y, FrameColour, renderer);
+		ImageNum = 3; break;
+	case MenuButNum + 4:TabElem[NumOfElem] = new CNor(x, y, FrameColour, renderer);
+		ImageNum = 4; break;
+	case MenuButNum + 5:TabElem[NumOfElem] = new CXor(x, y, FrameColour, renderer);
+		ImageNum = 5; break;
+	case MenuButNum + 6:TabElem[NumOfElem] = new COutput(x, y, renderer);
+		ImageNum = 6; break;
+
+	}
+	NumOfElem++;
+	//if (DragElement(ImageNum, NumOfElem))
+	//	NumOfElem++;
+	//else delete TabElem[NumOfElem];
+
+}
 
 //void CWindow::LinkElem(CElement*FirstElem, int X1, int Y1,
 //	CElement*NextElem, int X2, int Y2)
@@ -854,11 +860,11 @@ void CWindow::DrawWin(char Mode)
 //	TabElem[0]->DrawElem();
 	TabElem[1] = new CConstBus(145, 462, 1, renderer);
 
-	TabElem[1]->DrawElem();
+//	TabElem[1]->DrawElem();
 	TabElem[2] = new CInBus(41, 45, 'a', renderer);
-	TabElem[2]->DrawElem();
+//	TabElem[2]->DrawElem();
 	TabElem[3] = new CInBus(56, 45, 'b', renderer);
-	TabElem[3]->DrawElem();
+//	TabElem[3]->DrawElem();
 
 //	TabElem[1]->DrawElem();
 	TabElem[2] = new CInBus(41, 45, 'a',renderer);

@@ -20,7 +20,7 @@
 static SDL_Color BackgroundColour{ 255,255,255 }; //white
 static SDL_Color LowColour{ 0,0,255 }; //blue
 static SDL_Color HighColour{ 255,0,0 }; //red
-static SDL_Color ErrorColour{ 255,192,203 }; //pink
+static SDL_Color ErrorColour{ 0,150,250 }; //light blue
 static SDL_Color FrameColour{ 0,0,0 };
 
 

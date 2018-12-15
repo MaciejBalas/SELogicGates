@@ -16,7 +16,7 @@ CModeButton::CModeButton(TElementType ButtonType, int X1, int Y1, int X2, int Y2
 	this->X2 = X2;
 	this->Y1 = Y1;
 	this->Y2 = Y2;
-	DrawingColour = SDL_Color{0,0,0};
+	DrawingColour = SDL_Color{1,1,1};
 	ButtonColour = SDL_Color{ 255, 0, 0 };
 	Insert = false;
 	Active = true;

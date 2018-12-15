@@ -10,6 +10,15 @@
 #include "CONSTANTS.h"
 #include "CONSTBUS.h"
 #include "INBUS.H"
+#include "and.h"
+#include "or.h"
+#include "not.h"
+#include "nand.h"
+#include "nor.h"
+#include "xor.h"
+#include "output.h"
+#include "wire.h"
+
 class CWindow
 {
 	SDL_Window *window;
@@ -29,7 +38,7 @@ class CWindow
 	//void*ImageTab[NumberOfImages];
 	void DoText(int Number, char*Text = NULL);
 	//void React(int X, int Y);//reakcja na przyci˜ni©cie klawisza myszki
-	//void CheckButtons(int X, int Y);//sprawdzenie przycisk¢w przy naci˜ni©ciu myszki
+	void CheckButtons(int X, int Y);//sprawdzenie przycisk¢w przy naci˜ni©ciu myszki
 	void CheckElements(int X, int Y);//sprawdzenie element¢w przy naci˜ni©ciu myszki
 	//char DragElement(int ImageNum, int ElemNum);
 	void DrawWin(char Mode);
@@ -44,7 +53,7 @@ class CWindow
 	void Exit();
 	//void Info();
 	//void MoveOrLink();
-	//void NewElement(int ElemNum);
+	void NewElement(int ElemNum);
 	//void LinkElem(CElement*FirstElem, int X1, int Y1, CElement*NextElem, int X2, int Y2);
 	//void DeleteElem(int ElemNum);
 	//void Error(int ErrorNum);
