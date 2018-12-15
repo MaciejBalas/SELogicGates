@@ -22,7 +22,9 @@ class CWindow
 	CButton*TabBut[16];
 	SDL_Renderer *renderer = NULL;
 	char*StandardPath;
-	
+	SDL_Texture* Message = NULL;
+	SDL_Surface* surfaceMessage = NULL;
+	TTF_Font* font = NULL;
 	//void*ImageTab[NumberOfImages];
 	void DoText(int Number, char*Text = NULL);
 	//void React(int X, int Y);//reakcja na przyci˜ni©cie klawisza myszki
@@ -47,6 +49,7 @@ class CWindow
 	//void Error(int ErrorNum);
 public:
 	void Control();
+	void Redraw();
 	char Work();//praca u¾ytkownika w oknie
 	CWindow();
 	CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew);
