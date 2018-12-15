@@ -837,6 +837,16 @@ void CWindow::DrawWin(char Mode)
 //	TabBut[7]->DrawButton();
 	TabBut[8] = new CMenuButton("Move", 170, 42, 370, 59, renderer);
 //	TabBut[8]->DrawButton();
+	TabBut[MenuButNum] = new CModeButton(_and, 2, 61, 28, 90, renderer);
+	TabBut[MenuButNum + 1] = new CModeButton(_or , 2, 101, 28, 130, renderer);
+	TabBut[MenuButNum + 2] = new CModeButton(_not, 2, 141, 28, 170, renderer);
+	TabBut[MenuButNum + 3] = new CModeButton(_nand, 2, 181, 28, 210, renderer);
+	TabBut[MenuButNum + 4] = new CModeButton(_nor, 2, 221, 28, 250, renderer);
+	TabBut[MenuButNum + 5] = new CModeButton(_xor, 2, 261, 28, 290, renderer);
+	TabBut[MenuButNum + 6] = new CModeButton(_output, 2, 301, 28, 330, renderer);
+
+
+	//TabBut[MenuButNum + 1]->DrawButton();
 	TabElem[0] = new CConstBus(145, 447, 0, renderer);
 //	TabElem[0]->DrawElem();
 	TabElem[1] = new CConstBus(145, 462, 1, renderer);
@@ -864,7 +874,7 @@ void CWindow::DrawWin(char Mode)
 	TabElem[7]->DrawElem();
 
 	CSmallWindow * smallwindow = new CSmallWindow(0, 0, 320, 320, nullptr, nullptr,'t',1,renderer,nullptr,nullptr);
-	smallwindow->DrawSmallWin(renderer);
+	smallwindow->DrawSmallWin();
 
 	//SDL_Event windowEvent;
 	//while (true) {
