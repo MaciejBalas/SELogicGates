@@ -1,8 +1,4 @@
-﻿  INBUS.CPP
-d:\logic gates\project1\inbus.cpp(13): warning C4101: 'Text2': unreferenced local variable
-  SMALLBUT.cpp
-  Source.cpp
-  WINDOW.cpp
-d:\logic gates\project1\window.cpp(650): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Generating Code...
+﻿  SMALLBUT.cpp
+d:\logic gates\project1\smallbut.cpp(66): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
+d:\logic gates\project1\smallbut.cpp(66): warning C4154: deletion of an array expression; conversion to pointer supplied
   Project1.vcxproj -> D:\logic gates\x64\Debug\Project1.exe

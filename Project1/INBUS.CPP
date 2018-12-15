@@ -10,7 +10,7 @@ CInBus::CInBus(int X,int Y,char Name, SDL_Renderer *renderer)
 	Y1=Y;
 	Y2=451;
 	char Text[2];
-	char Text2[2];
+
 
 	Text[0]=Name;
 	Text[1]='\0';

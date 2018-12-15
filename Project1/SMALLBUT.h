@@ -8,7 +8,7 @@
 
 class CSmallButton:public CButton
 {
-	const char*ButtonText;
+	 char ButtonText[2];
 
 	
  public:
@@ -16,7 +16,7 @@ class CSmallButton:public CButton
 	void ChangeText(char*Text);
 	int ClickButton();
 	SDL_Renderer *renderer = NULL;
-	CSmallButton(const char *text,int X1,int Y1,int X2,int Y2, SDL_Renderer *renderer);
+	CSmallButton( char *text,int X1,int Y1,int X2,int Y2, SDL_Renderer *renderer);
 	~CSmallButton();
 };
 

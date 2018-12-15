@@ -16,8 +16,8 @@ void CSmallButton::DrawButton()
 	int texW, texH;
 	SDL_QueryTexture(Message, NULL, NULL, &texW, &texH);
 	SDL_Rect Message_rect;
-	Message_rect.x = this->X1 + 15;
-	Message_rect.y = this->Y1 + 3;
+	Message_rect.x = this->X1 + 2;
+	Message_rect.y = this->Y1 + 0;
 	Message_rect.w = texW;
 	Message_rect.h = texH;
 	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
@@ -29,7 +29,9 @@ void CSmallButton::ChangeText(char * Text)
 		//delete ButtonText;
 	//ButtonText=NULL;
 //	ButtonText=strdup(Text);
-	ButtonText = Text;
+	ButtonText[0] = Text[0];
+	ButtonText[1] = Text[1];
+
 	this->DrawButton();
 }
 
@@ -38,17 +40,19 @@ int CSmallButton::ClickButton()
 	return 0;
 }
 
-CSmallButton::CSmallButton( const char *text, int X1, int Y1, int X2, int Y2, SDL_Renderer * renderer)
+CSmallButton::CSmallButton(  char *text, int X1, int Y1, int X2, int Y2, SDL_Renderer * renderer)
 {
+	ButtonText[0] = text[0];
+	ButtonText[1] = text[1];
 	Insert = false;
 	Active = true;
 	this->X1 = X1;
 	this->X2 = X2;
 	this->Y1 = Y1;
 	this->Y2 = Y2;
-	ButtonText = NULL;
+	//ButtonText = NULL;
 
-	this->ButtonText = text;
+	//this->ButtonText = text;
 
 	this->renderer = renderer;
 	drawRect.x = X1;
