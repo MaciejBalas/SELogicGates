@@ -10,13 +10,16 @@ CInBus::CInBus(int X,int Y,char Name, SDL_Renderer *renderer)
 	Y1=Y;
 	Y2=451;
 	char Text[2];
+	char Text2[2];
+
 	Text[0]=Name;
 	Text[1]='\0';
 	this->renderer = renderer;
-	Button[0]=new CMenuButton(Text,X1,Y1+5,X1+10,Y1+15,renderer);
+	Button[0]=new CSmallButton(Text,X1,Y1+5,X1+10,Y1+15,renderer);
 	Text[0]='1';
 	Text[1]='\0';
-	Button[1]=new CMenuButton(Text,X1,Y2-10,X1+10,Y2,renderer);
+	Button[1]=new CSmallButton(Text,X1,Y2-10,X1+10,Y2,renderer);
+
 	InNum=0;
 	OutNum=-1;//ilo˜† nieograniczona
 	Output=high;

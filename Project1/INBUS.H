@@ -2,13 +2,13 @@
 #define DefInBus
 
 #include "CONSTANTS.h"
-#include "menubut.h"
+#include "SMALLBUT.h"
 #include "element.h"
 #include "junction.h"
 
 class CInBus:public CElement
 {
-	CMenuButton*Button[2];
+	CSmallButton*Button[2];
 	char Name;
 	bool Visible;
 	int JunctionNum;
@@ -25,7 +25,7 @@ class CInBus:public CElement
 	char SaveElement(CElement**TabElem,int NumOfElem,FILE*File,char Phase);
 	char LoadElement(CElement**TabElem,int NumOfElem,FILE*File,char Phase);
 	void ClickElement();
-	CInBus(int X,int Y,char Name, SDL_Renderer *renderer);
+	CInBus(int X,int Y, char Name, SDL_Renderer *renderer);
 	~CInBus();
 };
 
