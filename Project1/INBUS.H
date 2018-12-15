@@ -24,7 +24,7 @@ class CInBus:public CElement
 	char DelNextElem(CElement*DelElem);
 	char SaveElement(CElement**TabElem,int NumOfElem,FILE*File,char Phase);
 	char LoadElement(CElement**TabElem,int NumOfElem,FILE*File,char Phase);
-	void ClickElement();
+	void ClickElement(int X, int Y);
 	CInBus(int X,int Y, char Name, SDL_Renderer *renderer);
 	~CInBus();
 };

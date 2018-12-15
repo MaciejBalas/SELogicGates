@@ -71,7 +71,7 @@ TElementType CConstBus::ElementType()
 	return _cbus;
 }
 
-void CConstBus::ClickElement()
+void CConstBus::ClickElement(int X, int Y)
 {}
 
 char CConstBus::LinkNextElem(CElement*NextElem, int X, int Y)

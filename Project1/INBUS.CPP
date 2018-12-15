@@ -95,26 +95,29 @@ TElementType CInBus::ElementType()
 	return _inbus;
 }
 
-void CInBus::ClickElement()
+void CInBus::ClickElement(int X, int Y)
 {
-	//struct REGPACK reg;
-	//reg.r_ax=0x3;
-	//intr(0x33,&reg);
-	//if(Button[0]->IsYourArea(reg.r_cx,reg.r_dx))
-	//{
-	//	Button[0]->ClickButton();
-	//	if(Visible==true&&JunctionNum==0) Visible=false;
-	//	else Visible=true;
-	//	return;
-	//}
-	//if(Visible==true&&Button[1]->IsYourArea(reg.r_cx,reg.r_dx))
-	//	//aby zmieni† stan szyny, szyna musi by† aktywna(widzialna)
-	//{
-	//	if(Button[1]->ClickButton())
-	//		if(Output==low) Output=high;
-	//		else Output=low;
-	//	return;
-	//}
+
+	if(Button[0]->IsYourArea(X,Y))
+	{
+		Button[0]->ClickButton();
+		if(Visible==true&&JunctionNum==0) Visible=false;
+		else Visible=true;
+				if(Button[1]->ClickButton())
+			if(Output==low) Output=high;
+			else Output=low;
+
+		return;
+	}
+	if(Visible==true&&Button[1]->IsYourArea(X,Y))
+		//aby zmieni† stan szyny, szyna musi by† aktywna(widzialna)
+	{
+		if(Button[1]->ClickButton())
+			if(Output==low) Output=high;
+			else Output=low;
+
+		return;
+	}
 }
 
 char CInBus::LinkNextElem(CElement*NextElem,int X,int Y)

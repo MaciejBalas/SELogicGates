@@ -10,7 +10,7 @@ class CJunction:public CElement
 	char Move(int X,int Y,CElement**TabElem,int NumOfElem);
 	void DrawElem(SDL_Color Colour = { 0,0,0 });
 	TOutput GetOutput(int AskElemNum,int MaxNum) ;
-	void ClickElement();
+	void ClickElement(int X, int Y);
 	char LinkNextElem(CElement*NextElem,int X,int Y);
 	char LinkPrevElem(CElement*PrevElem,int X,int Y);
 	TElementType ElementType();

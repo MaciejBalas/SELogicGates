@@ -37,7 +37,69 @@ void CSmallButton::ChangeText(char * Text)
 
 int CSmallButton::ClickButton()
 {
-	return 0;
+	bool ButtonUp = false;
+	if (!Active) return 0;
+	this->ChangeInsertMode();//zmiana
+	int ButtonArea = 1;//flaga=1, gdy kursor jest na przycisku
+	SDL_Event windowEvent;
+	while (!ButtonUp) {
+		if (SDL_PollEvent(&windowEvent)) {
+			if (SDL_MOUSEBUTTONUP == windowEvent.type) {
+				ButtonUp = true;
+				if (this->IsYourArea(windowEvent.motion.x, windowEvent.motion.y)) {
+					return 1;
+				}
+				else {
+					return 0;
+				}
+				this->ChangeInsertMode(1);
+			}
+
+		}
+	}
+	//do
+//	{
+
+	//	reg.r_ax = 0x3;
+	//	intr(0x33, &reg);//sprawdzenie
+	//	if (!ButtonArea&&this->IsYourArea(reg.r_cx, reg.r_dx))
+	//	{
+	//		reg.r_ax = 0x2;
+	//		intr(0x33, &reg);//schowanie myszy
+	//		this->ChangeInsertMode();//wci˜ni©cie
+	//		reg.r_ax = 0x1;//pokazanie myszy
+	//		intr(0x33, &reg);
+	//		ButtonArea = 1;
+	//	}//kursor wszedˆ na pole przycisku
+	//	if (ButtonArea && !(this->IsYourArea(reg.r_cx, reg.r_dx)))
+	//	{
+	//		reg.r_ax = 0x2;
+	//		intr(0x33, &reg);//schowanie myszy
+	//		this->ChangeInsertMode(1);//puszczenie
+	//		reg.r_ax = 0x1;//pokazanie myszy
+	//		intr(0x33, &reg);
+	//		ButtonArea = 0;
+	//	}//kursor opu˜ciˆ pole przycisku
+	//	reg.r_ax = 0x3;
+	//	intr(0x33, &reg);
+	//} while (reg.r_bx & 1);
+	////p©tla powtarza si©, gdy klawisz myszy jest wci˜ni©ty
+	//if (this->IsYourArea(reg.r_cx, reg.r_dx))
+	//	//gdy klawisz zostaˆ puszczony na terenie przycisku
+	//{
+	//	reg.r_ax = 0x2;
+	//	intr(0x33, &reg);//schowanie myszy
+	//	this->ChangeInsertMode(1);//puszczenie
+	//	reg.r_ax = 0x1;//pokazanie myszy
+	//	intr(0x33, &reg);
+	//	return 1;//wykona† akcj© przycisku
+	//}
+	//reg.r_ax = 0x2;
+	//intr(0x33, &reg);//schowanie myszy
+	//this->ChangeInsertMode(1);//wyˆ¥czenie przycisku
+	//reg.r_ax = 0x1;//pokazanie myszy
+	//intr(0x33, &reg);
+	//return 0;//nic nie robi†
 }
 
 CSmallButton::CSmallButton(  char *text, int X1, int Y1, int X2, int Y2, SDL_Renderer * renderer)

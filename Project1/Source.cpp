@@ -23,6 +23,7 @@ void draw_circle(SDL_Renderer *ren, SDL_Point center, int radius, SDL_Color colo
 int main(int argc, char *argv[])
 {
 	CWindow window;
+	window.Control();
 	//SDL_Renderer *renderer = NULL;
 
 	//SDL_Surface *surf;
