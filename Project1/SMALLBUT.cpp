@@ -23,7 +23,9 @@ void CSmallButton::DrawButton()
 	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
 	SDL_RenderPresent(renderer);
 }
+void CSmallButton::ChangeText(const char Text[]) {
 
+}
 void CSmallButton::ChangeText(char * Text)
 {
 		//delete ButtonText;
@@ -47,12 +49,14 @@ int CSmallButton::ClickButton()
 			if (SDL_MOUSEBUTTONUP == windowEvent.type) {
 				ButtonUp = true;
 				if (this->IsYourArea(windowEvent.motion.x, windowEvent.motion.y)) {
+
 					return 1;
 				}
 				else {
+
 					return 0;
 				}
-				this->ChangeInsertMode(1);
+				
 			}
 
 		}

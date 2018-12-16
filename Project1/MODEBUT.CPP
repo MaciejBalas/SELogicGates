@@ -38,7 +38,9 @@ CModeButton::~CModeButton()
 {
 	delete ButtonElement;
 }
+void CModeButton::ChangeText(const char*) {
 
+}
 void CModeButton::DrawButton()
 {
 

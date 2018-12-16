@@ -52,7 +52,7 @@ class CWindow
 	//char Save(char*Path = NULL);
 	void Exit();
 	//void Info();
-	//void MoveOrLink();
+	void MoveOrLink();
 	void NewElement(int ElemNum);
 	//void LinkElem(CElement*FirstElem, int X1, int Y1, CElement*NextElem, int X2, int Y2);
 	//void DeleteElem(int ElemNum);

@@ -49,8 +49,10 @@ void CMenuButton::DrawButton()
 	SDL_RenderCopy(renderer, Message, NULL, &Message_rect);
 	SDL_RenderPresent(renderer);
 }
+void CMenuButton::ChangeText(char*) {
 
-void CMenuButton::ChangeText(char*Text)
+}
+void CMenuButton::ChangeText(const char Text[])
 {
 	//delete ButtonText;
 	//ButtonText=NULL;
@@ -61,6 +63,26 @@ void CMenuButton::ChangeText(char*Text)
 
 int CMenuButton::ClickButton()
 {
+	bool ButtonUp = false;
+	if (!Active) return 0;
+	this->ChangeInsertMode();//zmiana
+	int ButtonArea = 1;//flaga=1, gdy kursor jest na przycisku
+	SDL_Event windowEvent;
+	while (!ButtonUp) {
+		if (SDL_PollEvent(&windowEvent)) {
+			if (SDL_MOUSEBUTTONUP == windowEvent.type) {
+				ButtonUp = true;
+				if (this->IsYourArea(windowEvent.motion.x, windowEvent.motion.y)) {
+					return 1;
+				}
+				else {
+					return 0;
+				}
+
+			}
+
+		}
+	}
 	//if (Active == off) return 0;
 	//struct REGPACK reg;
 	//reg.r_ax = 0x2;

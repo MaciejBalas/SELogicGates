@@ -21,6 +21,8 @@ public:
 	void ChangeInsertMode(int TurnOff = 0);
 	void ActiveMode(bool Active);
 	virtual void ChangeText(char*) = 0;
+	virtual void ChangeText(const char*) = 0;
+
 	int IsYourArea(int X, int Y);
 	virtual int ClickButton() = 0;
 	void SetActivity(bool Active);
