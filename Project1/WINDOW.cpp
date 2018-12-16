@@ -317,60 +317,73 @@ void CWindow::CheckElements(int X, int Y)
 				DragElement(ImageNum, i);
 				return;
 			}
-	//else
-	//{
-	//	int ImageNum = NumberOfImages - 1;
-	//	int XMove;
-	//	int YMove;
+			else
+			{
+				SDL_Event windowEvent;
+				while (true) {
+					if (SDL_PollEvent(&windowEvent)) {
+						if (SDL_MOUSEBUTTONUP == windowEvent.type) {
+						for (int j = NumberOfInBuses + 1; j<NumOfElem; j++)
+							if (TabElem[j]->IsYourArea(windowEvent.motion.x, windowEvent.motion.y))
+							{
+								LinkElem(TabElem[i], X, Y, TabElem[j], windowEvent.motion.x, windowEvent.motion.y);
+								return;
+							}
+						}
+					}
+				}
+				//	int ImageNum = NumberOfImages - 1;
+				int XMove;
+				int YMove;
 
-	//	//if (reg.r_cx>561) XMove = -68;
-	//	//else XMove = 10;
-	//	//if (reg.r_dx>454) YMove = -15;
-	//	//else YMove = 10;
-	//	//int X1 = X + XMove;
-	//	//int Y1 = Y + YMove;
-	//	//reg.r_ax = 0x2;
-	//	//
-	//	//putimage(X1, Y1, ImageTab[ImageNum], 1);
-	//	//reg.r_ax = 0x1;
-	//	//intr(0x33, &reg);//pokazanie kursora
-	//	do
-	//	{
-	//		reg.r_ax = 0x3;
-	//		
-	//		if (X1 != reg.r_cx + XMove || Y1 != reg.r_dx + YMove)
-	//		{
-	//			if (reg.r_cx>561) XMove = -68;
-	//			else XMove = 10;
-	//			if (reg.r_dx>454) YMove = -15;
-	//			else YMove = 10;
-	//			reg.r_ax = 0x2;
-	//			intr(0x33, &reg);//schowanie kursora
-	//			putimage(X1, Y1, ImageTab[ImageNum], 1);
-	//			//skasowanie ikony
-	//			X1 = reg.r_cx + XMove;
-	//			Y1 = reg.r_dx + YMove;
-	//			putimage(X1, Y1, ImageTab[ImageNum], 1);
-	//			//narysowanie ikony w nowym po늨푘niu
-	//			reg.r_ax = 0x1;
-	//			intr(0x33, &reg);//pokazanie kursora
-	//		}
-	//	} while (reg.r_bx & 1);
-	//	reg.r_ax = 0x2;
-	//	//intr(0x33, &reg);//schowanie kursora
-	//	putimage(X1, Y1, ImageTab[ImageNum], 1);
-	//	//skasowanie ikony
-	//	reg.r_ax = 0x1;
-	//	//intr(0x33, &reg);//pokazanie kursora
-	//	X1 -= XMove;
-	//	Y1 -= YMove;//przywr줯enie warto쁟i odpowiadaj쩭ych po늨푘niu kursora
-	//	for (int j = NumberOfInBuses + 1; j<NumOfElem; j++)
-	//		if (TabElem[j]->IsYourArea(X1, Y1))
-	//		{
-	//			LinkElem(TabElem[i], X, Y, TabElem[j], X1, Y1);
-	//			return;
-	//		}
-	//}
+				//	//if (reg.r_cx>561) XMove = -68;
+				//	//else XMove = 10;
+				//	//if (reg.r_dx>454) YMove = -15;
+				//	//else YMove = 10;
+				//	//int X1 = X + XMove;
+				//	//int Y1 = Y + YMove;
+				//	//reg.r_ax = 0x2;
+				//	//
+				//	//putimage(X1, Y1, ImageTab[ImageNum], 1);
+				//	//reg.r_ax = 0x1;
+				//	//intr(0x33, &reg);//pokazanie kursora
+				//	do
+					//{
+				//		reg.r_ax = 0x3;
+				//		
+				//		if (X1 != reg.r_cx + XMove || Y1 != reg.r_dx + YMove)
+				//		{
+				//			if (reg.r_cx>561) XMove = -68;
+				//			else XMove = 10;
+				//			if (reg.r_dx>454) YMove = -15;
+				//			else YMove = 10;
+				//			reg.r_ax = 0x2;
+				//			intr(0x33, &reg);//schowanie kursora
+				//			putimage(X1, Y1, ImageTab[ImageNum], 1);
+				//			//skasowanie ikony
+				//			X1 = reg.r_cx + XMove;
+				//			Y1 = reg.r_dx + YMove;
+				//			putimage(X1, Y1, ImageTab[ImageNum], 1);
+				//			//narysowanie ikony w nowym po늨푘niu
+				//			reg.r_ax = 0x1;
+				//			intr(0x33, &reg);//pokazanie kursora
+				//		}
+				//	} while (reg.r_bx & 1);
+				//	reg.r_ax = 0x2;
+				//	//intr(0x33, &reg);//schowanie kursora
+				//	putimage(X1, Y1, ImageTab[ImageNum], 1);
+				//	//skasowanie ikony
+				//	reg.r_ax = 0x1;
+				//	//intr(0x33, &reg);//pokazanie kursora
+				//	X1 -= XMove;
+				//	Y1 -= YMove;//przywr줯enie warto쁟i odpowiadaj쩭ych po늨푘niu kursora
+				//	for (int j = NumberOfInBuses + 1; j<NumOfElem; j++)
+				//		if (TabElem[j]->IsYourArea(X1, Y1))
+				//		{
+				//			LinkElem(TabElem[i], X, Y, TabElem[j], X1, Y1);
+				//			return;
+				//		}
+			}
 }
 
 void CWindow::Action(int ActNum)
@@ -629,56 +642,58 @@ void CWindow::NewElement(int ElemNum)
 	y -= 12;
 	int ImageNum;//numer bitmapy w tabeli
 
-		switch (ElemNum)
-		{
-		case MenuButNum:TabElem[NumOfElem] = new CAnd(20, 20, FrameColour, renderer);
-			ImageNum = 0; break;
-		case MenuButNum + 1:TabElem[NumOfElem] = new COr(20, 20, FrameColour, renderer);
-			ImageNum = 1; break;
-		case MenuButNum + 2:TabElem[NumOfElem] = new CNot(20, 20, FrameColour, renderer);
-			ImageNum = 2; break;
-		case MenuButNum + 3:TabElem[NumOfElem] = new CNand(20, 20, FrameColour, renderer);
-			ImageNum = 3; break;
-		case MenuButNum + 4:TabElem[NumOfElem] = new CNor(20, 20, FrameColour, renderer);
-			ImageNum = 4; break;
-		case MenuButNum + 5:TabElem[NumOfElem] = new CXor(20, 20, FrameColour, renderer);
-			ImageNum = 5; break;
-		case MenuButNum + 6:TabElem[NumOfElem] = new COutput(x, y, renderer, FrameColour);
-			ImageNum = 6; break;
+	switch (ElemNum)
+	{
+	case MenuButNum:TabElem[NumOfElem] = new CAnd(20, 20, FrameColour, renderer);
+		ImageNum = 0; break;
+	case MenuButNum + 1:TabElem[NumOfElem] = new COr(20, 20, FrameColour, renderer);
+		ImageNum = 1; break;
+	case MenuButNum + 2:TabElem[NumOfElem] = new CNot(20, 20, FrameColour, renderer);
+		ImageNum = 2; break;
+	case MenuButNum + 3:TabElem[NumOfElem] = new CNand(20, 20, FrameColour, renderer);
+		ImageNum = 3; break;
+	case MenuButNum + 4:TabElem[NumOfElem] = new CNor(20, 20, FrameColour, renderer);
+		ImageNum = 4; break;
+	case MenuButNum + 5:TabElem[NumOfElem] = new CXor(20, 20, FrameColour, renderer);
+		ImageNum = 5; break;
+	case MenuButNum + 6:TabElem[NumOfElem] = new COutput(x, y, renderer, FrameColour);
+		ImageNum = 6; break;
 
-		}
-		if (!TabElem[NumOfElem]->Move(x, y, TabElem, NumOfElem)) {
-			DeleteElem(NumOfElem);
-		}
-		
-		NumOfElem++;
-	
+	}
+	if (!TabElem[NumOfElem]->Move(x, y, TabElem, NumOfElem)) {
+		DeleteElem(NumOfElem);
+	}
+
+
+	NumOfElem++;
+
 	//if (DragElement(ImageNum, NumOfElem))
 	//	NumOfElem++;
 	//else delete TabElem[NumOfElem];
 
 }
 
-//void CWindow::LinkElem(CElement*FirstElem, int X1, int Y1,
-//	CElement*NextElem, int X2, int Y2)
-//{
-//	if (FirstElem == NextElem) return;
-//	CWire*Linker = new CWire(0, 0);
-//	TabElem[NumOfElem] = Linker;
-//	if (FirstElem->LinkNextElem(Linker, X1, Y1) &&
-//		NextElem->LinkPrevElem(Linker, X2, Y2) &&
-//		Linker->LinkPrevElem(FirstElem, X1, Y1) &&
-//		Linker->LinkNextElem(NextElem, X2, Y2) &&
-//		Linker->Autoformat(TabElem, NumOfElem)) NumOfElem++;
-//	else
-//	{
-//		FirstElem->DelNextElem(Linker);
-//		NextElem->DelPrevElem(Linker);
-//		delete Linker;
-//		TabElem[NumOfElem] = NULL;
-//	}
-//}
-//
+void CWindow::LinkElem(CElement*FirstElem, int X1, int Y1,
+	CElement*NextElem, int X2, int Y2)
+{
+	if (FirstElem == NextElem) return;
+	CWire*Linker = new CWire(0, 0, renderer);
+	TabElem[NumOfElem] = Linker;
+	if (FirstElem->LinkNextElem(Linker, X1, Y1) &&
+		NextElem->LinkPrevElem(Linker, X2, Y2) &&
+		Linker->LinkPrevElem(FirstElem, X1, Y1) &&
+		Linker->LinkNextElem(NextElem, X2, Y2) &&
+		Linker->Autoformat(TabElem, NumOfElem))
+		NumOfElem++;
+	else
+	{
+		FirstElem->DelNextElem(Linker);
+		NextElem->DelPrevElem(Linker);
+		delete Linker;
+		TabElem[NumOfElem] = NULL;
+	}
+}
+
 void CWindow::DeleteElem(int ElemNum)
 {
 	CElement*DelElemPoint = TabElem[ElemNum];
@@ -692,8 +707,8 @@ char CWindow::DragElement(int ImageNum, int ElemNum)
 	SDL_Event windowEvent;
 	while (true) {
 		if (SDL_PollEvent(&windowEvent)) {
-			if (SDL_MOUSEBUTTONUP==windowEvent.type) {
-				if (windowEvent.motion.x  < 28 && windowEvent.motion.y < 430 && windowEvent.motion.y>370) {
+			if (SDL_MOUSEBUTTONUP == windowEvent.type) {
+				if (windowEvent.motion.x < 28 && windowEvent.motion.y < 430 && windowEvent.motion.y>370) {
 					DeleteElem(ElemNum);
 				}
 				else {
@@ -703,53 +718,53 @@ char CWindow::DragElement(int ImageNum, int ElemNum)
 			}
 		}
 	}
-//	struct REGPACK reg;
-//	int X = -1;
-//	int Y = -1;
-//	reg.r_ax = 0x3;
-//	intr(0x33, &reg);//sprawdzenie stanu
-//	int XDif = TabElem[ElemNum]->GetXCorner() - reg.r_cx;
-//	int YDif = TabElem[ElemNum]->GetYCorner() - reg.r_dx;
-//	reg.r_ax = 0x4;
-//	reg.r_cx = TabElem[ElemNum]->GetXCorner();
-//	reg.r_dx = TabElem[ElemNum]->GetYCorner();
-//	intr(0x33, &reg);//ustawienie kursora myszy w prawym g줿nym rogu
-//	do
-//	{
-//		reg.r_ax = 0x3;
-//		intr(0x33, &reg);//sprawdzenie stanu
-//		if (reg.r_cx>613 || reg.r_dx>450)
-//		{
-//			if (reg.r_cx>613) reg.r_cx = 613;
-//			if (reg.r_dx>450) reg.r_dx = 450;
-//			reg.r_ax = 0x4;
-//			intr(0x33, &reg);//wyr쥄nanie do brzegu
-//		}
-//		if (reg.r_cx != X || reg.r_dx != Y)
-//		{
-//			putimage(X, Y, ImageTab[ImageNum], 1);
-//			//zmazanie elementu
-//			putimage(reg.r_cx, reg.r_dx, ImageTab[ImageNum], 1);
-//			//narysowanie elementu w nowym po늨푘niu
-//			X = reg.r_cx;
-//			Y = reg.r_dx;
-//		}
-//	} while (reg.r_bx & 1);
-//	putimage(reg.r_cx, reg.r_dx, ImageTab[ImageNum], 1);
-//	if (reg.r_cx<28 && reg.r_dx<430 && reg.r_dx>370) DeleteElem(ElemNum);
-//	else
-//		if (!TabElem[ElemNum]->Move(reg.r_cx, reg.r_dx, TabElem, NumOfElem))
-//		{
-//			reg.r_ax = 0x4;
-//			reg.r_cx = reg.r_cx - XDif;
-//			reg.r_dx = reg.r_dx - YDif;
-//			intr(0x33, &reg);//ustawienie kursora myszy w pierwotnym po늨푘niu
-//			return 0;
-//		}
-//	reg.r_ax = 0x4;
-//	reg.r_cx = reg.r_cx - XDif;
-//	reg.r_dx = reg.r_dx - YDif;
-//	intr(0x33, &reg);//ustawienie kursora myszy w pierwotnym po늨푘niu
+	//	struct REGPACK reg;
+	//	int X = -1;
+	//	int Y = -1;
+	//	reg.r_ax = 0x3;
+	//	intr(0x33, &reg);//sprawdzenie stanu
+	//	int XDif = TabElem[ElemNum]->GetXCorner() - reg.r_cx;
+	//	int YDif = TabElem[ElemNum]->GetYCorner() - reg.r_dx;
+	//	reg.r_ax = 0x4;
+	//	reg.r_cx = TabElem[ElemNum]->GetXCorner();
+	//	reg.r_dx = TabElem[ElemNum]->GetYCorner();
+	//	intr(0x33, &reg);//ustawienie kursora myszy w prawym g줿nym rogu
+	//	do
+	//	{
+	//		reg.r_ax = 0x3;
+	//		intr(0x33, &reg);//sprawdzenie stanu
+	//		if (reg.r_cx>613 || reg.r_dx>450)
+	//		{
+	//			if (reg.r_cx>613) reg.r_cx = 613;
+	//			if (reg.r_dx>450) reg.r_dx = 450;
+	//			reg.r_ax = 0x4;
+	//			intr(0x33, &reg);//wyr쥄nanie do brzegu
+	//		}
+	//		if (reg.r_cx != X || reg.r_dx != Y)
+	//		{
+	//			putimage(X, Y, ImageTab[ImageNum], 1);
+	//			//zmazanie elementu
+	//			putimage(reg.r_cx, reg.r_dx, ImageTab[ImageNum], 1);
+	//			//narysowanie elementu w nowym po늨푘niu
+	//			X = reg.r_cx;
+	//			Y = reg.r_dx;
+	//		}
+	//	} while (reg.r_bx & 1);
+	//	putimage(reg.r_cx, reg.r_dx, ImageTab[ImageNum], 1);
+	//	if (reg.r_cx<28 && reg.r_dx<430 && reg.r_dx>370) DeleteElem(ElemNum);
+	//	else
+	//		if (!TabElem[ElemNum]->Move(reg.r_cx, reg.r_dx, TabElem, NumOfElem))
+	//		{
+	//			reg.r_ax = 0x4;
+	//			reg.r_cx = reg.r_cx - XDif;
+	//			reg.r_dx = reg.r_dx - YDif;
+	//			intr(0x33, &reg);//ustawienie kursora myszy w pierwotnym po늨푘niu
+	//			return 0;
+	//		}
+	//	reg.r_ax = 0x4;
+	//	reg.r_cx = reg.r_cx - XDif;
+	//	reg.r_dx = reg.r_dx - YDif;
+	//	intr(0x33, &reg);//ustawienie kursora myszy w pierwotnym po늨푘niu
 	return 1;
 }
 void CWindow::DoText(int Number, char*Text)

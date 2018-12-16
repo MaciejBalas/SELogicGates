@@ -31,7 +31,7 @@ CWire::~CWire()
 
 void CWire::DrawElem(SDL_Color Colour)
 {
-	if (Colour.r == 0 && Colour.g && Colour.b)
+	if (Colour.r == 0 && Colour.g==0 && Colour.b==0)
 	{
 		switch (Output)
 		{

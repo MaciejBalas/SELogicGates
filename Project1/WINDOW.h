@@ -54,7 +54,7 @@ class CWindow
 	//void Info();
 	void MoveOrLink();
 	void NewElement(int ElemNum);
-	//void LinkElem(CElement*FirstElem, int X1, int Y1, CElement*NextElem, int X2, int Y2);
+	void LinkElem(CElement*FirstElem, int X1, int Y1, CElement*NextElem, int X2, int Y2);
 	void DeleteElem(int ElemNum);
 	//void Error(int ErrorNum);
 public:
