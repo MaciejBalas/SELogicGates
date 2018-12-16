@@ -10,7 +10,7 @@ public:
 	TOutput GetOutput(int AskElemNum, int MaxNum);
 	void ClickElement(int X, int Y);
 	TElementType ElementType();
-	SDL_Renderer *renderer = NULL;
+	//SDL_Renderer *renderer = NULL;
 	CAnd(int X, int Y, SDL_Color FrameColour, SDL_Renderer *renderer);
 };
 

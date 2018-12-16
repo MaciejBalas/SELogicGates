@@ -9,6 +9,9 @@ CButton::~CButton()
 {
 }
 
+void CButton::setRenderer(SDL_Renderer *renderer) {
+	this->renderer = renderer;
+}
 int CButton::IsYourArea(int X, int Y)
 {
 	if (X>X1&&X<X2&&Y>Y1&&Y<Y2) return 1;

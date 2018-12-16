@@ -2,19 +2,59 @@
 #include "SMALLWIN.h"
 #include <cstring>
 #include <string>
-CWindow::CWindow() {
-
+CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew) {
+	Active = 1;
+	Result = 1;
+	NumOfElem = NumberOfInBuses + 2;//szyny wej˜ciowe
+	WinNum = Number;
+	Mode = move;
+	StandardPath = NULL;
+	for (int i = 0; i < NumberOfInBuses + 2; i++)
+		TabElem[i] = NULL;
 	DrawWin(1);
-
-
 
 }
 
-void CWindow::Control() {
-
+char CWindow::Control() {
+	if (Recreate == true) {
+		SDL_CreateWindowAndRenderer(640, 480, 0, &window, &renderer);
+		for (int i = 0; i < ButNum; i++) {
+			if (TabBut[i] != NULL) {
+				TabBut[i]->renderer=renderer;
+				if (i > 8) {
+					TabBut[i]->ButtonElement->renderer = renderer;
+				}
+			}
+		}
+		for (int i = 0; i < NumOfElem; i++) {
+			if (TabElem[i] != NULL) {
+				TabElem[i]->GetOutput(0, NumOfElem);
+				TabElem[i]->renderer = renderer;
+				/*if (TabElem[i]->ElementType == _inbus) {
+					TabElem[i]->Button[0]->renderer = renderer;
+					TabElem[i]->Button[1]->renderer = renderer;
+				}*/
+			}
+		}
+		SDL_RenderClear(renderer);
+		Redraw();
+		SDL_RenderPresent(renderer);
+		Active = 1;
+		Recreate = false;
+	}
 	SDL_Event windowEvent;
 	while (true) {
-
+		if (Active == 0) {
+			//renderer = NULL;
+			SDL_DestroyWindow(window);
+			SDL_DestroyTexture(Message);
+			SDL_FreeSurface(surfaceMessage);
+			TTF_CloseFont(font);
+			Recreate = true;
+			//TTF_Quit();
+			//SDL_Quit();
+			return Result;
+		}
 		if (SDL_PollEvent(&windowEvent)) {
 			if (SDL_QUIT == windowEvent.type) {
 				SDL_DestroyWindow(window);
@@ -23,7 +63,7 @@ void CWindow::Control() {
 				TTF_CloseFont(font);
 				TTF_Quit();
 				SDL_Quit();
-				break;
+				return 0;
 			}
 			if (SDL_MOUSEBUTTONDOWN == windowEvent.type) {
 				CheckElements(windowEvent.motion.x, windowEvent.motion.y);
@@ -104,103 +144,103 @@ void CWindow::Redraw() {
 		}
 	}
 }
-CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew)
-{
-	//setactivepage(1);
-	Active = 1;
-	Result = 1;
-	NumOfElem = NumberOfInBuses + 2;//szyny wej˜ciowe
-	WinNum = Number;
-	Mode = move;
-	StandardPath = NULL;
-	for (int i = 0; i < NumberOfInBuses + 2; i++)
-		TabElem[i] = NULL;
-	//TabElem[0] = new CConstBus(145, 447, 0);
-	//TabElem[1] = new CConstBus(145, 462, 1);
-	//TabElem[2] = new CInBus(41, 45, 'a');
-	//TabElem[3] = new CInBus(56, 45, 'b');
-	//TabElem[4] = new CInBus(71, 45, 'c');
-	//TabElem[5] = new CInBus(86, 45, 'd');
-	//TabElem[6] = new CInBus(101, 45, 'e');
-	//TabElem[7] = new CInBus(116, 45, 'f');
-
-	//TabBut[0] = new CMenuButton("Load", 100, 100, 150, 150, renderer);
-	//TabBut[0]->DrawButton();
-	//TabBut[1] = new CMenuButton("New", 100, 22, 160, 39);
-	//if (!NewPossib) TabBut[1]->SetActivity(0);
-	//TabBut[2] = new CMenuButton("Prev", 170, 22, 230, 39);
-	//if (!IsPrev) TabBut[2]->SetActivity(0);
-	//TabBut[3] = new CMenuButton("Next", 240, 22, 300, 39);
-	//if (!IsNext) TabBut[3]->SetActivity(0);
-	//TabBut[4] = new CMenuButton("Save", 310, 22, 370, 39);
-	//TabBut[5] = new CMenuButton("Save As", 380, 22, 440, 39);
-	//TabBut[6] = new CMenuButton("Close", 450, 22, 510, 39);
-	//TabBut[7] = new CMenuButton("Info", 520, 22, 580, 39);
-	//TabBut[8] = new CMenuButton("Move", 170, 42, 370, 59);
-	////stworzenie przycisk¢w menu
-	//unsigned ImageSize = imagesize(2, 61, 28, 90);//rozmiar jest staˆy
-	//for (i = 0; i<ButNum - MenuButNum; i++) ImageTab[i] = new[ImageSize];
-	//TabBut[MenuButNum] = new CModeButton(and, 2, 61, 28, 90);
-	//TabBut[MenuButNum]->DrawButton();
-	//getimage(2, 61, 28, 90, ImageTab[0]);
-	//TabBut[MenuButNum + 1] = new CModeButton(or , 2, 101, 28, 130);
-	//TabBut[MenuButNum + 1]->DrawButton();
-	//getimage(2, 101, 28, 130, ImageTab[1]);
-	//TabBut[MenuButNum + 2] = new CModeButton(not, 2, 141, 28, 170);
-	//TabBut[MenuButNum + 2]->DrawButton();
-	//getimage(2, 141, 28, 170, ImageTab[2]);
-	//TabBut[MenuButNum + 3] = new CModeButton(nand, 2, 181, 28, 210);
-	//TabBut[MenuButNum + 3]->DrawButton();
-	//getimage(2, 181, 28, 210, ImageTab[3]);
-	//TabBut[MenuButNum + 4] = new CModeButton(nor, 2, 221, 28, 250);
-	//TabBut[MenuButNum + 4]->DrawButton();
-	//getimage(2, 221, 28, 250, ImageTab[4]);
-	//TabBut[MenuButNum + 5] = new CModeButton(xor, 2, 261, 28, 290);
-	//TabBut[MenuButNum + 5]->DrawButton();
-	//getimage(2, 261, 28, 290, ImageTab[5]);
-	//TabBut[MenuButNum + 6] = new CModeButton(output, 2, 301, 28, 330);
-	//TabBut[MenuButNum + 6]->DrawButton();
-	//getimage(2, 301, 28, 330, ImageTab[6]);
-	//setfillstyle(1, FrameColour);
-	//ImageSize = imagesize(100, 155, 168, 170);
-	//ImageTab[NumberOfImages - 1] = new[ImageSize];
-	//bar(100, 155, 168, 170);
-	//outtextxy(107, 160, "Linking");
-	//getimage(100, 155, 168, 170, ImageTab[NumberOfImages - 1]);
-	////ikona ˆ¥czenia element¢w jest ostatnia w tablicy
-	//for (i = 0; i<ButNum - MenuButNum; i++)
-	//{
-	//	putimage(0, 0, ImageTab[i], 4);
-	//	getimage(0, 0, 26, 29, ImageTab[i]);
-	//}//negacja ikon element¢w
-	//putimage(0, 0, ImageTab[NumberOfImages - 1], 4);
-	//getimage(0, 0, 68, 15, ImageTab[NumberOfImages - 1]);
-	//setactivepage(0);
-	//if (!IsNew)
-	//{
-	//	char Path[15];
-	//	strcpy(Path, "win");
-	//	DoText(WinNum, Path);
-	//	strcat(Path, ".tmp");
-	//	if (Load(Path) != 1) Error(0);
-	//	if (unlink(Path) == -1) Error(0);
-	//	for (int i = 0; i<NumOfElem; i++)
-	//		TabElem[i]->GetOutput(0, NumOfElem);
-	//}//gdy okno nie jest nowe, to zostanie odtworzony jego poprzedni stan
-	//if (!IsPrev && !IsNext&&IsNew) DrawWin(1);
-	//jest to pierwsze otwierane okno
-	//else DrawWin(0);//narysowanie tylko element¢w zmieniaj¥cych si©
-}
+//CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew)
+//{
+//	//setactivepage(1);
+//	Active = 1;
+//	Result = 1;
+//	NumOfElem = NumberOfInBuses + 2;//szyny wej˜ciowe
+//	WinNum = Number;
+//	Mode = move;
+//	StandardPath = NULL;
+//	for (int i = 0; i < NumberOfInBuses + 2; i++)
+//		TabElem[i] = NULL;
+//	//TabElem[0] = new CConstBus(145, 447, 0);
+//	//TabElem[1] = new CConstBus(145, 462, 1);
+//	//TabElem[2] = new CInBus(41, 45, 'a');
+//	//TabElem[3] = new CInBus(56, 45, 'b');
+//	//TabElem[4] = new CInBus(71, 45, 'c');
+//	//TabElem[5] = new CInBus(86, 45, 'd');
+//	//TabElem[6] = new CInBus(101, 45, 'e');
+//	//TabElem[7] = new CInBus(116, 45, 'f');
+//
+//	//TabBut[0] = new CMenuButton("Load", 100, 100, 150, 150, renderer);
+//	//TabBut[0]->DrawButton();
+//	//TabBut[1] = new CMenuButton("New", 100, 22, 160, 39);
+//	//if (!NewPossib) TabBut[1]->SetActivity(0);
+//	//TabBut[2] = new CMenuButton("Prev", 170, 22, 230, 39);
+//	//if (!IsPrev) TabBut[2]->SetActivity(0);
+//	//TabBut[3] = new CMenuButton("Next", 240, 22, 300, 39);
+//	//if (!IsNext) TabBut[3]->SetActivity(0);
+//	//TabBut[4] = new CMenuButton("Save", 310, 22, 370, 39);
+//	//TabBut[5] = new CMenuButton("Save As", 380, 22, 440, 39);
+//	//TabBut[6] = new CMenuButton("Close", 450, 22, 510, 39);
+//	//TabBut[7] = new CMenuButton("Info", 520, 22, 580, 39);
+//	//TabBut[8] = new CMenuButton("Move", 170, 42, 370, 59);
+//	////stworzenie przycisk¢w menu
+//	//unsigned ImageSize = imagesize(2, 61, 28, 90);//rozmiar jest staˆy
+//	//for (i = 0; i<ButNum - MenuButNum; i++) ImageTab[i] = new[ImageSize];
+//	//TabBut[MenuButNum] = new CModeButton(and, 2, 61, 28, 90);
+//	//TabBut[MenuButNum]->DrawButton();
+//	//getimage(2, 61, 28, 90, ImageTab[0]);
+//	//TabBut[MenuButNum + 1] = new CModeButton(or , 2, 101, 28, 130);
+//	//TabBut[MenuButNum + 1]->DrawButton();
+//	//getimage(2, 101, 28, 130, ImageTab[1]);
+//	//TabBut[MenuButNum + 2] = new CModeButton(not, 2, 141, 28, 170);
+//	//TabBut[MenuButNum + 2]->DrawButton();
+//	//getimage(2, 141, 28, 170, ImageTab[2]);
+//	//TabBut[MenuButNum + 3] = new CModeButton(nand, 2, 181, 28, 210);
+//	//TabBut[MenuButNum + 3]->DrawButton();
+//	//getimage(2, 181, 28, 210, ImageTab[3]);
+//	//TabBut[MenuButNum + 4] = new CModeButton(nor, 2, 221, 28, 250);
+//	//TabBut[MenuButNum + 4]->DrawButton();
+//	//getimage(2, 221, 28, 250, ImageTab[4]);
+//	//TabBut[MenuButNum + 5] = new CModeButton(xor, 2, 261, 28, 290);
+//	//TabBut[MenuButNum + 5]->DrawButton();
+//	//getimage(2, 261, 28, 290, ImageTab[5]);
+//	//TabBut[MenuButNum + 6] = new CModeButton(output, 2, 301, 28, 330);
+//	//TabBut[MenuButNum + 6]->DrawButton();
+//	//getimage(2, 301, 28, 330, ImageTab[6]);
+//	//setfillstyle(1, FrameColour);
+//	//ImageSize = imagesize(100, 155, 168, 170);
+//	//ImageTab[NumberOfImages - 1] = new[ImageSize];
+//	//bar(100, 155, 168, 170);
+//	//outtextxy(107, 160, "Linking");
+//	//getimage(100, 155, 168, 170, ImageTab[NumberOfImages - 1]);
+//	////ikona ˆ¥czenia element¢w jest ostatnia w tablicy
+//	//for (i = 0; i<ButNum - MenuButNum; i++)
+//	//{
+//	//	putimage(0, 0, ImageTab[i], 4);
+//	//	getimage(0, 0, 26, 29, ImageTab[i]);
+//	//}//negacja ikon element¢w
+//	//putimage(0, 0, ImageTab[NumberOfImages - 1], 4);
+//	//getimage(0, 0, 68, 15, ImageTab[NumberOfImages - 1]);
+//	//setactivepage(0);
+//	//if (!IsNew)
+//	//{
+//	//	char Path[15];
+//	//	strcpy(Path, "win");
+//	//	DoText(WinNum, Path);
+//	//	strcat(Path, ".tmp");
+//	//	if (Load(Path) != 1) Error(0);
+//	//	if (unlink(Path) == -1) Error(0);
+//	//	for (int i = 0; i<NumOfElem; i++)
+//	//		TabElem[i]->GetOutput(0, NumOfElem);
+//	//}//gdy okno nie jest nowe, to zostanie odtworzony jego poprzedni stan
+//	//if (!IsPrev && !IsNext&&IsNew) DrawWin(1);
+//	//jest to pierwsze otwierane okno
+//	//else DrawWin(0);//narysowanie tylko element¢w zmieniaj¥cych si©
+//}
 
 CWindow::~CWindow()
 {
-	/*for (int i = 0; i<NumOfElem; i++)
-		delete TabElem[i];
-	for (i = 0; i <= MenuButNum + 6; i++)
-		delete TabBut[i];
-	if (StandardPath != NULL)
-		delete StandardPath;
-	for (i = 0; i<ButNum - MenuButNum + 1; i++) delete ImageTab[i];*/
+	/*for (int i = 0; i<numofelem; i++)
+		delete tabelem[i];
+	for (i = 0; i <= menubutnum + 6; i++)
+		delete tabbut[i];
+	if (standardpath != null)
+		delete standardpath;
+	for (i = 0; i<butnum - menubutnum + 1; i++) delete imagetab[i];*/
 }
 //char CWindow::Work()
 //{
@@ -331,6 +371,9 @@ void CWindow::CheckElements(int X, int Y)
 								return;
 							}
 						}
+						if (windowEvent.button.button == SDL_BUTTON_RIGHT) {
+							break;
+						}
 					}
 				}
 				//	int ImageNum = NumberOfImages - 1;
@@ -392,9 +435,9 @@ void CWindow::Action(int ActNum)
 	switch (ActNum)
 	{
 		//	case 0:Error(Load()); break;//odczyt z pliku
-		//	case 1:New(); break;//nowy element
-		//	case 2:Previous(); break;//poprzedni element
-		//	case 3:Next(); break;//nast©pny element
+			case 1:New(); break;//nowy element
+			case 2:Previous(); break;//poprzedni element
+			case 3:Next(); break;//nast©pny element
 		//	case 4:Error(Save(StandardPath)); break;//zachowanie sieci
 		//	case 5:Error(Save()); break;//zachowanie sieci w nowym pliku
 		//	case 6:Exit(); break;//koniec programu
@@ -951,7 +994,6 @@ void CWindow::DrawWin(char Mode)
 
 
 //	TabElem[7]->DrawElem();
-	NumOfElem = 8;
 	//	SDL_Event windowEvent;
 		//while (true) {
 		//	if (SDL_PollEvent(&windowEvent)) {

@@ -11,7 +11,7 @@ public:
 	void ClickElement(int X, int Y);
 	char LinkPrevElem(CElement*PrevElem, int X, int Y);
 	TElementType ElementType();
-	SDL_Renderer *renderer = NULL;
+	//SDL_Renderer *renderer = NULL;
 	CNot(int X, int Y, SDL_Color Colour, SDL_Renderer *renderer);
 };
 

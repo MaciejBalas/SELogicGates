@@ -10,7 +10,7 @@ class CWire :public CElement
 	CJunction*TabJunction[MaxJunctionNum];
 	int BreakpointsNum;
 	int TabBreakpoints[MaxBreakpointsNum][2];
-	SDL_Renderer *renderer = NULL;
+	//SDL_Renderer *renderer = NULL;
 	char FormatJunctions(CElement**TabElem, int NumOfElem);
 	char FormatLine(int i, CElement**TabElem, int NumOfElem);
 	char Check(CElement**TabElem, int NumOfElem);

@@ -8,16 +8,17 @@
 
 class CInBus:public CElement
 {
-	CSmallButton*Button[2];
+	
 	char Name;
 	bool Visible;
 	int JunctionNum;
 	CJunction*TabJunction[MaxBusJunctionNum];
  public:
+	 CSmallButton * Button[2];
 	void DrawElem(SDL_Color Colour = { 0,0,0 });
 	TOutput GetOutput(int AskElemNum,int MaxNum) ;
 	void Change();
-	SDL_Renderer *renderer = NULL;
+	//SDL_Renderer *renderer = NULL;
 	char LinkNextElem(CElement*NextElem,int X,int Y);
 	char LinkPrevElem(CElement*PrevElem,int X,int Y);
 	TElementType ElementType();

@@ -7,7 +7,7 @@
 class CConstBus :public CElement
 {
 	int JunctionNum;
-	SDL_Renderer *renderer = NULL;
+	//SDL_Renderer *renderer = NULL;
 	CJunction*TabJunction[MaxBusJunctionNum];
 public:
 	void DrawElem(SDL_Color Colour = {0,0,0});

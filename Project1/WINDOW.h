@@ -25,12 +25,14 @@ class CWindow
 	int WinNum;
 	char Active;
 	char Result;
+	bool Recreate = false;
 	int NumOfElem;//ilo˜† element¢w
 	enum TMode { move, link, block };
 	TMode Mode;
 	CElement*TabElem[MaxNumOfElem];
 	CButton*TabBut[16];
 	SDL_Renderer *renderer = NULL;
+
 	char*StandardPath;
 	SDL_Texture* Message = NULL;
 	SDL_Surface* surfaceMessage = NULL;
@@ -58,7 +60,7 @@ class CWindow
 	void DeleteElem(int ElemNum);
 	//void Error(int ErrorNum);
 public:
-	void Control();
+	char Control();
 	void Redraw();
 	char Work();//praca u¾ytkownika w oknie
 	CWindow();

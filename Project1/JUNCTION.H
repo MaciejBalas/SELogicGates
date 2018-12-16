@@ -6,7 +6,7 @@
 class CJunction:public CElement
 {
  public:
-	 SDL_Renderer *renderer = NULL;
+	 //SDL_Renderer *renderer = NULL;
 	char Move(int X,int Y,CElement**TabElem,int NumOfElem);
 	void DrawElem(SDL_Color Colour = { 0,0,0 });
 	TOutput GetOutput(int AskElemNum,int MaxNum) ;

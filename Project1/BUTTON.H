@@ -1,6 +1,7 @@
 #ifndef DefButton
 #define DefButton
 #include "SDL.h"
+#include "ELEMENT.h"
 class CButton
 {
 protected:
@@ -10,11 +11,16 @@ protected:
 	int Y2;
 	SDL_Color ButtonColour;
 	SDL_Color DrawingColour;
+	
 	bool Insert;
 	bool Active;
 	SDL_Rect drawRect;
 
 public:
+	CElement * ButtonElement;
+	
+	SDL_Renderer * renderer = NULL;
+	void setRenderer(SDL_Renderer *renderer);
 	CButton();
 	~CButton();
 	virtual void DrawButton() = 0;
