@@ -21,6 +21,7 @@ CWire::CWire(int X, int Y, SDL_Renderer *renderer, SDL_Color Colour, char FromJu
 		TabNextElem[i] = NULL;
 	Output = error;
 	Movable = no;
+	this->renderer = renderer;
 }
 
 CWire::~CWire()
