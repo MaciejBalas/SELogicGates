@@ -596,8 +596,8 @@ void CWindow::Exit()
 
 void CWindow::NewElement(int ElemNum)
 {
-	int y=0;
-	int x=0;
+	int y = 0;
+	int x = 0;
 	SDL_Event windowEvent;
 	while (true) {
 		if (SDL_PollEvent(&windowEvent)) {
@@ -608,11 +608,13 @@ void CWindow::NewElement(int ElemNum)
 			}
 		}
 	}
+	x -= 12;
+	y -= 12;
 	int ImageNum;//numer bitmapy w tabeli
-
+	if (x > 31 && x + 25 < 610 && y > 61 && y + 25 < 440) {
 	switch (ElemNum)
 	{
-	case MenuButNum:TabElem[NumOfElem] = new CAnd(x, y, FrameColour,renderer);
+	case MenuButNum:TabElem[NumOfElem] = new CAnd(x, y, FrameColour, renderer);
 		ImageNum = 0; break;
 	case MenuButNum + 1:TabElem[NumOfElem] = new COr(x, y, FrameColour, renderer);
 		ImageNum = 1; break;
@@ -629,6 +631,7 @@ void CWindow::NewElement(int ElemNum)
 
 	}
 	NumOfElem++;
+	}
 	//if (DragElement(ImageNum, NumOfElem))
 	//	NumOfElem++;
 	//else delete TabElem[NumOfElem];
