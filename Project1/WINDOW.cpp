@@ -99,6 +99,7 @@ void CWindow::Redraw() {
 	}
 	for (int i = 0; i < NumOfElem; i++) {
 		if (TabElem[i] != NULL) {
+			TabElem[i]->GetOutput(0, NumOfElem);
 			TabElem[i]->DrawElem();
 		}
 	}
