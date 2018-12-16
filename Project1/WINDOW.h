@@ -40,7 +40,7 @@ class CWindow
 	//void React(int X, int Y);//reakcja na przyci˜ni©cie klawisza myszki
 	void CheckButtons(int X, int Y);//sprawdzenie przycisk¢w przy naci˜ni©ciu myszki
 	void CheckElements(int X, int Y);//sprawdzenie element¢w przy naci˜ni©ciu myszki
-	//char DragElement(int ImageNum, int ElemNum);
+	char DragElement(int ImageNum, int ElemNum);
 	void DrawWin(char Mode);
 	void DrawBasket(int X, int Y);
 	SDL_Rect Bar(int x1, int y1, int x2, int y2);
@@ -55,7 +55,7 @@ class CWindow
 	void MoveOrLink();
 	void NewElement(int ElemNum);
 	//void LinkElem(CElement*FirstElem, int X1, int Y1, CElement*NextElem, int X2, int Y2);
-	//void DeleteElem(int ElemNum);
+	void DeleteElem(int ElemNum);
 	//void Error(int ErrorNum);
 public:
 	void Control();

@@ -20,6 +20,7 @@ CAnd::CAnd(int X, int Y, SDL_Color Colour,SDL_Renderer *renderer)
 
 void CAnd::DrawElem(SDL_Color Colour)
 {
+	
 	if (Colour.r == 0 && Colour.g == 0 && Colour.b == 0)
 	{
 		switch (Output)

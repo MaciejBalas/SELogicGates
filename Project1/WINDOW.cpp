@@ -295,7 +295,8 @@ void CWindow::CheckElements(int X, int Y)
 				int ImageNum;
 				switch (ButtonType)
 				{
-				case _and:ImageNum = 0; break;
+				case _and:ImageNum = 0;
+					break;
 				case _or:ImageNum = 1; break;
 				case _not:ImageNum = 2; break;
 				case _nand:ImageNum = 3; break;
@@ -313,7 +314,7 @@ void CWindow::CheckElements(int X, int Y)
 				if (TabElem[i]->ElementType() == _output) Colour = FrameColour;
 				//wyj˜cie le¾y na szarym pasku
 				TabElem[i]->DrawElem(Colour);//element "znika"
-				//DragElement(ImageNum, i);
+				DragElement(ImageNum, i);
 				return;
 			}
 	//else
@@ -627,27 +628,31 @@ void CWindow::NewElement(int ElemNum)
 	x -= 12;
 	y -= 12;
 	int ImageNum;//numer bitmapy w tabeli
-	if (x > 31 && x + 25 < 610 && y > 61 && y + 25 < 440) {
+
 		switch (ElemNum)
 		{
-		case MenuButNum:TabElem[NumOfElem] = new CAnd(x, y, FrameColour, renderer);
+		case MenuButNum:TabElem[NumOfElem] = new CAnd(20, 20, FrameColour, renderer);
 			ImageNum = 0; break;
-		case MenuButNum + 1:TabElem[NumOfElem] = new COr(x, y, FrameColour, renderer);
+		case MenuButNum + 1:TabElem[NumOfElem] = new COr(20, 20, FrameColour, renderer);
 			ImageNum = 1; break;
-		case MenuButNum + 2:TabElem[NumOfElem] = new CNot(x, y, FrameColour, renderer);
+		case MenuButNum + 2:TabElem[NumOfElem] = new CNot(20, 20, FrameColour, renderer);
 			ImageNum = 2; break;
-		case MenuButNum + 3:TabElem[NumOfElem] = new CNand(x, y, FrameColour, renderer);
+		case MenuButNum + 3:TabElem[NumOfElem] = new CNand(20, 20, FrameColour, renderer);
 			ImageNum = 3; break;
-		case MenuButNum + 4:TabElem[NumOfElem] = new CNor(x, y, FrameColour, renderer);
+		case MenuButNum + 4:TabElem[NumOfElem] = new CNor(20, 20, FrameColour, renderer);
 			ImageNum = 4; break;
-		case MenuButNum + 5:TabElem[NumOfElem] = new CXor(x, y, FrameColour, renderer);
+		case MenuButNum + 5:TabElem[NumOfElem] = new CXor(20, 20, FrameColour, renderer);
 			ImageNum = 5; break;
-		case MenuButNum + 6:TabElem[NumOfElem] = new COutput(x, y, renderer);
+		case MenuButNum + 6:TabElem[NumOfElem] = new COutput(x, y, renderer, FrameColour);
 			ImageNum = 6; break;
 
 		}
+		if (!TabElem[NumOfElem]->Move(x, y, TabElem, NumOfElem)) {
+			DeleteElem(NumOfElem);
+		}
+		
 		NumOfElem++;
-	}
+	
 	//if (DragElement(ImageNum, NumOfElem))
 	//	NumOfElem++;
 	//else delete TabElem[NumOfElem];
@@ -674,16 +679,30 @@ void CWindow::NewElement(int ElemNum)
 //	}
 //}
 //
-//void CWindow::DeleteElem(int ElemNum)
-//{
-//	CElement*DelElemPoint = TabElem[ElemNum];
-//	int DelElemNum = TabElem[ElemNum]->DeleteConnections(TabElem, NumOfElem);
-//	delete DelElemPoint;
-//	NumOfElem -= DelElemNum;
-//}
+void CWindow::DeleteElem(int ElemNum)
+{
+	CElement*DelElemPoint = TabElem[ElemNum];
+	int DelElemNum = TabElem[ElemNum]->DeleteConnections(TabElem, NumOfElem);
+	delete DelElemPoint;
+	NumOfElem -= DelElemNum;
+}
 
-//char CWindow::DragElement(int ImageNum, int ElemNum)
-//{
+char CWindow::DragElement(int ImageNum, int ElemNum)
+{
+	SDL_Event windowEvent;
+	while (true) {
+		if (SDL_PollEvent(&windowEvent)) {
+			if (SDL_MOUSEBUTTONUP==windowEvent.type) {
+				if (windowEvent.motion.x  < 28 && windowEvent.motion.y < 430 && windowEvent.motion.y>370) {
+					DeleteElem(ElemNum);
+				}
+				else {
+					TabElem[ElemNum]->Move(windowEvent.motion.x - 12, windowEvent.motion.y - 12, TabElem, NumOfElem);
+				}
+				return 1;
+			}
+		}
+	}
 //	struct REGPACK reg;
 //	int X = -1;
 //	int Y = -1;
@@ -731,8 +750,8 @@ void CWindow::NewElement(int ElemNum)
 //	reg.r_cx = reg.r_cx - XDif;
 //	reg.r_dx = reg.r_dx - YDif;
 //	intr(0x33, &reg);//ustawienie kursora myszy w pierwotnym poˆo¾eniu
-//	return 1;
-//}
+	return 1;
+}
 void CWindow::DoText(int Number, char*Text)
 {
 	int i = 0;
