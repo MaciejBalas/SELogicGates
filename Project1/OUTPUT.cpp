@@ -13,7 +13,9 @@ COutput::COutput(int X, int Y, SDL_Renderer *renderer, SDL_Color Colour)
 	Movable = yes;
 	this->renderer = renderer;
 }
+void COutput::passOnRenderer() {
 
+}
 void COutput::DrawElem(SDL_Color Colour)
 {
 	//char Text1[2] = "?";

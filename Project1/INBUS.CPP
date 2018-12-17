@@ -28,6 +28,11 @@ CInBus::CInBus(int X,int Y,char Name, SDL_Renderer *renderer)
 
 }
 
+void CInBus::passOnRenderer() {
+	Button[0]->renderer = this->renderer;
+	Button[1]->renderer = this->renderer;
+}
+
 CInBus::~CInBus()
 {
 	for(int i=0;i<JunctionNum;i++)
@@ -35,6 +40,7 @@ CInBus::~CInBus()
 	delete Button[0];
 	delete Button[1];
 }
+
 
 void CInBus::DrawElem(SDL_Color Colour)
 {

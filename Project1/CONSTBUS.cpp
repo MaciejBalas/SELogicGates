@@ -22,6 +22,7 @@ CConstBus::~CConstBus()
 		delete TabJunction[i];
 }
 
+
 void CConstBus::DrawElem(SDL_Color Colour)
 {
 	if (Colour.r == 0 && Colour.g==0 && Colour.b==0)
@@ -93,6 +94,9 @@ char CConstBus::LinkNextElem(CElement*NextElem, int X, int Y)
 	TabJunction[JunctionNum]->LinkNextElem(NextElem, X, Y);
 	JunctionNum++;
 	return 1;
+}
+void CConstBus::passOnRenderer() {
+
 }
 
 char CConstBus::LinkPrevElem(CElement*PrevElem, int X, int Y)

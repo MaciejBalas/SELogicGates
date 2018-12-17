@@ -122,6 +122,7 @@ int main(int argc, char *argv[])
 			break;
 		}
 		case 1: {
+			CurrentWinNum++;
 			break;
 		}
 		case -1: {

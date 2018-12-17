@@ -3,6 +3,7 @@
 CElement::~CElement()
 {}
 
+
 int CElement::IsOnBoard()
 {
 	if (X1>150 && X2<610 && Y1>60 && Y2<440) return 1;

@@ -16,7 +16,9 @@ CJunction::CJunction(int X,int Y, SDL_Renderer *renderer, SDL_Color Colour)
 	Movable=yes;
 	this->renderer = renderer;
 }
+void CJunction::passOnRenderer() {
 
+}
 void CJunction::DrawElem(SDL_Color Colour)
 {
 	if (Colour.r == 0 && Colour.g == 0 && Colour.b == 0) {

@@ -5,6 +5,8 @@
 CWindow::CWindow(int Number, char IsPrev, char IsNext, char NewPossib, char IsNew) {
 	Active = 1;
 	Result = 1;
+	this->isNext = IsNext;
+	this->isPrev = IsPrev;
 	NumOfElem = NumberOfInBuses + 2;//szyny wej˜ciowe
 	WinNum = Number;
 	Mode = move;
@@ -30,10 +32,10 @@ char CWindow::Control() {
 			if (TabElem[i] != NULL) {
 				TabElem[i]->GetOutput(0, NumOfElem);
 				TabElem[i]->renderer = renderer;
-				/*if (TabElem[i]->ElementType == _inbus) {
-					TabElem[i]->Button[0]->renderer = renderer;
-					TabElem[i]->Button[1]->renderer = renderer;
-				}*/
+				if ((int)TabElem[i]->ElementType() == (int)_inbus) {
+					TabElem[i]->passOnRenderer();
+					TabElem[i]->passOnRenderer();
+				}
 			}
 		}
 		SDL_RenderClear(renderer);
@@ -51,12 +53,15 @@ char CWindow::Control() {
 			SDL_FreeSurface(surfaceMessage);
 			TTF_CloseFont(font);
 			Recreate = true;
+			if (Result == 2) {
+				isNext = 1;
+			}
 			//TTF_Quit();
 			//SDL_Quit();
 			return Result;
 		}
-		if (SDL_PollEvent(&windowEvent)) {
-			if (SDL_QUIT == windowEvent.type) {
+		if (SDL_PollEvent(&windowEvent)|| end) {
+			if (SDL_QUIT == windowEvent.type || end) {
 				SDL_DestroyWindow(window);
 				SDL_DestroyTexture(Message);
 				SDL_FreeSurface(surfaceMessage);
@@ -440,7 +445,7 @@ void CWindow::Action(int ActNum)
 			case 3:Next(); break;//nast©pny element
 		//	case 4:Error(Save(StandardPath)); break;//zachowanie sieci
 		//	case 5:Error(Save()); break;//zachowanie sieci w nowym pliku
-		//	case 6:Exit(); break;//koniec programu
+			case 6:Exit(); break;//koniec programu
 		//	case 7:Info(); break;//wy˜wietlenie informacji
 	case 8:MoveOrLink(); break;//przeˆ¥czanie
 	}
@@ -539,18 +544,28 @@ void CWindow::Action(int ActNum)
 //}
 void CWindow::New()
 {
+	if (isNext == 1) {
+		return;
+	}
 	Active = 0;
 	Result = 2;
+
 }
 
 void CWindow::Previous()
 {
+	if (isPrev==0) {
+		return;
+	}
 	Active = 0;
 	Result = -1;
 }
 
 void CWindow::Next()
 {
+	if (isNext==0) {
+		return;
+	}
 	Active = 0;
 	Result = 1;
 }
@@ -616,8 +631,9 @@ void CWindow::Next()
 
 void CWindow::Exit()
 {
-	Result = 0;
-	Active = 0;
+	end = true;
+	//Result = 0;
+	//Active = 0;
 }
 
 //void CWindow::Info()

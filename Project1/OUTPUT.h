@@ -7,6 +7,7 @@ class COutput :public CElement
 {
 	//SDL_Renderer *renderer = NULL;
 public:
+	void passOnRenderer();
 	void DrawElem(SDL_Color Colour = { 0,0,0 });
 	TOutput GetOutput(int AskElemNum, int MaxNum);
 	void ClickElement(int X, int Y);

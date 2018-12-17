@@ -17,7 +17,9 @@ CNor::CNor(int X, int Y, SDL_Color Colour, SDL_Renderer *renderer)
 	Output = error;
 	Movable = yes;
 }
+void CNor::passOnRenderer() {
 
+}
 void CNor::DrawElem(SDL_Color Colour)
 {
 	if (Colour.r == 0 && Colour.g == 0 && Colour.b == 0)

@@ -32,7 +32,7 @@ class CWindow
 	CElement*TabElem[MaxNumOfElem];
 	CButton*TabBut[16];
 	SDL_Renderer *renderer = NULL;
-
+	bool end = false;
 	char*StandardPath;
 	SDL_Texture* Message = NULL;
 	SDL_Surface* surfaceMessage = NULL;
@@ -60,6 +60,8 @@ class CWindow
 	void DeleteElem(int ElemNum);
 	//void Error(int ErrorNum);
 public:
+	char isNext;
+	char isPrev;
 	char Control();
 	void Redraw();
 	char Work();//praca u¾ytkownika w oknie

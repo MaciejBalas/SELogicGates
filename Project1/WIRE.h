@@ -15,6 +15,7 @@ class CWire :public CElement
 	char FormatLine(int i, CElement**TabElem, int NumOfElem);
 	char Check(CElement**TabElem, int NumOfElem);
 public:
+	void passOnRenderer();
 	void DrawElem(SDL_Color Colour = { 0,0,0 });
 	TOutput GetOutput(int AskElemNum, int MaxNum);
 	int IsYourArea(int X, int Y);

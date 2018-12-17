@@ -1,5 +1,5 @@
 ﻿  WINDOW.cpp
-d:\se_project\project1\window.cpp(380): warning C4101: 'XMove': unreferenced local variable
-d:\se_project\project1\window.cpp(381): warning C4101: 'YMove': unreferenced local variable
-d:\se_project\project1\window.cpp(825): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  Project1.vcxproj -> D:\SE_Project\x64\Debug\Project1.exe
+d:\logic gates\project1\window.cpp(385): warning C4101: 'XMove': unreferenced local variable
+d:\logic gates\project1\window.cpp(386): warning C4101: 'YMove': unreferenced local variable
+d:\logic gates\project1\window.cpp(841): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Project1.vcxproj -> D:\logic gates\x64\Debug\Project1.exe

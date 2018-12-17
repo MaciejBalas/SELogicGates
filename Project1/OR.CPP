@@ -17,7 +17,9 @@ COr::COr(int X, int Y, SDL_Color Colour, SDL_Renderer *renderer)
 	Movable = yes;
 	this->renderer = renderer;
 }
+void COr::passOnRenderer() {
 
+}
 void COr::DrawElem(SDL_Color Colour)
 {
 	if (Colour.r == 0 && Colour.g == 0 && Colour.b == 0)

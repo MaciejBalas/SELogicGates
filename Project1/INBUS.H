@@ -13,8 +13,10 @@ class CInBus:public CElement
 	bool Visible;
 	int JunctionNum;
 	CJunction*TabJunction[MaxBusJunctionNum];
+	CSmallButton * Button[2];
  public:
-	 CSmallButton * Button[2];
+	 void passOnRenderer();
+	 
 	void DrawElem(SDL_Color Colour = { 0,0,0 });
 	TOutput GetOutput(int AskElemNum,int MaxNum) ;
 	void Change();

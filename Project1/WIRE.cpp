@@ -121,7 +121,9 @@ void CWire::DrawElem(SDL_Color Colour)
 	}
 	SDL_RenderPresent(renderer);
 }
+void CWire::passOnRenderer() {
 
+}
 TOutput CWire::GetOutput(int AskElemNum, int MaxNum)
 {
 	if (AskElemNum == 0) return Output;

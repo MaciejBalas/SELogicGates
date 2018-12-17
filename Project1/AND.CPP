@@ -1,5 +1,8 @@
 #include "and.h"
 
+void CAnd::passOnRenderer() {
+
+}
 CAnd::CAnd(int X, int Y, SDL_Color Colour,SDL_Renderer *renderer)
 {
 	int i = 0;

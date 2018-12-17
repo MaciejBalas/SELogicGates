@@ -17,7 +17,9 @@ CNand::CNand(int X, int Y, SDL_Color Colour, SDL_Renderer *renderer)
 	Movable = yes;
 	this->renderer = renderer;
 }
+void CNand::passOnRenderer() {
 
+}
 void CNand::DrawElem(SDL_Color Colour)
 {
 	if (Colour.r == 0 && Colour.g == 0 && Colour.b == 0)
