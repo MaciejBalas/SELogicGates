@@ -1,0 +1,92 @@
+diff a/Project1/Source.cpp b/Project1/Source.cpp	(rejected hunks)
+@@ -18,7 +18,89 @@
+ 		}
+ 	}
+ }
+-
++//void Control()
++//{
++//	int CurrentWinNum = 0;//numer aktualnie otwartego okna
++//	int TotalWinNum = 1;//ilo˜† wszystkich otwartych okien
++//	char NewPossib = 1;//flaga m¢wi¥ca, czy mo¾e powsta† nowe okno
++//	char IsNew = 1;//flaga m¢wi¥ca, czy okno jest nowe
++//	char IsPrev;//flaga m¢wi¥ca, czy istnieje okno wcze˜niejsze
++//	char IsNext;//flaga m¢wi¥ca, czy istnieje okno nast©pne
++//	int TabWin[MaxWinNum];//tablica flag m¢wi¥cych, czy okno istnieje
++//	int i;
++//	for (i = 0; i<MaxWinNum; i++) TabWin[i] = 0;
++//	TabWin[0] = 1;
++//	do
++//	{
++//		IsPrev = 0;
++//		IsNext = 0;
++//		for (i = 0; i<CurrentWinNum; i++)
++//			if (TabWin[i] == 1)
++//			{
++//				IsPrev = 1;
++//				break;
++//			}
++//		for (i = CurrentWinNum + 1; i<MaxWinNum; i++)
++//			if (TabWin[i] == 1)
++//			{
++//				IsNext = 1;
++//				break;
++//			}
++//		CWindow*Window = new CWindow(CurrentWinNum + 1, IsPrev, IsNext, NewPossib, IsNew);
++//		IsNew = 0;
++//		char WinResult = Window->Work();
++//		if (WinResult == 0)//okno zostaje zamkni©te
++//		{
++//			TabWin[CurrentWinNum] = 0;
++//			TotalWinNum--;
++//			if (NewPossib == 0) NewPossib = 1;
++//			//skasowane zostaˆo jakie˜ okno, wi©c mo¾na utworzy† nowe okno
++//			for (i = CurrentWinNum + 1; i<MaxWinNum; i++)
++//				if (TabWin[i] == 1)
++//				{
++//					CurrentWinNum = i;
++//					break;
++//				}
++//			if (i >= MaxWinNum)//nie zostaˆo znalezione nast©pne otwarte okno
++//				for (i = CurrentWinNum - 1; i >= 0; i--)
++//					if (TabWin[i] == 1)
++//					{
++//						CurrentWinNum = i;
++//						break;
++//					}
++//			if (i<0) TotalWinNum = 0;//okno zamkni©te byˆo ostatnie
++//		}
++//		else
++//			if (WinResult == -1)//wy˜wietlone ma by† okno poprzednie
++//			{
++//				for (i = CurrentWinNum - 1; i >= 0; i--)
++//					if (TabWin[i] == 1) break;
++//				CurrentWinNum = i;
++//				if (i<0) TotalWinNum = 0;//wyst¥piˆ bˆ¥d
++//			}
++//			else
++//				if (WinResult == 1)//wy˜wietlone ma by† okno nast©pne
++//				{
++//					for (i = CurrentWinNum + 1; i<MaxWinNum; i++)
++//						if (TabWin[i] == 1) break;
++//					CurrentWinNum = i;
++//					if (i >= MaxWinNum) TotalWinNum = 0;//wyst¥piˆ bˆ¥d
++//				}
++//				else
++//					if (WinResult == 2)//ma powsta† nowe okno
++//					{
++//						for (i = 0; i<MaxWinNum; i++)
++//							if (TabWin[i] == 0) break;
++//						CurrentWinNum = i;
++//						TabWin[CurrentWinNum] = 1;
++//						TotalWinNum++;
++//						if (i >= MaxWinNum) TotalWinNum = 0;//wyst¥piˆ bˆ¥d
++//						if (i == MaxWinNum - 1) NewPossib = 0;
++//						IsNew = 1;//kolejne okno b©dzie nowym oknem
++//					}
++//		delete Window;
++//	} while (TotalWinNum>0);
++//}
+ //SDL_Window *window;
+ int main(int argc, char *argv[])
+ {
