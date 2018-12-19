@@ -72,7 +72,7 @@ CSmallWindow::~CSmallWindow()
 	struct REGPACK reg;
 	DrawSmallWin();
 	reg.r_ax = 0x1;
-	intr(0x33, &reg);//wˆ¥czenie
+	intr(0x33, &reg);//wË†Â¥czenie
 	if (kbhit())
 		do
 		{
@@ -87,7 +87,7 @@ CSmallWindow::~CSmallWindow()
 			if (reg.r_bx & 1) React(reg.r_cx, reg.r_dx);
 		} while (Active);
 		reg.r_ax = 0x2;
-		intr(0x33, &reg);//wyˆ¥czenie
+		intr(0x33, &reg);//wyË†Â¥czenie
 		return Result;
 }*/
 
@@ -99,8 +99,8 @@ CSmallWindow::~CSmallWindow()
 	{
 		reg.r_ax = 0x3;
 		intr(0x33, &reg);
-	} while (reg.r_bx & 1);//blokada-nic si© nie dzieje, gdy klawisz myszy
-										//zostaˆ wci˜ni©ty na pustym polu
+	} while (reg.r_bx & 1);//blokada-nic siÂ© nie dzieje, gdy klawisz myszy
+										//zostaË† wciËœniÂ©ty na pustym polu
 }*/
 
 
@@ -121,13 +121,13 @@ CSmallWindow::~CSmallWindow()
 		if (Reading&&ReadText == NULL) return;
 		Result = 1;
 		Active = 0;
-		return;//naci˜ni©ty przycisk OK
+		return;//naciËœniÂ©ty przycisk OK
 	}
 	if ((int)TmpText[Length] == Esc)
 	{
 		Result = 0;
 		Active = 0;
-		return;//naci˜ni©ty przycisk Cancel
+		return;//naciËœniÂ©ty przycisk Cancel
 	}
 	if (!Reading) return;//dalej jest obsluga pola do wprowadzania napisu
 	reg.r_ax = 0x2;
@@ -203,7 +203,7 @@ void CSmallWindow::DrawSmallWin()
 	SDL_RenderDrawLine(renderer, X2, Y2, X2, Y1);
 	SDL_RenderDrawLine(renderer, X2, Y1, X1, Y1);
 	SDL_RenderFillRect(renderer, &Bar(X1, Y1, X2, Y2));
-/*	no idea what bullfuckery is happening here
+/*	no idea what is happening here
 bar(X1 + 1, Y1 + 1, X2 - 1, Y1 + 20);
 	setcolor(HeadingTextColour);
 	outtextxy((int)(X1 + X2) / 2 - (strlen(HeadingText) / 2) * 9, Y1 + 8, HeadingText);
@@ -238,8 +238,8 @@ void CSmallWindow::Action(int ActNum)
 	switch (ActNum)
 	{
 	case 0:if (ReadText == NULL && Reading) return;
-		Result = 1; Active = 0; break;//naci˜ni©ty przycisk OK
-	case 1:Result = 0; Active = 0; break;//naci˜ni©ty przycisk Cancel
+		Result = 1; Active = 0; break;//naciËœniÂ©ty przycisk OK
+	case 1:Result = 0; Active = 0; break;//naciËœniÂ©ty przycisk Cancel
 	}
 }
 SDL_Rect CSmallWindow::Bar(int x1, int y1, int x2, int y2) {
